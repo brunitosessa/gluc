@@ -10,4 +10,13 @@ class UsuariosController extends Controller
 	{
 		return view('usuario.ver', ['id' => $id]);
 	}
+
+	public function create(Request $request)
+	{
+		$usuario = new Usuario();
+		$usuario->nombre = $request->nombre;
+		$usuario->apellido = $request->apellido;
+
+		$usuario->save();
+	}
 }

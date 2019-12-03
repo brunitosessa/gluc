@@ -19,7 +19,6 @@
 	</style>
 </head>
 <body>
-	<h1>Nuevo Bar</h1>
 	@if(count($errors) > 0)
 		<div class="errors">
 			<ul>
@@ -30,12 +29,9 @@
 		</div>
 	@endif
 
-	<form action="../guardarBar" method="post">
-		@csrf
-		<label for="nombre">Nombre:</label> <input type="text" name="nombre" value="{{old('nombre')}}">
-		<br />
-		<input type="submit" value="Crear">
-		<button class="btn btn-danger">Prueba</button>
-	</form>
+	@yield('title')
+
+	@yield('content')
+
 </body>
 </html>

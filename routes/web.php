@@ -18,8 +18,13 @@ Route::get('/', function () {
 //Usuarios
 Route::get('/usuario/{id}', 'UsuariosController@ver')->where('id', '[0-9]+');
 
-//Bares
-Route::get('/bar/{id}', 'BarController@ver')->where('id', '[0-9]+');
-//Crear Bar
-Route::get('/bar/nuevo', 'BarController@nuevo');
-Route::post('/guardarBar', 'BarController@guardar');
+//BARES
+Route::get('/bar/all', 'BarsController@all');
+Route::get('/bar/{id}', 'BarsController@ver')->where('id', '[0-9]+');
+
+//Create Bar
+Route::get('/bar/new', 'BarsController@new');
+Route::post('/bar/create', 'BarsController@create');
+
+Route::get('/bar/edit', 'BarsController@edit');
+Route::post('/bar/update', 'BarsController@update');
