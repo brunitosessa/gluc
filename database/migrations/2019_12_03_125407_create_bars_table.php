@@ -16,6 +16,7 @@ class CreateBarsTable extends Migration
         Schema::create('bars', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('imagen',255)->default('default.png');;
             $table->integer('localidad');
             $table->string('direccion',200);
             $table->string('descripcion',200)->nullable();

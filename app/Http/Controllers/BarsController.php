@@ -8,27 +8,22 @@ use App\Bar;
 
 class BarsController extends Controller
 {
-	public function all() {
+	public function index() {
 		$bars = Bar::All();
-		return view('bar.all',compact('bars'));
+		return view('bar.index',compact('bars'));
 	}
 
-	public function ver($id)
-	{
-		echo "BAR CON ID ".$id;
-		//return view('bar.ver', ['id' => $id]);
-	}
-
-	public function new()
+	public function create()
 	{
 		$bar = new Bar();
-		return view('bar.new', compact('bar'));
+		return view('bar.create', compact('bar'));
 	}
 
-	public function create(Request $request)
+	public function store(Request $request)
 	{
 		$this->validate($request, [
         	'nombre' => 'required|max:255',
+        	'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         	'localidad' => 'required|numeric',
         	'direccion' => 'required|max:200',
         	'descripcion' => 'required|max:200',
@@ -53,27 +48,35 @@ class BarsController extends Controller
 
 		$bar->save();
 
-		return $this->all();
+		return $this->index();
 	}
 
-	public function createPassword(Request $request)
+	public function show($id)
 	{
-		$bar = Bar::findOrFail($request->id);
-		if ( $request->password == $request->passwordRepeat )
-			$bar->password = $request->password;
-		
-		$bar->save();
-
-		return $this->all();
+		$bar = Bar::findOrFail($id);
+		return view('bar.show', compact('bar'));
 	}
 
-	public function edit()
+	public function edit($id)
 	{
-		return view('bar.edit');
+		$bar = Bar::findOrFail($id);
+		return view('bar.edit', compact('bar'));
 	}
 
 	public function update(Request $request)
 	{
+		$this->validate($request, [
+        	'nombre' => 'required|max:255',
+        	'localidad' => 'required|numeric',
+        	'direccion' => 'required|max:200',
+        	'descripcion' => 'required|max:200',
+        	'telefono' => 'required|max:20',
+        	'email' => 'required|email|max:100',
+        	'lat' => 'required|numeric',
+        	'lng' => 'required|numeric',
+        	'habilitado' => 'required|boolean',
+    	]);
+
 		$bar = Bar::findOrFail($request->id);
 		$bar->nombre = $request->nombre;
 		$bar->localidad = $request->localidad;
@@ -87,8 +90,14 @@ class BarsController extends Controller
 
 		$bar->save();
 
-		return $this->all();
+		return $this->show($bar->id);
 
+	}
+
+	public function destroy($id)
+	{
+		$bar = Bar::findOrFail($request->id);
+		$bar->delete();
 	}
 }
 	

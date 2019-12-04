@@ -2,7 +2,7 @@
 
 @section('content')
 
-{!! Form::model($bar, ['action' => 'BarsController@create']) !!}
+{!! Form::model($bar, ['action' => 'BarsController@store']) !!}
     <div class="form-group">
       {!! Form::label('nombre', 'Nombre') !!}
       {!! Form::text('nombre', '', ['class' => 'form-control']) !!}

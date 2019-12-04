@@ -9,16 +9,12 @@ Route::get('/', function () {
 //Usuarios
 Route::get('/usuario/{id}', 'UsuariosController@ver')->where('id', '[0-9]+');
 
-//BARES
-Route::get('/bar/all', 'BarsController@all');
-Route::get('/bar/{id}', 'BarsController@ver')->where('id', '[0-9]+');
-
-//Create Bar
-Route::get('/bar/new', 'BarsController@new');
-Route::post('/bar/create', 'BarsController@create');
-
-Route::get('/bar/edit', 'BarsController@edit');
-Route::post('/bar/update', 'BarsController@update');
-
+Route::get('/bars', 'BarsController@index')->middleware('auth')->name('bar.index');
+Route::get('/bars/{id}', 'BarsController@show')->where('id', '[0-9]+')->name('bar.show');
+Route::get('/bars/create', 'BarsController@create')->middleware('auth')->name('bar.create');
+Route::post('/bars', 'BarsController@store')->name('bar.store');
+Route::get('/bars/{id}/edit', 'BarsController@edit')->where('id', '[0-9]+')->name('bar.edit');
+Route::patch('/bars/{id}', 'BarsController@update')->name('bar.update');
+Route::delete('/bars/{id}', 'BarsController@delete')->name('bar.destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
