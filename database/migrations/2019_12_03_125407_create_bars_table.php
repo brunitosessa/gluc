@@ -20,12 +20,13 @@ class CreateBarsTable extends Migration
             $table->string('direccion',200);
             $table->string('descripcion',200)->nullable();
             $table->string('telefono',20);
-            $table->string('email',100);
+            $table->string('email',100)->unique();
             $table->float('lat',10,6);
             $table->float('lng',10,6);
             $table->integer('habilitado')->default(1);
             $table->string('password')->nullable();
             $table->string('salt')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

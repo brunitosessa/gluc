@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Bar;
 
 class BarsController extends Controller
@@ -21,7 +22,7 @@ class BarsController extends Controller
 	public function new()
 	{
 		$bar = new Bar();
-		return view('bar.new',compact('bar'));
+		return view('bar.new', compact('bar'));
 	}
 
 	public function create(Request $request)
@@ -48,6 +49,7 @@ class BarsController extends Controller
 		$bar->lat = $request->lat;
 		$bar->lng = $request->lng;
 		$bar->habilitado = $request->habilitado;
+		$bar->password = Hash::make('sanclemente');
 
 		$bar->save();
 
