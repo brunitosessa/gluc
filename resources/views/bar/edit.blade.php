@@ -5,23 +5,23 @@
 
 	{!! Form::model($bar, ['route' => ['bar.update', $bar->id], 'method' => 'PATCH']) !!}
     <div class="form-group">
-      {!! Form::label('name', 'Name') !!}
+      {!! Form::label('name', 'Nombre') !!}
       {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('city', 'City') !!}
-      {!! Form::number('city', old('city->name'), ['class' => 'form-control']) !!}
+      {!! Form::label('city_id', 'Ciudad') !!}
+      {{ Form::select('city_id', $cities, old('city_id'), ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
-      {!! Form::label('address', 'Address') !!}
+      {!! Form::label('address', 'Direccion') !!}
       {!! Form::text('address', old('address'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('description', 'Description') !!}
+      {!! Form::label('description', 'Descripcion') !!}
       {!! Form::text('description', old('description'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('phone', 'Phone') !!}
+      {!! Form::label('phone', 'Telefono') !!}
       {!! Form::text('phone', old('phone'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
@@ -37,9 +37,12 @@
       {!! Form::number('lng', old('lng'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('enabled', 'Enabled') !!}
+      {!! Form::label('enabled', 'Habilitado') !!}
+      {!! Form::hidden('enabled',0) !!}
       {!! Form::checkbox('enabled', '1', old('enabled')) !!}
     </div>
-
-	<button class="btn btn-sucess" type="submit">Save</button>
+    <div class="form-group">
+      {{ Form::button('Guardar', array('class' => 'btn btn-success', 'type' => 'submit')) }}
+    </div>
+  {!! Form::close() !!}
 @endsection

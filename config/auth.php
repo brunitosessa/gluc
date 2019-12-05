@@ -46,6 +46,10 @@ return [
             'provider' => 'bars',
             'hash' => false,
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ]
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
         'bars' => [
             'driver' => 'eloquent',
             'model' => App\Bar::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [

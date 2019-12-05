@@ -2,25 +2,28 @@
 
 @section('content')
 
-{!! Form::model($bar, ['action' => 'BarsController@store']) !!}
+{!! Form::model($bar, ['action' => 'BarsController@store', 'files' => true]) !!}
     <div class="form-group">
-      {!! Form::label('name', 'Name') !!}
+      {!! Form::file('image',['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+      {!! Form::label('name', 'Nombre') !!}
       {!! Form::text('name', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('city_id', 'City') !!}
+      {!! Form::label('city_id', 'Ciudad') !!}
       {{ Form::select('city_id', $cities, null, ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
-      {!! Form::label('address', 'Address') !!}
+      {!! Form::label('address', 'Direccion') !!}
       {!! Form::text('address', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('description', 'Description') !!}
+      {!! Form::label('description', 'Descripcion') !!}
       {!! Form::text('description', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('phone', 'Phone') !!}
+      {!! Form::label('phone', 'Telefono') !!}
       {!! Form::text('phone', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
@@ -36,11 +39,13 @@
       {!! Form::number('lng', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('enabled', 'Enabled') !!}
+      {!! Form::label('enabled', 'Habilitado') !!}
+      {!! Form::hidden('enabled',0) !!}
       {!! Form::checkbox('enabled', '1', ['class' => 'form-control']) !!}
     </div>
-
-	<button class="btn btn-sucess" type="submit">Create</button>
+    <div class="form-group">
+      {{ Form::button('Crear', array('class' => 'btn btn-success', 'type' => 'submit')) }}
+    </div>
 {!! Form::close() !!}
 
 @endsection

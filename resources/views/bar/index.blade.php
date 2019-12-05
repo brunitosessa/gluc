@@ -5,7 +5,7 @@
 
 	@foreach($bars as $bar)
 		<div class="container">
-			<a href="bars/{{ $bar->id }}">{{ $bar->nombre }}</a>
+			<a href="{{ route('bar.show', $bar->id) }}">{{ $bar->name }}</a>
 		</div>
 	@endforeach
 

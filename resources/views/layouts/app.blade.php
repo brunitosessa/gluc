@@ -51,7 +51,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nombre }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -80,7 +80,7 @@
             <div class="container errors">
                 <ul>
                 @foreach($errors->all() as $error)
-                    <div class="alert alert-primary" role="alert">
+                    <div class="alert alert-danger" role="alert">
                         {{ $error }}
                     </div>
                 @endforeach

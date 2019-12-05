@@ -2,25 +2,26 @@
 
 @section('content')
 	<div class="container">
+		<img src="/images/bars/{{ $bar->image }}">
 		<p>
 			Nombre:
-			{{ $bar->nombre }}
+			{{ $bar->name }}
 		</p>
 		<p>
 			Localidad:
-			{{ $bar->localidad }}
+			{{ $bar->city->name }}
 		</p>
 		<p>
 			Direccion:
-			{{ $bar->direccion }}
+			{{ $bar->address }}
 		</p>
 		<p>
 			Descripcion:
-			{{ $bar->descripcion }}
+			{{ $bar->description }}
 		</p>
 		<p>
 			Telefono:
-			{{ $bar->telefono }}
+			{{ $bar->phone }}
 		</p>
 		<p>
 			Email:
@@ -34,7 +35,7 @@
 			Longitud:
 			{{ $bar->lng }}
 		</p>
-			@if ($bar->habilitado)
+			@if ($bar->enabled)
 				<div class="alert alert-info">
 					Bar habilitado
 				</div>
@@ -44,6 +45,21 @@
 				</div>
 			@endif
 		</div>
+		<div class="container">
+			<div class="form-group">
+				{!! Form::open(['method' => 'GET', 'route' => ['bar.edit', $bar->id]]) !!}
+					{{ Form::button('Editar', array('class' => 'btn btn-info', 'type' => 'submit')) }}
+				{!! Form::close() !!}
+			</div>
+
+		    <div class="form-group">
+				{!! Form::open(['method' => 'DELETE', 'route' => ['bar.destroy', $bar->id]]) !!}
+					{{ Form::button('Eliminar', array('class' => 'btn btn-danger', 'type' => 'submit')) }}
+				{!! Form::close() !!}
+			</div>
+		</div>
+
+		</p>
 	</div>
 
 @endsection

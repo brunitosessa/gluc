@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Image;
 use App\Bar;
 use App\City;
 
@@ -17,7 +18,7 @@ class BarsController extends Controller
 	public function create()
 	{
 		$bar = new Bar();
-		$cities = City::All(['id','name']);
+		$cities = City::pluck('name','id');
 		return view('bar.create', compact('bar','cities'));
 	}
 
@@ -47,10 +48,17 @@ class BarsController extends Controller
 		$bar->lng = $request->lng;
 		$bar->enabled = $request->enabled;
 		$bar->password = Hash::make('sanclemente');
-
+		//Save and get Id
 		$bar->save();
 
-		return $this->index();
+		//Image
+		$bar->image = $bar->id.time().'.'.request()->file('image')->getClientOriginalExtension();
+    	Image::make($request->file('image'))->resize(600, 400)->save('images/bars/' . $bar->image );
+    	//Save Image info with ID
+		$bar->save();
+
+		return $this->index()->with('message', 'Bar agregado!');
+		return \Redirect::route('bar.show', $bar->id)->with('message', 'Product added!');  
 	}
 
 	public function show($id)
@@ -62,8 +70,8 @@ class BarsController extends Controller
 	public function edit($id)
 	{
 		$bar = Bar::findOrFail($id);
-		dd($Bar->city());
-		//return view('bar.edit', compact('bar'));
+		$cities = City::pluck('name','id');
+		return view('bar.edit', compact('bar','cities'));
 	}
 
 	public function update(Request $request)
@@ -99,7 +107,7 @@ class BarsController extends Controller
 
 	public function destroy($id)
 	{
-		$bar = Bar::findOrFail($request->id);
+		$bar = Bar::findOrFail($id);
 		$bar->delete();
 	}
 }
