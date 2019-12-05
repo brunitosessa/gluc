@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Bar;
+use App\City;
 
 class BarsController extends Controller
 {
@@ -16,34 +17,35 @@ class BarsController extends Controller
 	public function create()
 	{
 		$bar = new Bar();
-		return view('bar.create', compact('bar'));
+		$cities = City::All(['id','name']);
+		return view('bar.create', compact('bar','cities'));
 	}
 
 	public function store(Request $request)
 	{
 		$this->validate($request, [
-        	'nombre' => 'required|max:255',
-        	'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        	'localidad' => 'required|numeric',
-        	'direccion' => 'required|max:200',
-        	'descripcion' => 'required|max:200',
-        	'telefono' => 'required|max:20',
+        	'name' => 'required|max:255',
+        	'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        	'city_id' => 'required|numeric',
+        	'address' => 'required|max:200',
+        	'description' => 'required|max:200',
+        	'phone' => 'required|max:20',
         	'email' => 'required|email|max:100',
         	'lat' => 'required|numeric',
         	'lng' => 'required|numeric',
-        	'habilitado' => 'required|boolean',
+        	'enabled' => 'required|boolean',
     	]);
 
 		$bar = new Bar();
-		$bar->nombre = $request->nombre;
-		$bar->localidad = $request->localidad;
-		$bar->direccion = $request->direccion;
-		$bar->descripcion = $request->descripcion;
-		$bar->telefono = $request->telefono;
+		$bar->name = $request->name;
+		$bar->city_id = $request->city_id;
+		$bar->address = $request->address;
+		$bar->description = $request->description;
+		$bar->phone = $request->phone;
 		$bar->email = $request->email;
 		$bar->lat = $request->lat;
 		$bar->lng = $request->lng;
-		$bar->habilitado = $request->habilitado;
+		$bar->enabled = $request->enabled;
 		$bar->password = Hash::make('sanclemente');
 
 		$bar->save();
@@ -60,33 +62,34 @@ class BarsController extends Controller
 	public function edit($id)
 	{
 		$bar = Bar::findOrFail($id);
-		return view('bar.edit', compact('bar'));
+		dd($Bar->city());
+		//return view('bar.edit', compact('bar'));
 	}
 
 	public function update(Request $request)
 	{
 		$this->validate($request, [
-        	'nombre' => 'required|max:255',
-        	'localidad' => 'required|numeric',
-        	'direccion' => 'required|max:200',
-        	'descripcion' => 'required|max:200',
-        	'telefono' => 'required|max:20',
+        	'name' => 'required|max:255',
+        	'city_id' => 'required|numeric',
+        	'address' => 'required|max:200',
+        	'description' => 'required|max:200',
+        	'phone' => 'required|max:20',
         	'email' => 'required|email|max:100',
         	'lat' => 'required|numeric',
         	'lng' => 'required|numeric',
-        	'habilitado' => 'required|boolean',
+        	'enabled' => 'required|boolean',
     	]);
 
 		$bar = Bar::findOrFail($request->id);
-		$bar->nombre = $request->nombre;
-		$bar->localidad = $request->localidad;
-		$bar->direccion = $request->direccion;
-		$bar->descripcion = $request->descripcion;
-		$bar->telefono = $request->telefono;
+		$bar->name = $request->name;
+		$bar->city_id = $request->city_id;
+		$bar->address = $request->address;
+		$bar->description = $request->description;
+		$bar->phone = $request->phone;
 		$bar->email = $request->email;
 		$bar->lat = $request->lat;
 		$bar->lng = $request->lng;
-		$bar->habilitado = $request->habilitado;
+		$bar->enabled = $request->enabled;
 
 		$bar->save();
 

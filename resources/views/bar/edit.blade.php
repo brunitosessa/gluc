@@ -5,24 +5,24 @@
 
 	{!! Form::model($bar, ['route' => ['bar.update', $bar->id], 'method' => 'PATCH']) !!}
     <div class="form-group">
-      {!! Form::label('nombre', 'Nombre') !!}
-      {!! Form::text('nombre', old('nombre'), ['class' => 'form-control']) !!}
+      {!! Form::label('name', 'Name') !!}
+      {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('localidad', 'Localidad') !!}
-      {!! Form::number('localidad', old('localidad'), ['class' => 'form-control']) !!}
+      {!! Form::label('city', 'City') !!}
+      {!! Form::number('city', old('city->name'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('direccion', 'Direccion') !!}
-      {!! Form::text('direccion', old('direccion'), ['class' => 'form-control']) !!}
+      {!! Form::label('address', 'Address') !!}
+      {!! Form::text('address', old('address'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('descripcion', 'Descripcion') !!}
-      {!! Form::text('descripcion', old('descripcion'), ['class' => 'form-control']) !!}
+      {!! Form::label('description', 'Description') !!}
+      {!! Form::text('description', old('description'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('telefono', 'Telefono') !!}
-      {!! Form::text('telefono', old('telefono'), ['class' => 'form-control']) !!}
+      {!! Form::label('phone', 'Phone') !!}
+      {!! Form::text('phone', old('phone'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
       {!! Form::label('email', 'Email') !!}
@@ -37,9 +37,9 @@
       {!! Form::number('lng', old('lng'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('habilitado', 'Habilitado') !!}
-      {!! Form::checkbox('habilitado', '1', old('habilitado')) !!}
+      {!! Form::label('enabled', 'Enabled') !!}
+      {!! Form::checkbox('enabled', '1', old('enabled')) !!}
     </div>
 
-	<button class="btn btn-sucess" type="submit">Guardar</button>
+	<button class="btn btn-sucess" type="submit">Save</button>
 @endsection

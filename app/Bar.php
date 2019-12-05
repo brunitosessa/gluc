@@ -19,4 +19,9 @@ class Bar extends Authenticatable
     {
       return $this->password;
     }
+
+    public function city()
+    {
+        $this->belongsTo('App\City');
+    }
 }

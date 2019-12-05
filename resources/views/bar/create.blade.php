@@ -4,24 +4,24 @@
 
 {!! Form::model($bar, ['action' => 'BarsController@store']) !!}
     <div class="form-group">
-      {!! Form::label('nombre', 'Nombre') !!}
-      {!! Form::text('nombre', '', ['class' => 'form-control']) !!}
+      {!! Form::label('name', 'Name') !!}
+      {!! Form::text('name', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('localidad', 'Localidad') !!}
-      {!! Form::number('localidad', '', ['class' => 'form-control']) !!}
+      {!! Form::label('city_id', 'City') !!}
+      {{ Form::select('city_id', $cities, null, ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
-      {!! Form::label('direccion', 'Direccion') !!}
-      {!! Form::text('direccion', '', ['class' => 'form-control']) !!}
+      {!! Form::label('address', 'Address') !!}
+      {!! Form::text('address', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('descripcion', 'Descripcion') !!}
-      {!! Form::text('descripcion', '', ['class' => 'form-control']) !!}
+      {!! Form::label('description', 'Description') !!}
+      {!! Form::text('description', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('telefono', 'Telefono') !!}
-      {!! Form::text('telefono', '', ['class' => 'form-control']) !!}
+      {!! Form::label('phone', 'Phone') !!}
+      {!! Form::text('phone', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
       {!! Form::label('email', 'Email') !!}
@@ -36,11 +36,11 @@
       {!! Form::number('lng', '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('habilitado', 'Habilitado') !!}
-      {!! Form::checkbox('habilitado', '1', ['class' => 'form-control']) !!}
+      {!! Form::label('enabled', 'Enabled') !!}
+      {!! Form::checkbox('enabled', '1', ['class' => 'form-control']) !!}
     </div>
 
-	<button class="btn btn-sucess" type="submit">Guardar</button>
+	<button class="btn btn-sucess" type="submit">Create</button>
 {!! Form::close() !!}
 
 @endsection
