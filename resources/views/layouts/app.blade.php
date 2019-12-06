@@ -76,17 +76,7 @@
             @yield('content')
         </main>
 
-        @if(count($errors) > 0)
-            <div class="container errors">
-                <ul>
-                @foreach($errors->all() as $error)
-                    <div class="alert alert-danger" role="alert">
-                        {{ $error }}
-                    </div>
-                @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('layouts.messages')
     </div>
 </body>
 </html>

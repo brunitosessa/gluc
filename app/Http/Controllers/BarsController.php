@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Image;
+use File;
 use App\Bar;
 use App\City;
 
@@ -52,13 +53,19 @@ class BarsController extends Controller
 		$bar->save();
 
 		//Image
-		$bar->image = $bar->id.time().'.'.request()->file('image')->getClientOriginalExtension();
-    	Image::make($request->file('image'))->resize(600, 400)->save('images/bars/' . $bar->image );
-    	//Save Image info with ID
-		$bar->save();
+		if($request->hasFile('image')) {
+			$bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
 
-		return $this->index()->with('message', 'Bar agregado!');
-		return \Redirect::route('bar.show', $bar->id)->with('message', 'Product added!');  
+			//Store image
+    		Image::make($image)->resize(400, null, function($constraint){
+	    		$constraint->aspectRatio();
+    		})->save(public_path('storage/images/bars/') . $bar->image );
+
+    		//Save Image info with ID
+			$bar->save();
+    	}
+
+		return redirect()->route('bar.index')->with('success', 'Bar agregado correctamente!');
 	}
 
 	public function show($id)
@@ -78,6 +85,7 @@ class BarsController extends Controller
 	{
 		$this->validate($request, [
         	'name' => 'required|max:255',
+        	'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         	'city_id' => 'required|numeric',
         	'address' => 'required|max:200',
         	'description' => 'required|max:200',
@@ -101,14 +109,37 @@ class BarsController extends Controller
 
 		$bar->save();
 
-		return $this->show($bar->id);
+		//Image
+		if($request->hasFile('image')) {
+			$image = $request->file('image');
+			$bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
+			
+			//Store image
+			Image::make($image)->resize(400, null, function($constraint){
+	    		$constraint->aspectRatio();
+    		})->save(public_path('storage/images/bars/') . $bar->image );
+
+    		//Save Image info with ID
+			$bar->save();
+    	}
+
+		return redirect()->route('bar.show', ['id' => $bar->id])->with('success', 'Bar editado correctamente!');
 
 	}
 
 	public function destroy($id)
 	{
 		$bar = Bar::findOrFail($id);
+
+		//Remove Image
+		$image = public_path('storage/images/bars/').$bar->image;
+		if(File::exists($image)) {
+			File::delete($image);
+		}
+
 		$bar->delete();
+		
+		return redirect()->route('bar.index')->with('success', 'Bar eliminado correctamente!');
 	}
 }
 	
