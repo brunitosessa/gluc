@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Image;
 use File;
+use DB;
 use App\Bar;
 use App\City;
 
 class BarsController extends Controller
 {
 	public function index() {
-		$bars = Bar::All();
+		//$bars = Bar::All()::paginate(2);
+		$bars = DB::table('bars')->paginate(3);
 		return view('bar.index',compact('bars'));
 	}
 
