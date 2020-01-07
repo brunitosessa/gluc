@@ -14,7 +14,7 @@ class BarsController extends Controller
 {
 	public function index() {
 		//$bars = Bar::All()::paginate(2);
-		$bars = DB::table('bars')->paginate(3);
+		$bars = DB::table('bars')->paginate(200);
 		return view('bar.index',compact('bars'));
 	}
 
@@ -56,13 +56,11 @@ class BarsController extends Controller
 
 		//Image
 		if($request->hasFile('image')) {
+			$image = $request->image;
 			$bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
 
 			//Store image
-    		Image::make($image)->resize(400, null, function($constraint){
-	    		$constraint->aspectRatio();
-    		})->save(public_path('storage/images/bars/') . $bar->image );
-
+    		Image::make($image)->fit(250, 250)->save(public_path('storage/images/bars/') . $bar->image );
     		//Save Image info with ID
 			$bar->save();
     	}
@@ -117,9 +115,7 @@ class BarsController extends Controller
 			$bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
 			
 			//Store image
-			Image::make($image)->resize(400, null, function($constraint){
-	    		$constraint->aspectRatio();
-    		})->save(public_path('storage/images/bars/') . $bar->image );
+    		Image::make($image)->fit(250, 250)->save(public_path('storage/images/bars/') . $bar->image );
 
     		//Save Image info with ID
 			$bar->save();

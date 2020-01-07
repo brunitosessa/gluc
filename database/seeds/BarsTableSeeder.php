@@ -11,12 +11,12 @@ class BarsTableSeeder extends Seeder
      */
     public function run()
     {
- 		DB::table('bars')->insert([
+        DB::table('bars')->insert([
             'name' => 'Ogham',
             'address' => 'Calle 11 1553 entre 21 y 22',
             'description' => 'Es un gran bar',
             'phone' => '22177777162',
-            'email' => Str::random(10).'@gmail.com',
+            'email' => 'ogham@gluc.com.ar',
             'lat' => 0,
             'lng' => 14,
             'enabled' => 1,
