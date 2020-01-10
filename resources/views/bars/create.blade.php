@@ -4,7 +4,7 @@
 
   <h3>Crear bar</h3>
 
-  {!! Form::model($bar, ['action' => 'BarsController@store', 'files' => true]) !!}
+  {!! Form::model($bar, ['action' => 'BarController@store', 'files' => true]) !!}
 
     <div class="mb-4">
       {!! Html::image('/storage/images/bars/default.jpg', 'Bar image', ['class' => 'img-fluid rounded']) !!}
