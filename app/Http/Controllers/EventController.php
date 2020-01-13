@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\City;
-use DB;
 use Illuminate\Http\Request;
+use Image;
+use File;
+use DB;
 
 class EventController extends Controller
 {
@@ -37,7 +39,7 @@ class EventController extends Controller
             'date' => 'required|date',
         ]);
         
-        $event = new Bar();
+        $event = new Event();
         $event->title = $request->title;
         $event->address = $request->address;
         $event->lat = $request->lat;
@@ -45,7 +47,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->city_id = $request->city_id;
         $event->enabled = $request->enabled;
-        $event->enabled = $request->date;
+        $event->date = $request->date;
     
         //Save and get Id
         $event->save();
@@ -66,9 +68,11 @@ class EventController extends Controller
         //
     }
 
-   public function edit(Event $event)
+   public function edit($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $cities = City::pluck('name','id');
+        return view('events.edit', compact('event','cities'));
     }
 
     public function update(Request $request, Event $event)

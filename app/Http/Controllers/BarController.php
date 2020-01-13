@@ -1,12 +1,13 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Bar;
+use App\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Image;
 use File;
 use DB;
-use App\Bar;
-use App\City;
 
 class BarController extends Controller
 {
@@ -59,17 +60,20 @@ class BarController extends Controller
         }
         return redirect()->route('bars.index')->with('success', 'Bar agregado correctamente!');
     }
+    
     public function show($id)
     {
         $bar = Bar::findOrFail($id);
         return view('bars.show', compact('bar'));
     }
+
     public function edit($id)
     {
         $bar = Bar::findOrFail($id);
         $cities = City::pluck('name','id');
         return view('bars.edit', compact('bar','cities'));
     }
+
     public function update(Request $request)
     {
         $this->validate($request, [

@@ -4,7 +4,7 @@
 
 	<h3>Editar bar</h3>
 
-	{!! Form::model($bar, ['route' => ['bar.update', $bar->id], 'method' => 'PATCH', 'files' => true]) !!}
+	{!! Form::model($bar, ['route' => ['bars.update', $bar->id], 'method' => 'PATCH', 'files' => true]) !!}
 
     <div class="mb-4">
       {!! Html::image('/storage/images/bars/'.$bar->image, 'Bar image', ['class' => 'img-fluid rounded']) !!}

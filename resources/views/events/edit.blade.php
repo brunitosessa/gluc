@@ -2,12 +2,12 @@
 
 @section('content')
 
-  <h3>Crear evento</h3>
+	<h3>Editar evento</h3>
 
-  {!! Form::open(['action' => 'EventController@store', 'files' => true]) !!}
+	{!! Form::model($event, ['route' => ['events.update', $event->id], 'method' => 'PATCH', 'files' => true]) !!}
 
     <div class="mb-4">
-      {!! Html::image('/storage/images/events/default.jpg', 'Event image', ['class' => 'img-fluid rounded']) !!}
+      {!! Html::image('/storage/images/events/'.$event->image, 'Event image', ['class' => 'img-fluid rounded']) !!}
     </div>
 
     <div class="form-group">
@@ -16,49 +16,50 @@
 
     <div class="form-group">
       {!! Form::label('title', 'Titulo') !!}
-      {!! Form::text('title', '', ['class' => 'form-control']) !!}
+      {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
       {!! Form::label('address', 'Direccion') !!}
-      {!! Form::text('address', '', ['class' => 'form-control']) !!}
+      {!! Form::text('address', old('address'), ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
       {!! Form::label('lat', 'Lat') !!}
-      {!! Form::number('lat', '', ['class' => 'form-control']) !!}
+      {!! Form::number('lat', old('lat'), ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
       {!! Form::label('lng', 'Lng') !!}
-      {!! Form::number('lng', '', ['class' => 'form-control']) !!}
+      {!! Form::number('lng', old('lng'), ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
       {!! Form::label('description', 'Descripcion') !!}
-      {!! Form::text('description', '', ['class' => 'form-control']) !!}
+      {!! Form::text('description', old('description'), ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
       {!! Form::label('city_id', 'Ciudad') !!}
-      {{ Form::select('city_id', $cities, null, ['class' => 'form-control']) }}
+      {{ Form::select('city_id', $cities, old('city_id'), ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
       {!! Form::label('enabled', 'Habilitado') !!}
       {!! Form::hidden('enabled',0) !!}
-      {!! Form::checkbox('enabled', '1', ['class' => 'form-control']) !!}
+      {!! Form::checkbox('enabled', '1', old('enabled')) !!}
     </div>
 
     <div class="form-group">
       {!! Form::label('date', 'Fecha') !!}
-      {{ Form::date('date', '', ['class' => 'form-control']) }}
+      {{ Form::date('date', old('date'), ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
-      {{ Form::button('Crear', array('class' => 'btn btn-success', 'type' => 'submit')) }}
+      {{ Form::button('Guardar', array('class' => 'btn btn-success', 'type' => 'submit')) }}
     </div>
 
   {!! Form::close() !!}
 
+  
 @endsection

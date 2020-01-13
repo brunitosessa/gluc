@@ -7,7 +7,7 @@
 	    {!! Form::search('name', '', ['class' => 'form-control']) !!}
 	</div>
 	
-	<div class="card-columns" style="column-count: 4;">
+	<div class="card-columns">
 		@foreach($bars as $bar)
 		<div class="card" style="width:250px">
 			<img class="card-img-top" src="/storage/images/bars/{{ $bar->image }}" alt="Card image">
