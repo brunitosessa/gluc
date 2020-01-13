@@ -6,8 +6,8 @@
 
   {!! Form::open(['action' => 'EventController@store', 'files' => true]) !!}
 
-    <div class="mb-4">
-      {!! Html::image('/storage/images/events/default.jpg', 'Event image', ['class' => 'img-fluid rounded']) !!}
+    <div class="mb-4 text-center">
+      {!! Html::image('/storage/images/events/default.jpg', 'Event image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
     </div>
 
     <div class="form-group">

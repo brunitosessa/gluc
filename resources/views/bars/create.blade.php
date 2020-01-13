@@ -4,10 +4,11 @@
 
   <h3>Crear bar</h3>
 
-  {!! Form::model($bar, ['action' => 'BarController@store', 'files' => true]) !!}
+  <div class="container">
+  {!! Form::open(['action' => 'BarController@store', 'files' => true]) !!}
 
-    <div class="mb-4">
-      {!! Html::image('/storage/images/bars/default.jpg', 'Bar image', ['class' => 'img-fluid rounded']) !!}
+    <div class="mb-4 text-center">
+      {!! Html::image('/storage/images/bars/default.jpg', 'Bar image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
     </div>
 
     <div class="form-group">
@@ -65,5 +66,6 @@
     </div>
 
   {!! Form::close() !!}
+  </div>
 
 @endsection

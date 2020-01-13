@@ -6,8 +6,8 @@
 
 	{!! Form::model($event, ['route' => ['events.update', $event->id], 'method' => 'PATCH', 'files' => true]) !!}
 
-    <div class="mb-4">
-      {!! Html::image('/storage/images/events/'.$event->image, 'Event image', ['class' => 'img-fluid rounded']) !!}
+    <div class="mb-4 text-center">
+      {!! Html::image('/storage/images/events/'.$event->image, 'Event image', ['class' => 'img-fluid rounded', 'width' => 250]) !!}
     </div>
 
     <div class="form-group">

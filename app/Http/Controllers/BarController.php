@@ -15,12 +15,14 @@ class BarController extends Controller
         $bars = DB::table('bars')->paginate(200);
         return view('bars.index',compact('bars'));
     }
+
     public function create()
     {
         $bar = new Bar();
         $cities = City::pluck('name','id');
         return view('bars.create', compact('bar','cities'));
     }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -88,6 +90,7 @@ class BarController extends Controller
             'lng' => 'required|numeric',
             'enabled' => 'required|boolean',
         ]);
+        
         $bar = Bar::findOrFail($request->id);
         $bar->name = $request->name;
         $bar->city_id = $request->city_id;
@@ -99,6 +102,7 @@ class BarController extends Controller
         $bar->lng = $request->lng;
         $bar->enabled = $request->enabled;
         $bar->save();
+        
         //Image
         if($request->hasFile('image')) {
             $image = $request->file('image');
@@ -111,6 +115,7 @@ class BarController extends Controller
         }
         return redirect()->route('bars.show', ['id' => $bar->id])->with('success', 'Bar editado correctamente!');
     }
+    
     public function destroy($id)
     {
         $bar = Bar::findOrFail($id);

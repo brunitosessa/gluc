@@ -51,6 +51,7 @@ class EventController extends Controller
     
         //Save and get Id
         $event->save();
+
         //Image
         if($request->hasFile('image')) {
             $image = $request->image;
@@ -63,9 +64,10 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('success', 'Bar agregado correctamente!');
     }
 
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        return view('events.show', compact('event'));
     }
 
    public function edit($id)
@@ -77,11 +79,55 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'address' => 'required|max:200',
+            'lat' => 'required|numeric',
+            'lng' => 'required|numeric',
+            'description' => 'required|max:200',
+            'city_id' => 'required|numeric',
+            'enabled' => 'required|boolean',
+            'date' => 'required|date',
+        ]);
+        
+        $event = Event::findOrFail($request->id);
+        $event->title = $request->title;
+        $event->address = $request->address;
+        $event->lat = $request->lat;
+        $event->lng = $request->lng;
+        $event->description = $request->description;
+        $event->city_id = $request->city_id;
+        $event->enabled = $request->enabled;
+        $event->date = $request->date;
+        //Save and get Id
+        $event->save();
+
+        //Image
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $event->image = $event->id.time().'.'.$image->getClientOriginalExtension();
+            
+            //Store image
+            Image::make($image)->fit(250, 250)->save(public_path('storage/images/events/') . $event->image );
+            //Save Image info with ID
+            $event->save();
+        }
+
+        return redirect()->route('events.show', ['id' => $event->id])->with('success', 'Evento editado correctamente!');
     }
 
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        //Remove Image
+        $image = public_path('storage/images/events/').$event->image;
+        if(File::exists($image)) {
+            File::delete($image);
+        }
+        $event->delete();
+        
+        return redirect()->route('events.index')->with('success', 'Evento eliminado correctamente!');
+
     }
 }

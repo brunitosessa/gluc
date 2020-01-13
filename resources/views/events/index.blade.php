@@ -15,7 +15,7 @@
 				<h4 class="card-title"><a href="{{ route('events.show', $event->id) }}">{{ $event->title }}</a>
 	</h4>
 				<p class="card-text">{{ $event->description }}</p>
-				<a href="{{ route('events.edit', $event->id) }}" class="btn btn-primary">Ver</a>
+				<a href="{{ route('events.show', $event->id) }}" class="btn btn-primary">Ver</a>
 			</div>
 
 		</div>

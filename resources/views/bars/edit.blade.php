@@ -6,8 +6,8 @@
 
 	{!! Form::model($bar, ['route' => ['bars.update', $bar->id], 'method' => 'PATCH', 'files' => true]) !!}
 
-    <div class="mb-4">
-      {!! Html::image('/storage/images/bars/'.$bar->image, 'Bar image', ['class' => 'img-fluid rounded']) !!}
+    <div class="mb-4 text-center">
+      {!! Html::image('/storage/images/bars/'.$bar->image, 'Bar image', ['class' => 'img-fluid rounded', 'width' => 250]) !!}
     </div>
 
     <div class="form-group">
