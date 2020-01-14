@@ -13,6 +13,7 @@ class BarsTableSeeder extends Seeder
     {
         DB::table('bars')->insert([
             'name' => 'Ogham',
+            'city_id' => 1,
             'address' => 'Calle 11 1553 entre 21 y 22',
             'description' => 'Es un gran bar',
             'phone' => '22177777162',

@@ -18,7 +18,7 @@ class CreateBarsTable extends Migration
             $table->string('name');
             $table->string('image',255)->default('default.jpg');
             $table->string('logo',255)->default('default.jpg');
-            $table->integer('city_id')->unsigned()->nullable()->default(null);
+            $table->integer('city_id')->unsigned();
             $table->string('address',200);
             $table->string('description',200)->nullable();
             $table->string('phone',20);

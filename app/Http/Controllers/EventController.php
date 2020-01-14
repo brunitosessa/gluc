@@ -15,7 +15,6 @@ class EventController extends Controller
     {
         $events = DB::table('events')->paginate(20);
         return view('events.index',compact('events'));
-
     }
 
     public function create()
@@ -128,6 +127,5 @@ class EventController extends Controller
         $event->delete();
         
         return redirect()->route('events.index')->with('success', 'Evento eliminado correctamente!');
-
     }
 }
