@@ -25,7 +25,7 @@ class CreateBarsTable extends Migration
             $table->string('email',100)->unique();
             $table->float('lat',10,6);
             $table->float('lng',10,6);
-            $table->integer('enabled')->default(1);
+            $table->boolean('enabled')->default(1);
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();

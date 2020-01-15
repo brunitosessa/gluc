@@ -47,7 +47,7 @@
 
 		<div class="form-group float-right ml-2">
 			{!! Form::open(['method' => 'GET', 'route' => ['publicities.edit', $publicity->id]]) !!}
-				{{ Form::button('Editar', array('class' => 'btn btn-info', 'type' => 'submit')) }}
+				{{ Form::button('Editar', array('class' => 'btn btn-primary', 'type' => 'submit')) }}
 			{!! Form::close() !!}
 		</div>
 	</div>

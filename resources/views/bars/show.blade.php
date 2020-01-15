@@ -2,6 +2,10 @@
 
 @section('content')
 	<div class="container clearfix">
+		<div class="float-right">
+			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
+		</div>
+
 		<div class="float-left">
 			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded" width="250">
 		</div>
@@ -54,7 +58,20 @@
 		@endif
 	</div>
 
-	<div class="container">	    
+	<div class="container">	   
+		<div class="form-group float-left ml-2">
+			
+				<a class="btn btn-success" href="{{ route('bars.promotions.index', ['bar_id' => $bar->id]) }}">
+					<i class="fas fa-fire-alt fa-2x"></i>
+					<br>Promociones
+				</a>
+				<a class="btn btn-dark" href="#">
+					<i class="fas fa-star fa-2x"></i>
+					<br>Especiales
+				</a>
+			
+		</div>
+
 		<div class="form-group float-right ml-2">
 			{!! Form::open(['method' => 'DELETE', 'route' => ['bars.destroy', $bar->id]]) !!}
 				{{ Form::button('Eliminar', array('class' => 'btn btn-danger', 'type' => 'submit')) }}
@@ -63,7 +80,7 @@
 
 		<div class="form-group float-right ml-2">
 			{!! Form::open(['method' => 'GET', 'route' => ['bars.edit', $bar->id]]) !!}
-				{{ Form::button('Editar', array('class' => 'btn btn-info', 'type' => 'submit')) }}
+				{{ Form::button('Editar', array('class' => 'btn btn-primary', 'type' => 'submit')) }}
 			{!! Form::close() !!}
 		</div>
 	</div>

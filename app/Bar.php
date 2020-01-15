@@ -18,4 +18,9 @@ class Bar extends Authenticatable
     {
         return $this->belongsTo('App\City');
     }
+
+    public function promotions()
+    {
+    	return $this->hasMany('App\Promotion');
+    }
 }

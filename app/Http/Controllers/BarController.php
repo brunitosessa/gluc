@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Bar;
 use App\City;
+use App\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Image;
@@ -12,7 +13,7 @@ use DB;
 class BarController extends Controller
 {
     public function index() {
-        $bars = DB::table('bars')->paginate(200);
+        $bars = Bar::paginate(20);
         return view('bars.index',compact('bars'));
     }
 
@@ -28,6 +29,7 @@ class BarController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'city_id' => 'required|numeric',
             'address' => 'required|max:200',
             'description' => 'required|max:200',
@@ -51,12 +53,22 @@ class BarController extends Controller
         $bar->password = Hash::make('sanclemente');
         //Save and get Id
         $bar->save();
+
         //Image
         if($request->hasFile('image')) {
             $image = $request->image;
             $bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
             //Store image
             Image::make($image)->fit(250, 250)->save(public_path('storage/images/bars/') . $bar->image );
+            //Save Image info with ID
+            $bar->save();
+        }
+        //Logo
+        if($request->hasFile('logo')) {
+            $logo = $request->logo;
+            $bar->logo = $bar->id.time().'.'.$logo->getClientOriginalExtension();
+            //Store logo
+            Image::make($logo)->fit(250, 250)->save(public_path('storage/images/bars/logos/') . $bar->logo );
             //Save Image info with ID
             $bar->save();
         }
@@ -127,5 +139,12 @@ class BarController extends Controller
         $bar->delete();
         
         return redirect()->route('bars.index')->with('success', 'Bar eliminado correctamente!');
+    }
+
+    public function showPromotions($bar_id)
+    {
+        $bar = Bar::findOrFail($bar_id);
+        $promotions = $bar->promotions;
+        return view('promotions.index', compact('promotions', 'bar_id'));
     }
 }

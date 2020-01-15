@@ -13,7 +13,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = DB::table('events')->paginate(20);
+        $events = Event::paginate(20);
         return view('events.index',compact('events'));
     }
 
@@ -60,7 +60,7 @@ class EventController extends Controller
             //Save Image info with ID
             $event->save();
         }
-        return redirect()->route('events.index')->with('success', 'Bar agregado correctamente!');
+        return redirect()->route('events.index')->with('success', 'Evento agregado correctamente!');
     }
 
     public function show($id)
@@ -76,7 +76,7 @@ class EventController extends Controller
         return view('events.edit', compact('event','cities'));
     }
 
-    public function update(Request $request, Event $event)
+    public function update(Request $request)
     {
         $this->validate($request, [
             'title' => 'required|max:255',

@@ -13,8 +13,7 @@ class PublicityController extends Controller
 {
     public function index()
     {
-        $publicities = DB::table('publicities')->paginate(20);
-        //$publicities = Publicity::all();
+        $publicities = Publicity::paginate(15);
         return view('publicities.index',compact('publicities'));
     }
 

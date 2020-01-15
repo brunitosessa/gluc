@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->float('lng',10,6);
             $table->string('description',200)->nullable();
             $table->integer('city_id')->unsigned();
-            $table->integer('enabled')->default(1);
+            $table->boolean('enabled')->default(1);
             $table->date('date');
             $table->rememberToken();
             $table->timestamps();

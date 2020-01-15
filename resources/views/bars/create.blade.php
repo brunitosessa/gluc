@@ -16,6 +16,11 @@
     </div>
 
     <div class="form-group">
+      {!! Form::file('logo',['class' => 'form-control']) !!}
+    </div>
+
+
+    <div class="form-group">
       {!! Form::label('name', 'Nombre') !!}
       {!! Form::text('name', '', ['class' => 'form-control']) !!}
     </div>

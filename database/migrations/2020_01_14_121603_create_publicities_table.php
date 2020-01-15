@@ -15,7 +15,7 @@ class CreatePublicitiesTable extends Migration
             $table->string('description',200)->nullable();
             $table->integer('city_id')->unsigned();
             $table->date('end_date');
-            $table->integer('enabled')->default(1);
+            $table->boolean('enabled')->default(1);
             $table->timestamps();
             $table->foreign('city_id')->references('id')->on('cities');
         });
