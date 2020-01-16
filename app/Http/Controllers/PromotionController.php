@@ -77,7 +77,8 @@ class PromotionController extends Controller
             'bar_id' => 'required|numeric',
         ]);
         
-        $promotion = Promotion::findOrFail($request->id);
+        $promotion->update($request->all());
+        /*$promotion = Promotion::findOrFail($request->id);
         $promotion->title = $request->title;
         $promotion->description = $request->description;
         $promotion->happy_hour = $request->happy_hour;
@@ -85,7 +86,7 @@ class PromotionController extends Controller
         $promotion->exclusive = $request->exclusive;
         $promotion->bar_id = $request->bar_id;
         $promotion->save();
-
+*/
         //Image
         if($request->hasFile('image')) {
             $image = $request->file('image');
@@ -96,6 +97,7 @@ class PromotionController extends Controller
             //Save Image info with ID
             $promotion->save();
         }
+        
         return redirect()->route('promotions.show', ['id' => $promotion->id])->with('success', 'Promocion editada correctamente!');
     }
 

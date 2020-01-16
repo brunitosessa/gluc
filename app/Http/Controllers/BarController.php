@@ -28,6 +28,7 @@ class BarController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
+            'password' => 'required|min:8',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'city_id' => 'required|numeric',
@@ -39,7 +40,7 @@ class BarController extends Controller
             'lng' => 'required|numeric',
             'enabled' => 'required|boolean',
         ]);
-        
+
         $bar = new Bar();
         $bar->name = $request->name;
         $bar->city_id = $request->city_id;
@@ -50,7 +51,7 @@ class BarController extends Controller
         $bar->lat = $request->lat;
         $bar->lng = $request->lng;
         $bar->enabled = $request->enabled;
-        $bar->password = Hash::make('sanclemente');
+        $bar->password = Hash::make($request->password);
         //Save and get Id
         $bar->save();
 
@@ -88,7 +89,7 @@ class BarController extends Controller
         return view('bars.edit', compact('bar','cities'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Bar $bar)
     {
         $this->validate($request, [
             'name' => 'required|max:255',
@@ -103,6 +104,8 @@ class BarController extends Controller
             'enabled' => 'required|boolean',
         ]);
         
+        $bar->update($request->all());
+/*
         $bar = Bar::findOrFail($request->id);
         $bar->name = $request->name;
         $bar->city_id = $request->city_id;
@@ -114,7 +117,7 @@ class BarController extends Controller
         $bar->lng = $request->lng;
         $bar->enabled = $request->enabled;
         $bar->save();
-        
+  */      
         //Image
         if($request->hasFile('image')) {
             $image = $request->file('image');
@@ -136,6 +139,12 @@ class BarController extends Controller
         if(File::exists($image)) {
             File::delete($image);
         }
+        //Remove Logo
+        $logo = public_path('storage/images/bars/logos/').$bar->logo;
+        if(File::exists($logo)) {
+            File::delete($logo);
+        }
+        
         $bar->delete();
         
         return redirect()->route('bars.index')->with('success', 'Bar eliminado correctamente!');
