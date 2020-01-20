@@ -22,8 +22,9 @@ class CreatePromotionsTable extends Migration
             $table->boolean('enabled')->default(1);
             $table->boolean('exclusive')->default(0);
             $table->integer('bar_id')->unsigned();
+            $table->date('end_date')->nullable();
             $table->timestamps();
-            $table->foreign('bar_id')->references('id')->on('bars');
+            $table->foreign('bar_id')->references('id')->on('bars')->onDelete('cascade');
         });
     }
 

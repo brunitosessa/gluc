@@ -17,7 +17,6 @@
 				<p class="card-text" style="word-wrap: break-word;">{{ $promotion->description }}</p>
 				<a href="{{ route('bars.promotions.show', ['id' => $promotion->id, 'bar_id' => $bar_id]) }}" class="btn btn-primary">Ver</a>
 			</div>
-
 		</div>
 		@endforeach
 	</div>

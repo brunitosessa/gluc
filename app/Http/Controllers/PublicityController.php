@@ -70,7 +70,7 @@ class PublicityController extends Controller
         return view('publicities.edit', compact('publicity','cities'));
     }
 
-    public function update(Request $request, Publicity $publicity)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'title' => 'required|max:255',
@@ -81,7 +81,7 @@ class PublicityController extends Controller
             'end_date' => 'required|date',
         ]);
 
-        $publicity = Publicity::findOrFail($request->id);
+        $publicity = Publicity::findOrFail($id);
         $publicity->title = $request->title;
         $publicity->description = $request->description;
         $publicity->city_id = $request->city_id;
@@ -92,6 +92,11 @@ class PublicityController extends Controller
 
         //Image
         if($request->hasFile('image')) {
+            //If has image, delete it before update
+            $image = public_path('storage/images/bpublicities/').$publicity->image;
+            if(File::exists($image) && $publicity->image != 'default.jpg') {
+                File::delete($image);
+            }
             $image = $request->file('image');
             $publicity->image = $publicity->id.time().'.'.$image->getClientOriginalExtension();
             

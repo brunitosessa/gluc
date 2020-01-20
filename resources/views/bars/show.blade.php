@@ -47,7 +47,7 @@
 	</div>
 
 	<div class="container mt-2">
-		@if ($bar->enabled)
+		@if($bar->enabled)
 			<div class="alert alert-info">
 				Bar habilitado
 			</div>

@@ -65,7 +65,7 @@ class PromotionController extends Controller
         return view('promotions.edit', compact('promotion'));
     }
 
-    public function update(Request $request, Promotion $promotion)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'title' => 'required|max:255',
@@ -77,8 +77,7 @@ class PromotionController extends Controller
             'bar_id' => 'required|numeric',
         ]);
         
-        $promotion->update($request->all());
-        /*$promotion = Promotion::findOrFail($request->id);
+        $promotion = Promotion::findOrFail($id);
         $promotion->title = $request->title;
         $promotion->description = $request->description;
         $promotion->happy_hour = $request->happy_hour;
@@ -86,9 +85,14 @@ class PromotionController extends Controller
         $promotion->exclusive = $request->exclusive;
         $promotion->bar_id = $request->bar_id;
         $promotion->save();
-*/
+
         //Image
         if($request->hasFile('image')) {
+            //If has image, delete it before update
+            $image = public_path('storage/images/promotions/').$promotion->image;
+            if(File::exists($image) && $promotion->image != 'default.jpg') {
+                File::delete($image);
+            }
             $image = $request->file('image');
             $promotion->image = $promotion->id.time().'.'.$image->getClientOriginalExtension();
             

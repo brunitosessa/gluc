@@ -76,7 +76,7 @@ class EventController extends Controller
         return view('events.edit', compact('event','cities'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'title' => 'required|max:255',
@@ -90,7 +90,7 @@ class EventController extends Controller
             'date' => 'required|date',
         ]);
         
-        $event = Event::findOrFail($request->id);
+        $event = Event::findOrFail($id);
         $event->title = $request->title;
         $event->address = $request->address;
         $event->lat = $request->lat;
@@ -104,6 +104,11 @@ class EventController extends Controller
 
         //Image
         if($request->hasFile('image')) {
+            //If has image, delete it before update
+            $image = public_path('storage/images/events/').$event->image;
+            if(File::exists($image) && $event->image != 'default.jpg') {
+                File::delete($image);
+            }
             $image = $request->file('image');
             $event->image = $event->id.time().'.'.$image->getClientOriginalExtension();
             

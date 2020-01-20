@@ -89,7 +89,7 @@ class BarController extends Controller
         return view('bars.edit', compact('bar','cities'));
     }
 
-    public function update(Request $request, Bar $bar)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|max:255',
@@ -104,9 +104,7 @@ class BarController extends Controller
             'enabled' => 'required|boolean',
         ]);
         
-        $bar->update($request->all());
-/*
-        $bar = Bar::findOrFail($request->id);
+        $bar = Bar::findOrFail($id);
         $bar->name = $request->name;
         $bar->city_id = $request->city_id;
         $bar->address = $request->address;
@@ -117,9 +115,14 @@ class BarController extends Controller
         $bar->lng = $request->lng;
         $bar->enabled = $request->enabled;
         $bar->save();
-  */      
+
         //Image
         if($request->hasFile('image')) {
+            //If has image, delete it before update
+            $image = public_path('storage/images/bars/').$bar->image;
+            if(File::exists($image) && $bar->image != 'default.jpg') {
+                File::delete($image);
+            }
             $image = $request->file('image');
             $bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
             
@@ -128,23 +131,34 @@ class BarController extends Controller
             //Save Image info with ID
             $bar->save();
         }
+
         return redirect()->route('bars.show', ['id' => $bar->id])->with('success', 'Bar editado correctamente!');
     }
     
     public function destroy($id)
     {
         $bar = Bar::findOrFail($id);
-        //Remove Image
+        //Remove Bar Image
         $image = public_path('storage/images/bars/').$bar->image;
-        if(File::exists($image)) {
+        if(File::exists($image) && $bar->image != 'default.jpg') {
             File::delete($image);
         }
+        
         //Remove Logo
         $logo = public_path('storage/images/bars/logos/').$bar->logo;
-        if(File::exists($logo)) {
+        if(File::exists($logo) && $bar->logo != 'default.jpg') {
             File::delete($logo);
         }
         
+        //Remove Promotions Images
+        foreach($bar->promotions as $promotion)
+        {
+            $image = public_path('storage/images/promotions/').$promotion->image;
+            if(File::exists($image) && $promotion->image != 'default.jpg') {
+                File::delete($image);
+            }
+        }
+
         $bar->delete();
         
         return redirect()->route('bars.index')->with('success', 'Bar eliminado correctamente!');
