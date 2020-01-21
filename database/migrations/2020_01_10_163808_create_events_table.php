@@ -20,7 +20,6 @@ class CreateEventsTable extends Migration
             $table->integer('bar_id')->unsigned()->nullable();
             $table->boolean('enabled')->default(1);
             $table->date('date');
-            $table->rememberToken();
             $table->timestamps();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->foreign('bar_id')->references('id')->on('bars');

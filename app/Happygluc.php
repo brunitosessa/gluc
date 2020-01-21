@@ -4,18 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Promotion extends Model
+class Happygluc extends Model
 {
 	protected $fillable = [
-		'title', 'image', 'description', 'happyhour', 'enabled', 'exclusive', 'bar_id', 'end_date',
+		'frequency', 'quantity', 'exclusive', 'bar_id', 'enabled',
  	];
    
 	protected $hidden = [
-
+         
  	];
 
     public function bar()
     {
-    	return $this->belongsTo('App\Bar');
+        return $this->hasOne('App\Bar');
     }
 }

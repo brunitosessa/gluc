@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'bars',
     ],
 
     /*
@@ -101,7 +101,7 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'bars' => [
             'provider' => 'bars',
             'table' => 'password_resets',
             'expire' => 60,

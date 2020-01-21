@@ -23,4 +23,14 @@ class Bar extends Authenticatable
     {
     	return $this->hasMany('App\Promotion');
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Events');
+    }
+
+    public function happygluc()
+    {
+        return $this->hasOne('App\Happygluc');
+    }
 }

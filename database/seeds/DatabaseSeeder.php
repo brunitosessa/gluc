@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EventsTableSeeder::class);
         $this->call(PublicitiesTableSeeder::class);
         $this->call(PromotionsTableSeeder::class);
-
+        $this->call(HappyglucsTableSeeder::class);
     }
 }

@@ -14,9 +14,10 @@ class PromotionController extends Controller
         return view('promotions.index',compact('promotions','bar_id'));
     }
 
-    public function create($bar_id)
+    public function create(Request $request)
     {
         $promotion = new Promotion();
+        $bar_id = $request->session()->get('id');
         return view('promotions.create', compact('promotion', 'bar_id'));
     }
 
