@@ -60,19 +60,28 @@
 
 	<div class="container">	   
 		<div class="form-group float-left ml-2">
-			<a class="btn btn-success" href="{{ route('promotions.index') }}">
-				<i class="fas fa-fire-alt fa-2x"></i>
-				<br>Promociones
-			</a>
-			<a class="btn btn-dark" href="#">
-				<i class="fas fa-star fa-2x"></i>
-				<br>Especiales
-			</a>
+			
+				<a class="btn btn-success" href="{{ route('bars.promotions.index', ['bar_id' => $bar->id]) }}">
+					<i class="fas fa-fire-alt fa-2x"></i>
+					<br>Promociones
+				</a>
+				<a class="btn btn-dark" href="#">
+					<i class="fas fa-star fa-2x"></i>
+					<br>Especiales
+				</a>
+			
+		</div>
 
-			<a href="{{ route('bars.edit') }}" class="btn btn-info text-white">
-					<i class="fas fa-pen fa-2x"></i>
-					<br>Editar
-			</a>
+		<div class="form-group float-right ml-2">
+			{!! Form::open(['method' => 'DELETE', 'route' => ['bars.destroy', $bar->id]]) !!}
+				{{ Form::button('Eliminar', array('class' => 'btn btn-danger', 'type' => 'submit')) }}
+			{!! Form::close() !!}
+		</div>
+
+		<div class="form-group float-right ml-2">
+			{!! Form::open(['method' => 'GET', 'route' => ['bars.edit', $bar->id]]) !!}
+				{{ Form::button('Editar', array('class' => 'btn btn-primary', 'type' => 'submit')) }}
+			{!! Form::close() !!}
 		</div>
 	</div>
 

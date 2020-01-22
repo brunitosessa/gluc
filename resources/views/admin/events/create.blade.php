@@ -2,12 +2,12 @@
 
 @section('content')
 
-  <h3>Crear promoción</h3>
+  <h3>Crear evento</h3>
 
-  {!! Form::open(['route' => ['promotions.store'], 'files' => true]) !!}
+  {!! Form::open(['action' => 'EventController@store', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
-      {!! Html::image('/storage/images/publicities/default.jpg', 'Publicity image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
+      {!! Html::image('/storage/images/events/default.jpg', 'Event image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
     </div>
 
     <div class="form-group">
@@ -20,14 +20,28 @@
     </div>
 
     <div class="form-group">
+      {!! Form::label('address', 'Direccion') !!}
+      {!! Form::text('address', '', ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+      {!! Form::label('lat', 'Lat') !!}
+      {!! Form::number('lat', '', ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+      {!! Form::label('lng', 'Lng') !!}
+      {!! Form::number('lng', '', ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
       {!! Form::label('description', 'Descripcion') !!}
       {!! Form::text('description', '', ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
-      {!! Form::label('happy_hour', 'Es Happy Hour?') !!}
-      {!! Form::hidden('happy_hour',0) !!}
-      {!! Form::checkbox('happy_hour', '1', ['class' => 'form-control']) !!}
+      {!! Form::label('city_id', 'Ciudad') !!}
+      {{ Form::select('city_id', $cities, null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
@@ -37,9 +51,8 @@
     </div>
 
     <div class="form-group">
-      {!! Form::label('exclusive', 'Es exclusivo?') !!}
-      {!! Form::hidden('exclusive',0) !!}
-      {!! Form::checkbox('exclusive', '1', ['class' => 'form-control']) !!}
+      {!! Form::label('date', 'Fecha') !!}
+      {{ Form::date('date', '', ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">

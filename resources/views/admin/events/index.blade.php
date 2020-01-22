@@ -23,6 +23,10 @@
 	</div>
 
 	<div class="d-flex flex-row-reverse">
+		{!! $events->links() !!}
+	</div>
+
+	<div class="d-flex flex-row-reverse">
 		<a href="{{ route('events.create') }}" class="btn btn-info text-white">Nuevo</a>
 	</div>
 @endsection

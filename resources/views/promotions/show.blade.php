@@ -12,26 +12,33 @@
 				</p>
 			@endif
 
-			@if($promotion->enabled)
-				<button class="btn btn-success">
-					<i class="fas fa-check fa-2x"></i>
-					<br>Habilitada
-				</button>
-				
-			@else
-				<button class="btn btn-danger">
-					<i class="fas fa-times fa-2x"></i>
-					<br>Deshabilitada
-				</button>
-				
-			@endif
+			<p>
+				@if($promotion->enabled)
+					<button class="btn btn-success">
+						<i class="fas fa-check"></i>
+						<br>Habilitada
+					</button>
+					
+				@else
+					<button class="btn btn-danger">
+						<i class="fas fa-times"></i>
+						<br>Deshabilitada
+					</button>
+					
+				@endif
 
-			@if($promotion->exclusive)
-				<button class="btn btn-success">
-					<i class="fas fa-star fa-2x"></i>
-					<br>Exclusiva Gluc
-				</button>
-			@endif
+				@if($promotion->exclusive)
+					<button class="btn btn-success">
+						<i class="fas fa-star"></i>
+						<br>Exclusiva Gluc
+					</button>
+				@endif
+			</p>
+
+			<a href="{{ route('promotions.edit', $promotion->id) }}" class="btn btn-info text-white">
+				<i class="fas fa-pen"></i>
+				<br>Editar
+			</a>
 		</div>
 	</div>
 @endsection

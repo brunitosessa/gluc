@@ -12,13 +12,24 @@ class PromotionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('promotions')->insert([
-            'title' => 'Evento 1',
+        [
+            'title' => 'La mejor Promo',
 			'description' => 'Es un gran bar',
 			'happy_hour' => 1,
 			'enabled' => 1,
 			'exclusive' => 1,
             'bar_id' => 1,
             'end_date' => '2020-12-09',
+        ],
+        [
+            'title' => 'La mejor Promo numero 2',
+            'description' => 'Es un gran bar',
+            'happy_hour' => 1,
+            'enabled' => 1,
+            'exclusive' => 1,
+            'bar_id' => 2,
+            'end_date' => '2020-12-09',
+        ]
         ]);
     }
 }

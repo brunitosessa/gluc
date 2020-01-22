@@ -11,7 +11,48 @@
             @auth
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto ml-auto text-center">
-                    
+       <!--             <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('bars.show') }}">
+                            <i class="fas fa-glass-cheers fa-lg"></i>
+                            <br>Bares
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                            <i class="fas fa-calendar-day fa-lg"></i>
+                            <br>Eventos
+                        </a>
+                    </li>
+
+                     <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('publicities.index') }}">
+                            <i class="fas fa-code-branch fa-lg"></i>
+                            <br>Publicidad
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                            <i class="fas fa-star fa-lg"></i>
+                            <br>Especiales
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                            <i class="fas fa-user fa-lg"></i>
+                            <br>Usuarios
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                            <i class="fas fa-chart-area fa-lg"></i>
+                            <br>Estadísticas
+                        </a>
+                    </li>
+                -->
                 </ul>
             @endauth
             <!-- Right Side Of Navbar -->

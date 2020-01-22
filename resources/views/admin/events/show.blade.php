@@ -31,10 +31,6 @@
 				<b>Localidad</b>
 				{{ $event->city->name }}
 			</p>
-			<p>
-				<b>Fecha</b>
-				{{ $event->date->diffForHumans() }}
-			</p>
 		</div>
 	</div>
 

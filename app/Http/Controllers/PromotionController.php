@@ -3,25 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Promotion;
+use App\Bar;
 use Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PromotionController extends Controller
 {
-    public function index($bar_id)
+    public function index()
     {
-        $promotions = Promotion::all();
-        return view('promotions.index',compact('promotions','bar_id'));
+        $bar = Bar::findOrFail(Auth::id());
+        $promotions = $bar->promotions;
+        return view('promotions.index',compact('promotions'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
         $promotion = new Promotion();
-        $bar_id = $request->session()->get('id');
-        return view('promotions.create', compact('promotion', 'bar_id'));
+        return view('promotions.create', compact('promotion'));
     }
 
-    public function store(Request $request, $bar_id)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'title' => 'required|max:255',
@@ -38,7 +40,7 @@ class PromotionController extends Controller
         $promotion->happy_hour = $request->happy_hour;
         $promotion->enabled = $request->enabled;
         $promotion->exclusive = $request->exclusive;
-        $promotion->bar_id = $bar_id;
+        $promotion->bar_id = Auth::id();
         //Save and get Id
         $promotion->save();
 
@@ -51,23 +53,30 @@ class PromotionController extends Controller
             //Save Image info with ID
             $promotion->save();
         }
-        return redirect()->route('bars.promotions.index', ['bar_id' => $bar_id])->with('success', 'Promocion agregada correctamente!');
+        return redirect()->route('promotions.index')->with('success', 'Promocion agregada correctamente!');
     }
 
     public function show($id)
     {
         $promotion = Promotion::findOrFail($id);
-        return view('promotions.show', compact('promotion'));
+        if ($promotion->bar->id == Auth::id())
+            return view('promotions.show', compact('promotion'));
+        else
+            return back()->with('error', 'Esta promoción no le pertenece');
     }
 
-    public function edit(Promotion $promotion)
+    public function edit($id)
     {
         $promotion = Promotion::findOrFail($id);
-        return view('promotions.edit', compact('promotion'));
+        if ($promotion->bar->id == Auth::id())
+            return view('promotions.edit', compact('promotion'));
+        else
+            return back()->with('error', 'Esta promoción no le pertenece');
     }
 
     public function update(Request $request, $id)
     {
+        
         $this->validate($request, [
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -75,47 +84,57 @@ class PromotionController extends Controller
             'happy_hour' => 'required|boolean',
             'enabled' => 'required|boolean',
             'exclusive' => 'required|boolean',
-            'bar_id' => 'required|numeric',
         ]);
-        
-        $promotion = Promotion::findOrFail($id);
-        $promotion->title = $request->title;
-        $promotion->description = $request->description;
-        $promotion->happy_hour = $request->happy_hour;
-        $promotion->enabled = $request->enabled;
-        $promotion->exclusive = $request->exclusive;
-        $promotion->bar_id = $request->bar_id;
-        $promotion->save();
 
-        //Image
-        if($request->hasFile('image')) {
-            //If has image, delete it before update
-            $image = public_path('storage/images/promotions/').$promotion->image;
-            if(File::exists($image) && $promotion->image != 'default.jpg') {
-                File::delete($image);
-            }
-            $image = $request->file('image');
-            $promotion->image = $promotion->id.time().'.'.$image->getClientOriginalExtension();
-            
-            //Store image
-            Image::make($image)->fit(250, 250)->save(public_path('storage/images/promotions/') . $promotion->image );
-            //Save Image info with ID
+        $promotion = Promotion::findOrFail($id);
+        if ($promotion->bar->id == Auth::id())
+        {
+            $promotion = Promotion::findOrFail($id);
+            $promotion->title = $request->title;
+            $promotion->description = $request->description;
+            $promotion->happy_hour = $request->happy_hour;
+            $promotion->enabled = $request->enabled;
+            $promotion->exclusive = $request->exclusive;
+            $promotion->bar_id = Auth::id();
             $promotion->save();
+
+            //Image
+            if($request->hasFile('image')) {
+                //If has image, delete it before update
+                $image = public_path('storage/images/promotions/').$promotion->image;
+                if(File::exists($image) && $promotion->image != 'default.jpg') {
+                    File::delete($image);
+                }
+                $image = $request->file('image');
+                $promotion->image = $promotion->id.time().'.'.$image->getClientOriginalExtension();
+                
+                //Store image
+                Image::make($image)->fit(250, 250)->save(public_path('storage/images/promotions/') . $promotion->image );
+                //Save Image info with ID
+                $promotion->save();
+            }
+            
+            return redirect()->route('promotions.show', ['id' => $promotion->id])->with('success', 'Promocion editada correctamente!');
         }
-        
-        return redirect()->route('promotions.show', ['id' => $promotion->id])->with('success', 'Promocion editada correctamente!');
+        else
+            return back()->with('error', 'Esta promoción no le pertenece');
     }
 
-    public function destroy(Promotion $promotion)
+    public function destroy($id)
     {
         $promotion = Promotion::findOrFail($id);
-        //Remove Image
-        $image = public_path('storage/images/promotions/').$promotion->image;
-        if(File::exists($image)) {
-            File::delete($image);
+        if ($promotion->bar->id == Auth::id())
+        {
+            //Remove Image
+            $image = public_path('storage/images/promotions/').$promotion->image;
+            if(File::exists($image)) {
+                File::delete($image);
+            }
+            $promotion->delete();
+            
+            return redirect()->route('promotions.index')->with('success', 'Promocion eliminada correctamente!');
         }
-        $promotion->delete();
-        
-        return redirect()->route('promotions.index')->with('success', 'Promocion eliminada correctamente!');
+        else
+            return back()->with('error', 'Esta promoción no le pertenece');
     }
 }

@@ -26,7 +26,7 @@ class Bar extends Authenticatable
 
     public function events()
     {
-        return $this->hasMany('App\Events');
+        return $this->hasMany('App\Event');
     }
 
     public function happygluc()
