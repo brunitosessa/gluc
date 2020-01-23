@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Promotion;
 use App\Bar;
 use Image;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

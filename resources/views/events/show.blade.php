@@ -33,7 +33,7 @@
 			</p>
 			<p>
 				<b>Fecha</b>
-				{{ $event->date->diffForHumans() }}
+				{{ $event->date }}
 			</p>
 		</div>
 	</div>
