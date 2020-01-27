@@ -45,6 +45,7 @@ class BarController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'city_id' => 'required|numeric',
             'address' => 'required|max:200',
             'description' => 'required|max:200',
@@ -79,6 +80,22 @@ class BarController extends Controller
             
             //Store image
             Image::make($image)->fit(250, 250)->save(public_path('storage/images/bars/') . $bar->image );
+            //Save Image info with ID
+            $bar->save();
+        }
+
+        //Logo
+        if($request->hasFile('logo')) {
+            //If has logo, delete it before update
+            $logo = public_path('storage/images/bars/logos/').$bar->logo;
+            if(File::exists($logo) && $bar->logo != 'default.jpg') {
+                File::delete($logo);
+            }
+
+            $logo = $request->logo;
+            $bar->logo = $bar->id.time().'.'.$logo->getClientOriginalExtension();
+            //Store logo
+            Image::make($logo)->fit(250, 250)->save(public_path('storage/images/bars/logos/') . $bar->logo );
             //Save Image info with ID
             $bar->save();
         }

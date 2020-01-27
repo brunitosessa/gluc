@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::patch('/events/{id}', 'EventController@update')->name('events.update');
 	Route::delete('/events/{id}', 'EventController@destroy')->name('events.destroy');
 
+	Route::post('/happygluc', 'HappyglucController@store')->name('happygluc.store');
 	//Route::post('/', 'BarController@index');
 	//HACER LAS RUTAS A MANO, NO CON RESOURCE
 	//Route::get('bars/{id}/promotions', 'BarController@showPromotions');

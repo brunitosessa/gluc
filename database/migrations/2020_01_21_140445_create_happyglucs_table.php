@@ -13,7 +13,7 @@ class CreateHappyglucsTable extends Migration
             $table->integer('frequency');
             $table->integer('quantity');
             $table->boolean('exclusive')->default(0);
-            $table->integer('bar_id')->unsigned();
+            $table->integer('bar_id')->unsigned()->unique();
             $table->boolean('enabled')->default(1);
             $table->timestamps();
             $table->foreign('bar_id')->references('id')->on('bars');
