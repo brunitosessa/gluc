@@ -23,29 +23,17 @@ class HappyglucController extends Controller
             'enabled' => 'required|boolean',
         ]);
 
-        $happygluc = new Happygluc();
-        $happygluc->frequency = $request->frequency;
-        $happygluc->quantity = $request->quantity;
-        $happygluc->exclusive = $request->exclusive;
-        $happygluc->enabled = $request->enabled;
-        $happygluc->bar_id = Auth::id();
+        Happygluc::updateOrCreate(
+            ['bar_id' => Auth::id()],
+            [
+                'frequency' => $request->frequency,
+                'quantity' => $request->quantity,
+                'exclusive' => $request->exclusive,
+                'enabled' => $request->enabled
+            ]
+        );
 
-        $happygluc->save();
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect()->route('bars.edit')->with('success', 'Happy Gluc editado correctamente!');;
     }
 
     public function destroy($id)

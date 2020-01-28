@@ -89,37 +89,28 @@
         <div class="modal-body">
           <!-- Happy Gluc -->
             {!! Form::model($bar->happygluc, ['route' => ['happygluc.store']]) !!}
-            <div class="form-group">
-              ¿Quieres ofrecer Happy Gluc?
-              <input type="checkbox" checked data-toggle="toggle" data-size="sm">
-            </div>
+              <div class="form-group">
+                {!! Form::label('enabled', '¿Quieres ofrecer Happy Gluc?') !!}
+                {!! Form::hidden('enabled',0) !!}
+                {!! Form::checkbox('enabled', '1', old('enabled')) !!}
+              </div>
+              <div class="form-group">
+                {!! Form::label('quantity', 'Cantidad') !!}
+                {!! Form::number('quantity', old('frequency'), ['class' => 'form-control']) !!}
+              </div>
 
-            <div class="form-group">
-              {!! Form::label('quantity', 'Cantidad') !!}
-              {!! Form::number('quantity', old('frequency'), ['class' => 'form-control']) !!}
-            </div>
+              <div class="form-group">
+                {!! Form::label('frequency', '¿Cada cuantos días?') !!}
+                {!! Form::number('frequency', old('frequency'), ['class' => 'form-control']) !!}
+              </div>
 
-            <div class="form-group">
-              {!! Form::label('frequency', '¿Cada cuantos días?') !!}
-              {!! Form::number('frequency', old('frequency'), ['class' => 'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-              {!! Form::label('exclusive', '¿Es exclusivo?') !!}
-              {!! Form::hidden('exclusive',0) !!}
-              {!! Form::checkbox('exclusive', '1', old('exclusive')) !!}
-            </div>
-
-            <div class="form-group">
-              {!! Form::label('enabled', 'Habilitado') !!}
-              {!! Form::hidden('enabled',0) !!}
-              {!! Form::checkbox('enabled', '1', old('enabled')) !!}
-            </div>
-
-            <div class="form-group">
-              
-            </div>
-            {{ Form::button('Guardar', array('class' => 'btn btn-success float-right', 'type' => 'submit')) }}
+              <div class="form-group">
+                {!! Form::label('exclusive', '¿Es exclusivo?') !!}
+                {!! Form::hidden('exclusive',0) !!}
+                {!! Form::checkbox('exclusive', '1', old('exclusive')) !!}
+              </div>
+                            
+              {{ Form::button('Guardar', array('class' => 'btn btn-success float-right', 'type' => 'submit')) }}
             {!! Form::close() !!}
         </div>
       </div>

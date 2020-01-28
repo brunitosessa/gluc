@@ -19,7 +19,7 @@
                     </li>
 
                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                        <a class="nav-link py-0 pl-5" href="{{ route('promotions.index') }}">
                             <i class="fas fa-fire-alt fa-lg"></i>
                             <br>Promociones
                         </a>
@@ -33,21 +33,14 @@
                     </li>
 
                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                        <a class="nav-link py-0 pl-5" href="#">
                             <i class="fas fa-star fa-lg"></i>
                             <br>Especiales
                         </a>
                     </li>
 
                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
-                            <i class="fas fa-user fa-lg"></i>
-                            <br>Usuarios
-                        </a>
-                    </li>
-
-                    <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                        <a class="nav-link py-0 pl-5" href="#">
                             <i class="fas fa-chart-area fa-lg"></i>
                             <br>Estadísticas
                         </a>
