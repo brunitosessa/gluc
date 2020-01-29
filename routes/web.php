@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/happygluc', 'HappyglucController@store')->name('happygluc.store');
 
 	Route::get('/charts', 'ChartController@index')->name('charts.index');
+
+	Route::get('/businessHours', 'BusinessHourController@index')->name('businessHours.index');
+	Route::patch('/businessHours/{id}', 'BusinessHourController@update')->name('businessHours.update');
 	//Route::post('/', 'BarController@index');
 	//HACER LAS RUTAS A MANO, NO CON RESOURCE
 	//Route::get('bars/{id}/promotions', 'BarController@showPromotions');

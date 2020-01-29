@@ -33,4 +33,10 @@ class Bar extends Authenticatable
     {
         return $this->hasOne('App\Happygluc');
     }
+
+    public function businessHours()
+    {
+        return $this->hasMany('App\BusinessHour');
+    }
+
 }

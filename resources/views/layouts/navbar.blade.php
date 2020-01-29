@@ -40,7 +40,7 @@
                     </li>
 
                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="#">
+                        <a class="nav-link py-0 pl-5" href="{{ route('charts.index') }}">
                             <i class="fas fa-chart-area fa-lg"></i>
                             <br>Estadísticas
                         </a>

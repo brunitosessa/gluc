@@ -18,4 +18,9 @@ class Happygluc extends Model
     {
         return $this->hasOne('App\Bar');
     }
+
+    public function users()
+    {
+    	return $this->belongsToMany('App\User');
+    }
 }
