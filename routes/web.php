@@ -21,8 +21,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/edit', 'BarController@edit')->name('bars.edit');
 	Route::patch('/', 'BarController@update')->name('bars.update');
 	Route::delete('/', 'BarController@destroy')->name('bars.destroy');
-	Route::get('/promotions', 'BarController@showPromotions')->name('bars.promotions');
+	//Business hours
+	Route::get('/businessHours', 'BusinessHourController@index')->name('businessHours.index');
+	Route::post('/businessHours', 'BusinessHourController@store')->name('businessHours.store');
+	Route::patch('/businessHours/{id}', 'BusinessHourController@update')->name('businessHours.update');
+	Route::delete('/businessHours/{id}', 'BusinessHourController@destroy')->name('businessHours.destroy');
 
+	Route::get('/promotions', 'BarController@showPromotions')->name('bars.promotions');
 	Route::get('/promotions', 'PromotionController@index')->name('promotions.index');
 	Route::get('/promotions/create', 'PromotionController@create')->name('promotions.create');
 	Route::post('/promotions', 'PromotionController@store')->name('promotions.store');
@@ -30,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/promotions/{id}/edit', 'PromotionController@edit')->name('promotions.edit');
 	Route::patch('/promotions/{id}', 'PromotionController@update')->name('promotions.update');
 	Route::delete('/promotions/{id}', 'PromotionController@destroy')->name('promotions.destroy');
+	//Promotion hours
+	Route::get('/promotions/{id}/promotionHours', 'PromotionHourController@index')->name('promotions.hours.index');
+	Route::patch('/promotions/{id}/promotionHours', 'PromotionHourController@update')->name('promotions.hours.update');
 
 	Route::get('/events', 'EventController@index')->name('events.index');
 	Route::get('/events/create', 'EventController@create')->name('events.create');
@@ -42,13 +50,4 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/happygluc', 'HappyglucController@store')->name('happygluc.store');
 
 	Route::get('/charts', 'ChartController@index')->name('charts.index');
-
-	Route::get('/businessHours', 'BusinessHourController@index')->name('businessHours.index');
-	Route::patch('/businessHours/{id}', 'BusinessHourController@update')->name('businessHours.update');
-	//Route::post('/', 'BarController@index');
-	//HACER LAS RUTAS A MANO, NO CON RESOURCE
-	//Route::get('bars/{id}/promotions', 'BarController@showPromotions');
-	//Route::resource('bars.promotions', 'PromotionController');
-	//Route::resource('events', 'EventController');
-	//Route::resource('publicities', 'PublicityController');
 });

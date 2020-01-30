@@ -3,11 +3,7 @@
 @section('content')
 	<h3>Listado de Promociones</h3>
 
-    <div class="form-group">
-	    {!! Form::search('name', '', ['class' => 'form-control']) !!}
-	</div>
-	
-	<div class="card-columns">
+    <div class="card-columns mt-5">
 		@foreach($promotions as $promotion)
 		<div class="card" style="width:250px">
 			<img class="card-img-top" src="/storage/images/promotions/{{ $promotion->image }}" alt="Card image">

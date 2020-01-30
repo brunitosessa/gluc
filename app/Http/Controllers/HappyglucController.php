@@ -24,7 +24,9 @@ class HappyglucController extends Controller
         ]);
 
         Happygluc::updateOrCreate(
-            ['bar_id' => Auth::id()],
+            [
+                'bar_id' => Auth::id()
+            ],
             [
                 'frequency' => $request->frequency,
                 'quantity' => $request->quantity,
@@ -33,7 +35,7 @@ class HappyglucController extends Controller
             ]
         );
 
-        return redirect()->route('bars.edit')->with('success', 'Happy Gluc editado correctamente!');;
+        return back()->with('success', 'Happy Gluc editado correctamente!');;
     }
 
     public function destroy($id)

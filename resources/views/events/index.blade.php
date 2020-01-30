@@ -2,12 +2,8 @@
 
 @section('content')
 	<h3>Listado de eventos</h3>
-
-    <div class="form-group">
-	    {!! Form::search('name', '', ['class' => 'form-control']) !!}
-	</div>
 	
-	<div class="card-columns">
+	<div class="card-columns mt-5">
 		@foreach($events as $event)
 		<div class="card" style="width:250px">
 			<img class="card-img-top" src="/storage/images/events/{{ $event->image }}" alt="Card image">

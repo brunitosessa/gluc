@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BusinessHour extends Model
+class PromotionHour extends Model
 {
 	protected $fillable = [
 		'date', 'start_time', 'end_time', 'enabled',
  	];
-
-	public function bar()
+ 	
+    public function promotion()
     {
-        return $this->belongsTo('App\Bar');
+    	return $this->belongsTo('App\Promotion');
     }
 }

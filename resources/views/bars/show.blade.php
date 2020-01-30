@@ -56,6 +56,16 @@
 				Bar deshabilitado
 			</div>
 		@endif
+
+		@if($bar->happygluc()->exists() && $bar->happygluc->enabled)
+			<div class="alert alert-success">
+				Happy Gluc Habilitado
+			</div>
+		@else
+			<div class="alert alert-warning">
+				Happy Gluc Desabilitado
+			</div>
+		@endif			
 	</div>
 
 	<div class="container">	   
@@ -64,14 +74,18 @@
 				<i class="fas fa-fire-alt fa-2x"></i>
 				<br>Promociones
 			</a>
-			<a class="btn btn-dark" href="#">
-				<i class="fas fa-star fa-2x"></i>
-				<br>Especiales
-			</a>
 
+			<a class="btn btn-dark text-white" data-toggle="modal" data-target="#happyglucModal">
+				<i class="fas fa-star fa-2x"></i>
+				<br>Happy Gluc
+			</a>
+			<!--Modal Happy Gluc -->
+			@include('happyglucs.index')
+		</div>
+		<div class="float-right">
 			<a href="{{ route('bars.edit') }}" class="btn btn-info text-white">
-					<i class="fas fa-pen fa-2x"></i>
-					<br>Editar
+				<i class="fas fa-pen fa-2x"></i>
+				<br>Editar
 			</a>
 		</div>
 	</div>

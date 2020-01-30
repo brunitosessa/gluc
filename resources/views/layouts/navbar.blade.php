@@ -19,6 +19,13 @@
                     </li>
 
                     <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('businessHours.index') }}">
+                            <i class="fas fa-clock fa-lg"></i>
+                            <br>Horarios
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown border-0">
                         <a class="nav-link py-0 pl-5" href="{{ route('promotions.index') }}">
                             <i class="fas fa-fire-alt fa-lg"></i>
                             <br>Promociones
