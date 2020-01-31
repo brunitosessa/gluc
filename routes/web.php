@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('/promotions/{id}', 'PromotionController@destroy')->name('promotions.destroy');
 	//Promotion hours
 	Route::get('/promotions/{id}/promotionHours', 'PromotionHourController@index')->name('promotions.hours.index');
+	Route::post('/promotions/{id}/promotionHours', 'PromotionHourController@store')->name('promotions.hours.store');
 	Route::patch('/promotions/{id}/promotionHours', 'PromotionHourController@update')->name('promotions.hours.update');
 
 	Route::get('/events', 'EventController@index')->name('events.index');

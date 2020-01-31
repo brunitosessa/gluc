@@ -42,4 +42,9 @@
       </table>
     {!! Form::close() !!}
   @endforeach
+
+  <div class="d-flex flex-row-reverse">
+    <a class="btn btn-info text-white" data-toggle="modal" data-target="#promotionHoursModal">Nuevo</a>
+  </div>
+  @include('promotions.hours.create')
 @endsection
