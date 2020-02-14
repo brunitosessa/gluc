@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div id="bar" class="container clearfix">
+	<div class="container clearfix">
 		<div class="float-right">
 			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
 		</div>

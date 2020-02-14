@@ -1,26 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div id="edit_bar">
 	<h3>Editar bar</h3>
 
 	{!! Form::model($bar, ['route' => ['bars.update', $bar->id], 'method' => 'PATCH', 'files' => true]) !!}
     <!-- Image -->
     <div class="mb-4 text-center">
-      {!! Html::image('/storage/images/bars/'.$bar->image, 'Bar image', ['class' => 'img-fluid rounded', 'width' => 250]) !!}
+      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image", class="img-fluid rounded" width=250 @click="$refs.fileImage.$el.click()">
+      
+      {!! Html::image('/storage/images/bars/logos/'.$bar->logo, 'Bar logo', ['class' => 'img-fluid rounded-circle float-right', 'width' => 80]) !!}
     </div>
 
-    <div class="form-group">
-      {!! Form::file('image',['class' => 'form-control']) !!}
-    </div>
-
-    <!-- Logo -->
-    <div class="mb-4 text-center">
-      {!! Html::image('/storage/images/bars/logos/'.$bar->logo, 'Bar logo', ['class' => 'img-fluid rounded', 'width' => 80]) !!}
-    </div>
-
-    <div class="form-group">
-      {!! Form::file('logo',['class' => 'form-control']) !!}
+    <div class="form-group d-none">
+      {!! Form::file('image', [ 'ref' => 'fileImage']) !!}
+      {!! Form::file('logo') !!}
     </div>
 
     <div class="form-group">
@@ -79,5 +73,5 @@
   </button>
 
   @include('happyglucs.index')
-  
+</div>
 @endsection
