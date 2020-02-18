@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="edit_bar">
+<div id="bar">
 	<h3>Editar bar</h3>
 
 	{!! Form::model($bar, ['route' => ['bars.update', $bar->id], 'method' => 'PATCH', 'files' => true]) !!}
     <!-- Image -->
     <div class="mb-4 text-center">
-      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image", class="img-fluid rounded" width=250 @click="$refs.fileImage.$el.click()">
+      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image", class="img-fluid rounded" width=250 @click="abrirImagen()">
       
       {!! Html::image('/storage/images/bars/logos/'.$bar->logo, 'Bar logo', ['class' => 'img-fluid rounded-circle float-right', 'width' => 80]) !!}
     </div>

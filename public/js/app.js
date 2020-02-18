@@ -49185,7 +49185,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 var app = new Vue({
   el: '#bar',
   methods: {
-    test: function test(event) {
+    abririmagen: function abririmagen() {
       alert("mangalga");
     }
   }

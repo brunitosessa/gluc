@@ -19,8 +19,8 @@
 			    	</tr>
 			    </thead>
 			</table>
-
-			{!! Form::open(['route' => ['promotions.hours.store', 'id' => $promotionHour->promotion->id ], 'method' => 'POST']) !!}
+			<!-- TODO: Agregar excepcion si no tiene ningún horario porque da error -->
+			{!! Form::open(['route' => ['promotions.hours.store', 'id' => $promotion->id ], 'method' => 'POST']) !!}
 				<table class="table table-borderless">
 				    <tr>
 						<td>

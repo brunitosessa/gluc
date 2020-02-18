@@ -27,7 +27,7 @@ class PromotionHourController extends Controller
         {
             $promotionHours = $promotion->hours;
             $dow = $this->dow;
-            return view('promotions.hours.index',compact('promotionHours', 'dow'));
+            return view('promotions.hours.index',compact('promotionHours', 'promotion', 'dow'));
         }
         else
             return back()->with('error', 'Esta promoción no le pertenece');
