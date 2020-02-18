@@ -1,20 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="bar">
+<div>
 	<h3>Editar bar</h3>
 
 	{!! Form::model($bar, ['route' => ['bars.update', $bar->id], 'method' => 'PATCH', 'files' => true]) !!}
     <!-- Image -->
     <div class="mb-4 text-center">
-      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image", class="img-fluid rounded" width=250 @click="abrirImagen()">
+      <!-- Image -->
+      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image" class="img-fluid rounded" width=250 @click="openFileImage()" v-if="!newImage">
+
+      <img :src="newImage" alt="Bar Image" class="img-fluid rounded" width=250 @click="openFileImage()" v-if="newImage">
       
-      {!! Html::image('/storage/images/bars/logos/'.$bar->logo, 'Bar logo', ['class' => 'img-fluid rounded-circle float-right', 'width' => 80]) !!}
+      <!-- Logo -->
+      <img src="/storage/images/bars/logos/{{ $bar->logo }}" alt="Bar Logo" class="img-fluid rounded-circle float-right" width=80 @click="openFileLogo()" v-if="!newLogo">
+
+      <img :src="newLogo" alt="Bar Logo" class="img-fluid rounded-circle float-right" width=80 @click="openFileLogo()" v-if="newLogo">
     </div>
 
     <div class="form-group d-none">
-      {!! Form::file('image', [ 'ref' => 'fileImage']) !!}
-      {!! Form::file('logo') !!}
+      <input type="file" name="image" ref="fileImage" @change="onFileImageChange">
+      <input type="file" name="logo" ref="fileLogo" @change="onFileLogoChange">
     </div>
 
     <div class="form-group">

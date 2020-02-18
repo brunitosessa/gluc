@@ -6,7 +6,7 @@
 			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
 		</div>
 
-		<div class="float-left" v-on:click="abririmagen">
+		<div class="float-left">
 			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded" width="250">
 		</div>
 
