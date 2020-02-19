@@ -17,7 +17,7 @@
 		@endforeach
 	</div>
 
-	<div class="d-flex flex-row-reverse">
-		<a href="{{ route('promotions.create') }}" class="btn btn-info text-white">Nuevo</a>
+	<div>
+		<a href="{{ route('promotions.create') }}" class="btn btn-success text-white fixed-bottom">Nueva Promoción</a>
 	</div>
 @endsection

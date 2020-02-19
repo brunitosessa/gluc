@@ -30,6 +30,8 @@ class BusinessHourController extends Controller
 
     public function store(Request $request)
     {
+        $bar = Bar::findOrFail(Auth::id());
+
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
             'start_time' => 'required|date_format:H:i',
@@ -40,6 +42,8 @@ class BusinessHourController extends Controller
         //if date = -1, same start_time and end_time for every day
         if ( $request->date == -1)
         {
+            //Before I've to delete all business hours
+            $bar->businessHours()->delete();
             for($count = 0; $count <= 6; $count++)
             {
                 $businessHour = new BusinessHour();
@@ -53,17 +57,20 @@ class BusinessHourController extends Controller
         }
         else
         {
-            $businessHour = new BusinessHour();
-            $businessHour->date = $request->date;
-            $businessHour->start_time = $request->start_time;
-            $businessHour->end_time = $request->end_time;
-            $businessHour->enabled = $request->enabled;
-            $businessHour->bar_id = Auth::id();
-
-            $businessHour->save();
+            BusinessHour::updateOrCreate(
+                [
+                    'date' => $request->date,
+                    'bar_id' => Auth::id()
+                ],
+                [
+                    'start_time' => $request->start_time,
+                    'end_time' => $request->end_time,
+                    'enabled' => $request->enabled,
+                ]
+            );
         }
         
-        return back()->with('success', 'Horario agregado correctamente!');
+        return back()->with('success', 'Horarios agregado correctamente!');
     }
 
     public function show(BusinessHour $businessHour)
@@ -80,8 +87,8 @@ class BusinessHourController extends Controller
     {
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
-            'start_time' => 'required|date_format:H:i:s',
-            'end_time' => 'required|date_format:H:i:s|after:start_time',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
             'enabled' => 'required|boolean',
         ]);
 

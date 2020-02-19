@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container clearfix">
-		<div class="float-right">
-			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
+	<div class="container d-lg-inline-flex justify-content-between">
+		<!-- Image -->
+		<div>
+			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded mx-auto d-block" width="250">
 		</div>
 
-		<div class="float-left">
-			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded" width="250">
-		</div>
+		<hr class="d-sm d-md">
 
-		<div class="float-left ml-5">
+		<div class="flex-fill ml-5">
 			<p>
 				<b>Nombre</b>
 				{{ $bar->name }}
@@ -44,6 +43,12 @@
 				{{ $bar->lng }}
 			</p>
 		</div>
+
+		<!-- Logo -->
+		<div>
+			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
+		</div>
+
 	</div>
 
 	<div class="container mt-2">

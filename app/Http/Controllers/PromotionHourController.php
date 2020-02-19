@@ -11,13 +11,14 @@ use App\Promotion;
 class PromotionHourController extends Controller
 {
     public $dow = [
-        'Domingo',
-        'Lunes',
-        'Martes',
-        'Miercoles',
-        'Jueves',
-        'Viernes',
-        'Sabado'
+        -1 => 'Todos los días',
+        0 => 'Domingo',
+        1 => 'Lunes',
+        2 => 'Martes',
+        3 => 'Miercoles',
+        4 => 'Jueves',
+        5 => 'Viernes',
+        6 => 'Sabado'
     ];
 
     public function index($id)
@@ -48,6 +49,8 @@ class PromotionHourController extends Controller
             //if date = -1, same start_time and end_time for every day
             if ( $request->date == -1)
             {
+                //Before I've to delete all promotion hours
+                $promotion->hours()->delete();
                 for($count = 0; $count <= 6; $count++)
                 {
                     $promotionHour = new PromotionHour();
@@ -61,14 +64,17 @@ class PromotionHourController extends Controller
             }
             else
             {
-                $promotionHour = new PromotionHour();
-                $promotionHour->date = $request->date;
-                $promotionHour->start_time = $request->start_time;
-                $promotionHour->end_time = $request->end_time;
-                $promotionHour->enabled = $request->enabled;
-                $promotionHour->promotion_id = $id;
-
-                $promotionHour->save();
+                PromotionHour::updateOrCreate(
+                    [
+                        'date' => $request->date,
+                        'promotion_id' => $id
+                    ],
+                    [
+                        'start_time' => $request->start_time,
+                        'end_time' => $request->end_time,
+                        'enabled' => $request->enabled,
+                    ]
+                );
             }
             
             return back()->with('success', 'Horario agregado correctamente!');

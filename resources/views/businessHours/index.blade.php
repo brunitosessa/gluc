@@ -13,6 +13,7 @@
   </div>
   
   @foreach($businessHours as $businessHour)
+
     {!! Form::model($businessHour, ['route' => ['businessHours.update', $businessHour->id], 'method' => 'PATCH' , 'class' => 'form-inline']) !!}
     <div class="container-fluid row align-items-center text-center my-2">
       <div class="col">
@@ -41,11 +42,10 @@
       </div>
     </div>
 
-
   @endforeach
 
-  <div class="d-flex flex-row-reverse">
-    <a class="btn btn-info text-white" data-toggle="modal" data-target="#businessHoursModal">Nuevo</a>
+  <div>
+    <a class="btn btn-info text-white fixed-bottom" data-toggle="modal" data-target="#businessHoursModal">Nuevo Horario</a>
   </div>
   @include('businessHours.create')
 

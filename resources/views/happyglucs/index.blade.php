@@ -14,7 +14,11 @@
               {!! Form::label('enabled', '¿Quieres ofrecer Happy Gluc?') !!}
               {!! Form::hidden('enabled',0) !!}
               {!! Form::checkbox('enabled', '1', old('enabled')) !!}
+              <p><small class="text-muted">
+                El Happy Gluc le permite a los usuarios acceder a "Happy Hours" a cualquier hora. 
+              </small></p>
             </div>
+            <hr>
             <div class="form-group">
               {!! Form::label('quantity', 'Cantidad') !!}
               {!! Form::number('quantity', old('frequency'), ['class' => 'form-control']) !!}
@@ -29,7 +33,12 @@
               {!! Form::label('exclusive', '¿Es exclusivo?') !!}
               {!! Form::hidden('exclusive',0) !!}
               {!! Form::checkbox('exclusive', '1', old('exclusive')) !!}
+              <p><small class="text-muted">
+                El Happy Gluc puede ser utilizado solo una vez por día a menos que lo especifiques como "Exclusivo".
+              </small></p>
             </div>
+            
+            <hr>
                           
             {!! Form::button('Guardar', array('class' => 'btn btn-success float-right', 'type' => 'submit')) !!}
           {!! Form::close() !!}
