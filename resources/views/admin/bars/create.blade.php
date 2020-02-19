@@ -5,10 +5,14 @@
   <h3>Crear bar</h3>
 
   <div class="container">
-  {!! Form::open(['action' => 'BarController@store', 'files' => true]) !!}
+  {!! Form::open(['action' => 'Admin\AdminBarController@store', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
       {!! Html::image('/storage/images/bars/default.jpg', 'Bar image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
+    </div>
+
+    <div class="mb-4">
+      {!! Html::image('/storage/images/bars/logos/default.jpg', 'Bar image', ['class' => 'img-fluid img-thumbnail rounded-circle float-right', 'width' => 80]) !!}
     </div>
 
     <div class="form-group">

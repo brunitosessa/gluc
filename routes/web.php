@@ -6,15 +6,24 @@ Auth::routes();
 //Route::get('/usuario/{id}', 'UsuariosController@ver')->where('id', '[0-9]+');
 
 //Admin Routes
-/*Route::group(['middleware' => 'auth'], function () {
-	Route::get('/', 'BarController@index');
-	Route::resource('bars', 'BarController');
-	Route::get('bars/{id}/promotions', 'BarController@showPromotions');
-	Route::resource('bars.promotions', 'PromotionController');
-	Route::resource('events', 'EventController');
-	Route::resource('publicities', 'PublicityController');
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('/admin/bars', 'Admin\AdminBarController@index')->name('admin.bars.index');
+	Route::get('/admin/bars/create', 'Admin\AdminBarController@create')->name('admin.bars.create');
+	Route::post('/admin/bars', 'Admin\AdminBarController@store')->name('admin.bars.store');
+	Route::get('/admin/bars/{id}', 'Admin\AdminBarController@show')->name('admin.bars.show');
+	Route::get('/admin/bars/{id}/edit', 'Admin\AdminBarController@edit')->name('admin.bars.edit');
+	Route::patch('/admin/bars/{id}', 'Admin\AdminBarController@update')->name('admin.bars.update');
+	Route::delete('/admin/bars/{id}', 'Admin\AdminBarController@destroy')->name('admin.bars.destroy');
+	
+
+	Route::get('/admin/bars/{b_id}/promotions', 'Admin\AdminPromotionController@index')->name('admin.bars.promotions.index');
+	Route::get('/admin/bars/{b_id}/promotions/create', 'Admin\AdminPromotionController@create')->name('admin.bars.promotions.create');
+	Route::post('/admin/bars/{b_id}/promotions', 'Admin\AdminPromotionController@store')->name('admin.bars.promotions.store');
+	Route::get('/admin/bars/{b_id}/promotions/{p_id}', 'Admin\AdminPromotionController@show')->name('admin.bars.promotions.show');
+
+	Route::get('/admin/bars/{b_id}/promotions/{p_id}/hours')
+
 });
-*/
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'BarController@show')->name('bars.show');
@@ -27,7 +36,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::patch('/businessHours/{id}', 'BusinessHourController@update')->name('businessHours.update');
 	Route::delete('/businessHours/{id}', 'BusinessHourController@destroy')->name('businessHours.destroy');
 
-	Route::get('/promotions', 'BarController@showPromotions')->name('bars.promotions');
 	Route::get('/promotions', 'PromotionController@index')->name('promotions.index');
 	Route::get('/promotions/create', 'PromotionController@create')->name('promotions.create');
 	Route::post('/promotions', 'PromotionController@store')->name('promotions.store');

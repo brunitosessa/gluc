@@ -4,7 +4,7 @@
 
   <h3>Crear promoción</h3>
 
-  {!! Form::open(['route' => ['bars.promotions.store'], 'files' => true]) !!}
+  {!! Form::open(['route' => ['admin.bars.promotions.store', $bar->id ], 'files' => true]) !!}
 
     <div class="mb-4 text-center">
       {!! Html::image('/storage/images/publicities/default.jpg', 'Publicity image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}

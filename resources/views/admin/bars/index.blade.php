@@ -17,7 +17,7 @@
 					<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle float-right" width="50">
 				</h4>
 				<p class="card-text">{{ $bar->city->name }}</p>
-				<a href="{{ route('bars.show', $bar->id) }}" class="btn btn-primary">Ver</a>
+				<a href="{{ route('admin.bars.show', $bar->id) }}" class="btn btn-primary">Ver</a>
 			</div>
 
 		</div>
@@ -29,6 +29,6 @@
 	</div>
 
 	<div class="d-flex flex-row-reverse">
-		<a href="{{ route('bars.create') }}" class="btn btn-info text-white">Nuevo</a>
+		<a href="{{ route('admin.bars.create') }}" class="btn btn-info text-white fixed-bottom">Nuevo</a>
 	</div>
 @endsection

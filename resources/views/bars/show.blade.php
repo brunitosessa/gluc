@@ -48,7 +48,6 @@
 		<div>
 			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
 		</div>
-
 	</div>
 
 	<div class="container mt-2">

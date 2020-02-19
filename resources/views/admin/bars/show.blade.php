@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container clearfix">
-		<div class="float-right">
-			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
+	<div class="container d-lg-inline-flex justify-content-between">
+		<!-- Image -->
+		<div>
+			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded mx-auto d-block" width="250">
 		</div>
 
-		<div class="float-left">
-			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded" width="250">
-		</div>
+		<hr class="d-sm d-md">
 
-		<div class="float-left ml-5">
+		<div class="flex-fill ml-5">
 			<p>
 				<b>Nombre</b>
 				{{ $bar->name }}
@@ -44,6 +43,11 @@
 				{{ $bar->lng }}
 			</p>
 		</div>
+
+		<!-- Logo -->
+		<div>
+			<img src="/storage/images/bars/logos/{{ $bar->logo }}" class="img-fluid rounded-circle" width="80">
+		</div>
 	</div>
 
 	<div class="container mt-2">
@@ -56,33 +60,37 @@
 				Bar deshabilitado
 			</div>
 		@endif
+
+		@if($bar->happygluc()->exists() && $bar->happygluc->enabled)
+			<div class="alert alert-success">
+				Happy Gluc Habilitado
+			</div>
+		@else
+			<div class="alert alert-warning">
+				Happy Gluc Desabilitado
+			</div>
+		@endif			
 	</div>
 
 	<div class="container">	   
 		<div class="form-group float-left ml-2">
-			
-				<a class="btn btn-success" href="{{ route('bars.promotions.index', ['bar_id' => $bar->id]) }}">
-					<i class="fas fa-fire-alt fa-2x"></i>
-					<br>Promociones
-				</a>
-				<a class="btn btn-dark" href="#">
-					<i class="fas fa-star fa-2x"></i>
-					<br>Especiales
-				</a>
-			
-		</div>
+			<a class="btn btn-success" href="{{ route('admin.bars.promotions.index', [ 'b_id' => $bar->id ]) }}">
+				<i class="fas fa-fire-alt fa-2x"></i>
+				<br>Promociones
+			</a>
 
-		<div class="form-group float-right ml-2">
-			{!! Form::open(['method' => 'DELETE', 'route' => ['bars.destroy', $bar->id]]) !!}
-				{{ Form::button('Eliminar', array('class' => 'btn btn-danger', 'type' => 'submit')) }}
-			{!! Form::close() !!}
+			<a class="btn btn-dark text-white" data-toggle="modal" data-target="#happyglucModal">
+				<i class="fas fa-star fa-2x"></i>
+				<br>Happy Gluc
+			</a>
+			<!--Modal Happy Gluc -->
+			@include('admin.happyglucs.index')
 		</div>
-
-		<div class="form-group float-right ml-2">
-			{!! Form::open(['method' => 'GET', 'route' => ['bars.edit', $bar->id]]) !!}
-				{{ Form::button('Editar', array('class' => 'btn btn-primary', 'type' => 'submit')) }}
-			{!! Form::close() !!}
+		<div class="float-right">
+			<a href="{{ route('admin.bars.edit', [ 'id' => $bar->id ]) }}" class="btn btn-info text-white">
+				<i class="fas fa-pen fa-2x"></i>
+				<br>Editar
+			</a>
 		</div>
 	</div>
-
 @endsection
