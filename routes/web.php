@@ -20,8 +20,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/admin/bars/{b_id}/promotions/create', 'Admin\AdminPromotionController@create')->name('admin.bars.promotions.create');
 	Route::post('/admin/bars/{b_id}/promotions', 'Admin\AdminPromotionController@store')->name('admin.bars.promotions.store');
 	Route::get('/admin/bars/{b_id}/promotions/{p_id}', 'Admin\AdminPromotionController@show')->name('admin.bars.promotions.show');
+	Route::get('/admin/bars/{b_id}/promotions/{p_id}/edit', 'Admin\AdminPromotionController@edit')->name('admin.bars.promotions.edit');
+	Route::patch('/admin/bars/{b_id}/promotions/{p_id}', 'Admin\AdminPromotionController@update')->name('admin.bars.promotions.update');
+	Route::delete('/admin/bars/{b_id}/promotions/{p_id}', 'Admin\AdminPromotionController@destroy')->name('admin.bars.promotions.destroy');
 
-	Route::get('/admin/bars/{b_id}/promotions/{p_id}/hours')
+	Route::get('/admin/bars/{b_id}/promotions/{p_id}/hours', 'Admin\AdminPromotionHourController@index')->name('admin.bars.promotions.hours.index');
+	Route::post('/admin/bars/{b_id}/promotions/{id}/hours', 'Admin\AdminPromotionHourController@store')->name('admin.bars.promotions.hours.store');
+	Route::patch('/admin/bars/{b_id}/promotions/{id}/hours', 'Admin\AdminPromotionHourController@update')->name('admin.bars.promotions.hours.update');
+	Route::delete('/admin/bars/{b_id}/promotions/{id}/hours', 'Admin\AdminPromotionHourController@destroy')->name('admin.bars.promotions.hours.destroy');
+
 
 });
 

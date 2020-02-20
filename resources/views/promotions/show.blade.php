@@ -50,6 +50,13 @@
 			<br>Horarios
 		</a>
 
+    	{!! Form::open(['method' => 'DELETE', 'route' => ['promotions.destroy', $promotion->id]]) !!}
+			<button class="btn btn-danger float-right ml-3">
+				<i class="fas fa-trash"></i>
+				<br>Eliminar
+			</button>
+       {!! Form::close() !!}
+
 		<a href="{{ route('promotions.edit', $promotion->id) }}" class="btn btn-info text-white float-right">
 			<i class="fas fa-pen"></i>
 			<br>Editar

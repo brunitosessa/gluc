@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PromotionHour extends Model
 {
 	protected $fillable = [
-		'date', 'start_time', 'end_time', 'enabled',
+		'date', 'start_time', 'end_time', 'enabled', 'promotion_id'
  	];
  	
     public function promotion()

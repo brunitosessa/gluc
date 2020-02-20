@@ -59,26 +59,27 @@ class AdminPromotionController extends Controller
         return redirect()->route('admin.bars.promotions.index', [ 'b_id' => $b_id ])->with('success', 'Promocion agregada correctamente!');
     }
 
-    public function show($p_id, $b_id)
+    public function show($b_id, $p_id)
     {
         $bar = Bar::findOrFail($b_id);
         $promotion = Promotion::findOrFail($p_id);
-        if ($promotion->bar->id == $bar->id)
+        if ($promotion->bar->id == $b_id)
             return view('admin.promotions.show', compact('promotion', 'bar'));
         else
             return back()->with('error', 'Esta promoción no pertenece al bar');
     }
 
-    public function edit($p_id, $b_id)
+    public function edit($b_id, $p_id)
     {
+        $bar = Bar::findOrFail($b_id);
         $promotion = Promotion::findOrFail($p_id);
         if ($promotion->bar->id == $b_id)
-            return view('admin.promotions.edit', compact('promotion'));
+            return view('admin.promotions.edit', compact('promotion', 'bar'));
         else
             return back()->with('error', 'Esta promoción no pertenece al bar');
     }
 
-    public function update(Request $request, $p_id, $b_id)
+    public function update(Request $request, $b_id, $p_id)
     {
         
         $this->validate($request, [
@@ -117,13 +118,13 @@ class AdminPromotionController extends Controller
                 $promotion->save();
             }
             
-            return redirect()->route('admin.bars.promotions.show', ['id' => $promotion->id])->with('success', 'Promocion editada correctamente!');
+            return redirect()->route('admin.bars.promotions.show', ['p_id' => $promotion->id, 'b_id' => $b_id ])->with('success', 'Promocion editada correctamente!');
         }
         else
             return back()->with('error', 'Esta promoción no le pertenece');
     }
 
-    public function destroy($p_id, $b_id)
+    public function destroy($b_id, $p_id)
     {
         $promotion = Promotion::findOrFail($p_id);
         if ($promotion->bar->id == $b_id)
@@ -135,7 +136,7 @@ class AdminPromotionController extends Controller
             }
             $promotion->delete();
             
-            return redirect()->route('admin.bars.promotions.index')->with('success', 'Promocion eliminada correctamente!');
+            return redirect()->route('admin.bars.promotions.index', [ 'b_id' => $b_id ])->with('success', 'Promocion eliminada correctamente!');
         }
         else
             return back()->with('error', 'Esta promoción no le pertenece');
