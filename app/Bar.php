@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Bar extends Authenticatable
 {
+    use Notifiable;
+    
 	protected $fillable = [
 		'name', 'image', 'logo', 'city_id', 'address', 'description', 'phone', 'email', 'lat', 'lng', 'enabled',
  	];

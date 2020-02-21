@@ -2,12 +2,12 @@
 
 Auth::routes();
 
-//Users
-//Route::get('/usuario/{id}', 'UsuariosController@ver')->where('id', '[0-9]+');
+Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
+Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
 
 //Admin Routes
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/admin/bars', 'Admin\AdminBarController@index')->name('admin.bars.index');
+	Route::get('/admin', 'Admin\AdminBarController@index')->name('admin.bars.index');
 	Route::get('/admin/bars/create', 'Admin\AdminBarController@create')->name('admin.bars.create');
 	Route::post('/admin/bars', 'Admin\AdminBarController@store')->name('admin.bars.store');
 	Route::get('/admin/bars/{id}', 'Admin\AdminBarController@show')->name('admin.bars.show');
