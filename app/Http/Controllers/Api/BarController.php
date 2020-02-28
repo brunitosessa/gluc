@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BarResource;
 use App\Bar;
 use App\City;
 use App\Promotion;
@@ -11,21 +12,18 @@ use Illuminate\Support\Facades\Auth;
 use Image;
 use File;
 use DB;
+use Carbon\Carbon;
 
 class BarController extends Controller
 {
     public function index() {
-        return Bar::all();   
+        $return1 = BarResource::collection(Bar::All());   
+        $return2 = BarResource::collection(Bar::All());   
+        return ($return1->merge($return2));
     }
 
-    public function show(Request $request)
+    public function show($b_id)
     {
-        return Bar::findOrFail($request->id);
-    }
-
-    public function showPromotions(Request $request)
-    {
-        $bar = Bar::findOrFail($request->id);
-        return $bar->promotions;
+        return new BarResource(Bar::find($b_id));
     }
 }
