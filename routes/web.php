@@ -6,7 +6,7 @@ Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
 Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
 
 //Admin Routes
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth:admin'], function () {
 	Route::get('/admin', 'Admin\AdminBarController@index')->name('admin.bars.index');
 	Route::get('/admin/bars/create', 'Admin\AdminBarController@create')->name('admin.bars.create');
 	Route::post('/admin/bars', 'Admin\AdminBarController@store')->name('admin.bars.store');
@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+//Bars Routes
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'BarController@show')->name('bars.show');
 	Route::get('/edit', 'BarController@edit')->name('bars.edit');
@@ -68,3 +69,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/charts', 'ChartController@index')->name('charts.index');
 });
+
+//API Routes
+
+Route::get('/api/bars/', 'Api\BarController@index');
+Route::get('/api/bars/{id}/', 'Api\BarController@show');
