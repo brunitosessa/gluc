@@ -69,8 +69,3 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/charts', 'ChartController@index')->name('charts.index');
 });
-
-//API Routes
-
-Route::get('/api/bars/', 'Api\BarController@index');
-Route::get('/api/bars/{id}/', 'Api\BarController@show');

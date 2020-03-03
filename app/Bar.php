@@ -59,4 +59,5 @@ class Bar extends Authenticatable
         return 0;
     }
 
+    //End Accessors
 }
