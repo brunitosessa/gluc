@@ -93,7 +93,7 @@ class PromotionHourController extends Controller
         ]);
 
         $promotionHour = PromotionHour::findOrFail($id);
-        if ( $promotionHour->promotion->bar->id == Auth::id())
+        if ( $promotionHour->promotion->bar->id == Auth::id() )
         {
             $promotionHour->date  = $request->date;
             $promotionHour->start_time = $request->start_time;
@@ -111,7 +111,7 @@ class PromotionHourController extends Controller
     public function destroy($id)
     {
         $promotionHour = PromotionHour::findOrFail($id);
-        if ( $promotionHour->promotion->bar->id == Auth::id())
+        if ( $promotionHour->promotion->bar->id == Auth::id() )
         {
             $promotionHour->delete();
             return back()->with('success', 'Horario eliminado correctamente!');

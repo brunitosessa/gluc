@@ -24,12 +24,11 @@ class User extends Authenticatable
     }
 
     //Revisar
-    public function canUseHappyGluc($bar_id) 	
+    public function canUseHappyGluc($bar_id)
     {
     	//Get if bar Has happygluc
     	$action = new hasHappyGluc;
     	if ( !$action->execute($bar_id) ) {
-    		dd("El bar no tiene happy");
     		return 0;
     	}
     	else
@@ -43,7 +42,6 @@ class User extends Authenticatable
 		    $barOrder = $ordersToday->pluck('bar_id')->first();
 
 			if ( $ordersToday->count() == 0 ) {
-				dd("No usaste nada el día de hoy, BEBER!");
 				return 1;
 			}
 			else
@@ -51,7 +49,6 @@ class User extends Authenticatable
 			    //If user used happygluc today and the bar in which use it is different than the actual bar
 			    if ( $bar_id != $barOrder)
 			    {
-			    	dd("Ya usaste tu Happy Gluc en otro Bar");
 			    	return 0;
 			    }
 			    else 
@@ -61,12 +58,10 @@ class User extends Authenticatable
 
 			    	if ( $ordersFrequency->count() < $this->happyglucs()->where('bar_id', $bar_id)->pluck('quantity')->first() )
 			    	{
-			    		dd("Podes beber");
 			    		return 1;
 			    	}
 			    	else
 			    	{
-			    		dd("NO Podes beber");
 			    		return 0;
 			    	}
 			    }
