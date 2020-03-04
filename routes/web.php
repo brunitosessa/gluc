@@ -1,9 +1,13 @@
 <?php
 
-Auth::routes();
 
 Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
 Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
+
+//Auth Routes
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 //Admin Routes
 Route::group(['middleware' => 'auth:admin'], function () {

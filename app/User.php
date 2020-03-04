@@ -3,12 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Actions\hasHappyGluc;
 use DB;
 use Carbon\Carbon;
 
-class User extends Model
+class User extends Authenticatable
 {
+	protected $fillable = [
+		'name', 'lastname', 'avatar', 'phone', 'email', 'facebook_id', 'city_id', 'api_token'
+ 	];
+   
+   protected $hidden = [
+         'password',
+ 	];
+
     public function happyglucs()
     {
     	return $this->belongsToMany('App\Happygluc');

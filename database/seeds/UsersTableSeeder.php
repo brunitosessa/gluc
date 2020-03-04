@@ -15,10 +15,10 @@ class UsersTableSeeder extends Seeder
             'name' => 'Bruno',
 			'lastname' => 'Sessa',
 			'phone' => '2214980399',
-			'email' => 'cariverplate77@gmail.com',
-			'phone_id' => 'aaabbbccc000111222',
+			'email' => 'cariverplate778@gmail.com',
 			'city_id' => 1,
 			'api_token' => Str::random(60),
+            'facebook_id' => '123456',
         ]);
     }
 }
