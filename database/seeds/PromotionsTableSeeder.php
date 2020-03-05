@@ -15,7 +15,6 @@ class PromotionsTableSeeder extends Seeder
         [
             'title' => 'La mejor Promo',
 			'description' => 'Es un gran bar',
-			'happy_hour' => 1,
 			'enabled' => 1,
 			'exclusive' => 1,
             'bar_id' => 1,
@@ -24,7 +23,6 @@ class PromotionsTableSeeder extends Seeder
         [
             'title' => 'La mejor Promo numero 2',
             'description' => 'Es un gran bar',
-            'happy_hour' => 1,
             'enabled' => 1,
             'exclusive' => 1,
             'bar_id' => 2,

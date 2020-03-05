@@ -18,7 +18,6 @@ class CreatePromotionsTable extends Migration
             $table->string('title');
             $table->string('image',255)->default('default.jpg');
             $table->string('description',200)->nullable();
-            $table->boolean('happy_hour')->default(0);
             $table->boolean('enabled')->default(1);
             $table->boolean('exclusive')->default(0);
             $table->integer('bar_id')->unsigned();

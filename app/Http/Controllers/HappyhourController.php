@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Happygluc;
+use App\happyhour;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class HappyglucController extends Controller
+class HappyhourController extends Controller
 {
-    public function create($bar_id)
+    public function create()
     {
-        $happygluc = new Happygluc($bar_id);
-        return view('happyglucs.create', compact('happygluc', 'bar_id'));
+        $happyhour = new Happyhour($bar_id);
+        return view('happyhours.create', compact('happyhour', 'bar_id'));
     }
 
     public function store(Request $request)
@@ -38,7 +37,7 @@ class HappyglucController extends Controller
         return back()->with('success', 'Happy Gluc editado correctamente!');
     }
 
-    public function destroy($id)
+    public function destroy(happyhour $happyhour)
     {
         //
     }

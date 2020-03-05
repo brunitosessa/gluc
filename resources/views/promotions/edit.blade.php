@@ -25,12 +25,6 @@
     </div>
 
     <div class="form-group">
-      {!! Form::label('happy_hour', 'Es Happy Hour?') !!}
-      {!! Form::hidden('happy_hour',0) !!}
-      {!! Form::checkbox('happy_hour', '1', old('happy_hour')) !!}
-    </div>
-
-    <div class="form-group">
       {!! Form::label('enabled', 'Habilitado') !!}
       {!! Form::hidden('enabled',0) !!}
       {!! Form::checkbox('enabled', '1', old('enabled')) !!}

@@ -16,13 +16,6 @@
 				{{ $promotion->description }}
 			</p>
 
-			@if($promotion->happy_hour)
-				<div class="alert alert-warning">
-					<i class="fas fa-glass-cheers"></i>
-					Es Happy Hour
-				</div>
-			@endif
-
 			@if($promotion->exclusive)
 				<div class="alert alert-info">
 					<i class="fas fa-star"></i>
