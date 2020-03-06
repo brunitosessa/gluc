@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('facebook_id',200)->nullable()->unique();
             $table->integer('city_id')->unsigned()->nullable();
             $table->string('password')->nullable();
+            $table->string('firebase_id', 200)->unique()->nullable()->default(null);
             $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();

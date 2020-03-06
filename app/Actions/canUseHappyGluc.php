@@ -36,7 +36,7 @@ class canUseHappyGluc
 
 			if ( $ordersToday->count() == 0 ) 
 			{
-				if ( $ordersFrequency < $quantity )
+				if ( $ordersFrequency < $quantity )					
 					return 1;
 				else
 					return 0;

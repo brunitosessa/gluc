@@ -17,6 +17,6 @@ class User extends Authenticatable
 
     public function happyglucs()
     {
-    	return $this->belongsToMany('App\Happygluc');
+    	return $this->belongsToMany('App\Happygluc')->withTimestamps();
     }
 }
