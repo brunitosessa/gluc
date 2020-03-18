@@ -14,7 +14,7 @@ class EventResource extends JsonResource
     		'titulo' => $this->title,
     		'descripcion' => $this->description,
     		'localidad' => $this->city->name,
-    		'foto' => config('app.url')."storage/images/events/".$this->image,
+    		'foto' => config('app.url')."/storage/images/events/".$this->image,
     		'direccion' => $this->address,
     		'precio' => $this->price,
     		'lat' => $this->lat,
