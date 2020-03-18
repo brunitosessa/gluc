@@ -6,10 +6,13 @@ Route::get('auth/{provider}', 'Api\SocialAuthController@redirectToProvider')->na
 Route::get('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderCallback');
 
 //Route::group(['middleware' => 'auth:api'], function () {
+	//Alternative - Delete
+    Route::get('/listaBares', 'Api\BarController@index');
+	Route::get('/infoBar', 'Api\BarController@show');
 
 	//Bars
     Route::get('/bars/', 'Api\BarController@index');
-	Route::get('/bars/{id}/', 'Api\BarController@show');
+ 	Route::get('/bars/{id}/', 'Api\BarController@show');
 
 	//Users
 	Route::get('/users/updateFirebaseId', 'Api\UserController@updateFirebaseId');
