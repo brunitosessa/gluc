@@ -52,13 +52,13 @@ class Bar extends Authenticatable
     public function getIsOpenedAttribute()
     {
         $today = Carbon::now()->format('w');
-        $todayBusinessHours = $this->businessHours()->where('date', '=', $today)->get();
+        $todayBusinessHours = $this->businessHours()->where('date', '=', $today)->where('enabled',1)->get();
 
         //If Bar have businessHours today 
         if ($todayBusinessHours->count())
         {
-            $startTime = new Carbon($todayBusinessHours->first()->startTime);
-            $endTime = new Carbon($todayBusinessHours->first()->endTime);
+            $startTime = new Carbon($todayBusinessHours->first()->start_time);
+            $endTime = new Carbon($todayBusinessHours->first()->end_time);
 
             //Diferences between NOW and startTime and endTime
             $diffStart = $startTime->diffInMinutes(Carbon::now(),false);
@@ -84,29 +84,29 @@ class Bar extends Authenticatable
             //If Bar doesn't open yet, check if is open past 00:00 yesterday
             else if ($diffStart < 0)
             {
-                $yesterdayBusinessHours = $this->businessHours()->where('date', '=', $today-1)->get();
+                $yesterdayBusinessHours = $this->businessHours()->where('date', '=', $today-1)->where('enabled',1)->get();
 
                 //If Bar opened yesterday
                 if ($yesterdayBusinessHours->count() > 0)
                 {
                     //Bring businesshours from yesterday
-                    $yesterdayStartTime = new Carbon($today_yesterdayBusinessHours->first()->startTime);
-                    $yesterdayEndTime = new Carbon($today_yesterdayBusinessHours->first()->endTime);
+                    $yesterdayStartTime = new Carbon($yesterdayBusinessHours->first()->start_time);
+                    $yesterdayEndTime = new Carbon($yesterdayBusinessHours->first()->end_time);
 
-                    //Check if yesterday's endTime is next day of yesterday's startTime
                     $yesterday_diffBetween = $yesterdayStartTime->diffInMinutes($yesterdayEndTime, false);
 
-                    if ($yesterday_diffBetween > 0)
+                    //Check if yesterday's endTime is next day of yesterday's startTime
+                    if ($yesterday_diffBetween < 0)
                     {
                         //If Now is lower than yesterday's endTime, Now is opened
                         if ($yesterdayEndTime->diffInMinutes(Carbon::now(),false) < 0 )
                         {
                             return [
                                 'open' => 1,
-                                'message' => 'Abierto hasta '.$endTime->format('H:i'),
+                                'message' => 'Abierto hasta '.$yesterdayEndTime->format('H:i'),
                             ];
                         }
-                        //If Now is greater thatn yesterday's endTime, Now is closed
+                        //If Now is greater than yesterday's endTime, Now is closed
                         else
                         {
                             return [
@@ -129,34 +129,34 @@ class Bar extends Authenticatable
         //If Bar doesn't have businessHours today -> check if is opened passed 00:00 yesterday
         else
         {
-            $yesterdayBusinessHours = $this->businessHours()->where('date', '=', $today-1)->get();
+            $yesterdayBusinessHours = $this->businessHours()->where('date', '=', $today-1)->where('enabled',1)->get();
 
             //If Bar opened yesterday
             if ($yesterdayBusinessHours->count() > 0)
             {
                 //Bring businesshours from yesterday
-                $yesterdayStartTime = new Carbon($today_yesterdayBusinessHours->first()->startTime);
-                $yesterdayEndTime = new Carbon($today_yesterdayBusinessHours->first()->endTime);
+                $yesterdayStartTime = new Carbon($yesterdayBusinessHours->first()->start_time);
+                $yesterdayEndTime = new Carbon($yesterdayBusinessHours->first()->end_time);
 
                 //Check if yesterday's endTime is next day of yesterday's startTime
                 $yesterday_diffBetween = $yesterdayStartTime->diffInMinutes($yesterdayEndTime, false);
 
-                if ($yesterday_diffBetween > 0)
+                if ($yesterday_diffBetween < 0)
                 {
                     //If Now is lower than yesterday's endTime, Now is opened
                     if ($yesterdayEndTime->diffInMinutes(Carbon::now(),false) < 0 )
                     {
                         return [
                             'open' => 1,
-                            'message' => 'Abierto hasta '.$endTime->format('H:i'),
+                            'message' => 'Abierto hasta '.$yesterdayEndTime->format('H:i'),
                         ];
                     }
-                    //If Now is greater thatn yesterday's endTime, Now is closed
+                    //If Now is greater than yesterday's endTime, Now is closed
                     else
                     {
                         return [
                             'open' => 0,
-                            'message' => 'Abre '.$startTime->format('H:i'),
+                            'message' => 'Cerrado',
                         ];
                     }
                 }
@@ -166,7 +166,7 @@ class Bar extends Authenticatable
             {
                 return [
                     'open' => 0,
-                    'message' => 'Abre '.$startTime->format('H:i'),
+                    'message' => 'Cerrado',
                 ];
             }
         }

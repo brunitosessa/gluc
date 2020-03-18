@@ -23,4 +23,10 @@ class Event extends Model
     {
         return $this->belongsTo('App\Bar');
     }
+
+    public function types()
+    {
+        return $this->belongsToMany('App\EventType')->withTimestamps();
+    }
+
 }

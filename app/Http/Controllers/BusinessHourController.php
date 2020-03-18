@@ -35,7 +35,7 @@ class BusinessHourController extends Controller
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
             'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'end_time' => 'required|date_format:H:i',
             'enabled' => 'required|boolean',
         ]);    
 
@@ -60,7 +60,7 @@ class BusinessHourController extends Controller
             BusinessHour::updateOrCreate(
                 [
                     'date' => $request->date,
-                    'bar_id' => Auth::id()
+                    'bar_id' => Auth::id(),
                 ],
                 [
                     'start_time' => $request->start_time,
@@ -88,7 +88,7 @@ class BusinessHourController extends Controller
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
             'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'end_time' => 'required|date_format:H:i',
             'enabled' => 'required|boolean',
         ]);
 

@@ -14,6 +14,7 @@ class EventsTableSeeder extends Seeder
             'description' => 'Es un gran bar',
             'city_id' => 1,
             'bar_id' => 1,
+            'event_type_id' => 1,
             'enabled' => 1,
             'date' => '2020-03-30',
         ]);
