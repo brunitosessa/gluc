@@ -8,7 +8,7 @@
     <!-- Image -->
     <div class="mb-4 text-center">
       <!-- Image -->
-      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image" class="img-fluid rounded" width=250 @click="openFileImage()" v-if="!newImage">
+      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image" class="img-fluid rounded" width=300 @click="openFileImage()" v-if="!newImage">
 
       <img :src="newImage" alt="Bar Image" class="img-fluid rounded" width=250 @click="openFileImage()" v-if="newImage">
       
