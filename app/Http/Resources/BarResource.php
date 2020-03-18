@@ -18,7 +18,7 @@ class BarResource extends JsonResource
             'email' => $this->email,
             'lat' => $this->lat,
             'lng' => $this->lng,
-            'fotopeque' => config('app.url')."/storage/images/bars/".$this->image,
+            'fotoPeque' => config('app.url')."/storage/images/bars/".$this->image,
             'logo' => config('app.url')."/storage/images/bars/logos/".$this->logo,
             'abierto' => $this->is_opened,
             'horarios' => BusinessHourResource::collection($this->businessHours()->orderBy('date','asc')->get()),
