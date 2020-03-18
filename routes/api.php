@@ -7,7 +7,7 @@ Route::get('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderC
 
 //Route::group(['middleware' => 'auth:api'], function () {
 	//Alternative - Delete
-    Route::get('/listaBares.php', 'Api\BarController@index');
+    Route::post('/listaBares.php', 'Api\BarController@index');
 	Route::get('/infoBar', 'Api\BarController@show');
 
 	//Bars
