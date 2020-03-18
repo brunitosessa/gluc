@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar',255)->default('default.jpg');
             $table->string('phone',20)->nullable();
             $table->string('email',100)->unique();
-            $table->string('facebook_id',200)->nullable()->unique();
+            $table->string('facebook_id',150)->nullable()->unique();
             $table->integer('city_id')->unsigned()->nullable();
             $table->string('password')->nullable();
             $table->string('firebase_id', 200)->unique()->nullable()->default(null);
