@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class BarController extends Controller
 {
     public function index() {
-        return BarResource::collection(Bar::All());   
+        return ['bares' => BarResource::collection(Bar::All()) ];   
     }
 
     public function show($b_id)
