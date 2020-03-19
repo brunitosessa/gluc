@@ -10,7 +10,10 @@ use App\Http\Resources\PublicityResource;
 class PublicityController extends Controller
 {
     public function index() {
-        return PublicityResource::collection(Publicity::All());   
+    	 return [
+        	'estado' => 1,
+        	'publicidades' => PublicityResource::collection(Publicity::All()), 
+        ];   
     }
 
     public function show($e_id)
