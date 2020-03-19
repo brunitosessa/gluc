@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
     public function index() {
-        return EventResource::collection(Event::All());   
+    	return [
+        	'estado' => 1,
+        	'eventos' => EventResource::collection(Event::All()),
     }
 
     public function show($e_id)

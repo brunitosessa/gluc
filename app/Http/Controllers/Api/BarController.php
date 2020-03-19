@@ -11,7 +11,7 @@ class BarController extends Controller
     public function index() {
         return [
         	'estado' => 1,
-        	'bares' => BarResource::collection(Bar::All()) 
+        	'bares' => BarResource::collection(Bar::All()),
         ];   
     }
 
