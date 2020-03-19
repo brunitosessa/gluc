@@ -8,7 +8,6 @@ class EventResource extends JsonResource
 {
     public function toArray($request)
     {
-    	dd($this->types);
     	return [
     		'id' => $this->id,
     		'titulo' => $this->title,
@@ -21,7 +20,7 @@ class EventResource extends JsonResource
     		'lng' => $this->lng,
     		'habilitado' => $this->enabled,
     		'fecha' => $this->date,
-    		'tipo' => $this->types()->first()->type,
+    		'tipo' => $this->types->pluck('type'),
     	];
     }
 }

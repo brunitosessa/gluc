@@ -7,7 +7,12 @@ class EventTypesTableSeeder extends Seeder
     public function run()
     {
     	DB::table('event_types')->insert([
-            'type' => 'Electrónica',
-        ]);
+	    	[
+	            'type' => 'Electrónica',
+	        ],
+	        [
+	        	'type' => 'Cachuengue',
+	        ]
+    	]);
     }
 }

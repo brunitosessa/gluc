@@ -8,9 +8,10 @@ Route::get('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderC
 //Route::group(['middleware' => 'auth:api'], function () {
 	//Alternative - Old Version
     Route::post('/listaBares.php', 'Api\BarController@index');
-    Route::get('/listaBares.php', 'Api\BarController@index');
-	Route::post('/infoBar', 'Api\BarController@show');
-	Route::get('/infoBar', 'Api\BarController@show');
+	Route::post('/infoBar.php', 'Api\BarController@show');
+	Route::post('/listaEventos.php', 'Api\EventController@index');
+	Route::post('/listaPromociones.php', 'Api\PromotionController@index');
+	::post('/listaPublicidadPrincipal.php', 'Api\PublicityController@index');
 	//End - Old Version
 
 
@@ -25,5 +26,12 @@ Route::get('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderC
 	//Events
 	Route::get('/events/', 'Api\EventController@index');
 	Route::get('/events/{id}/', 'Api\EventController@show');
+
+	//Promotions
+	Route::get('/promotions/', 'Api\PromotionController@index');
+
+	//Publicities
+	Route::get('/publicities/', 'Api\PublicityController@index');
+
 
 //});

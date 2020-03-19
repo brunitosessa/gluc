@@ -12,8 +12,8 @@ class PublicitiesTableSeeder extends Seeder
     public function run()
     {
         DB::table('publicities')->insert([
-            'title' => 'Evento 1',
-			'description' => 'Es un gran bar',
+            'title' => 'Publicidad 1',
+			'description' => 'Comprate esta mayonesa guachin',
 			'city_id' => 1,
             'end_date' => '2020-12-09',
             'enabled' => 1,
