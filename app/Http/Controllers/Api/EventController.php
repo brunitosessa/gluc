@@ -12,6 +12,7 @@ class EventController extends Controller
     	return [
         	'estado' => 1,
         	'eventos' => EventResource::collection(Event::All()),
+        ];
     }
 
     public function show($e_id)
