@@ -11,7 +11,8 @@ Route::get('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderC
 	Route::post('/infoBar.php', 'Api\BarController@show');
 	Route::post('/listaEventos.php', 'Api\EventController@index');
 	Route::post('/listaPromociones.php', 'Api\PromotionController@index');
-	::post('/listaPublicidadPrincipal.php', 'Api\PublicityController@index');
+	Route::post('/listaPublicidadPrincipal.php', 'Api\PublicityController@index');
+	Route::post('/listaRecomendados.php', 'Api\BarController@index');
 	//End - Old Version
 
 
