@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 	<div class="container d-lg-inline-flex justify-content-between">
@@ -74,6 +74,11 @@
 
 	<div class="container">	   
 		<div class="form-group float-left ml-2">
+			<a class="btn btn-secondary" href="{{ route('admin.bars.businessHours.index', [ 'b_id' => $bar->id ]) }}">
+				<i class="fas fa-clock fa-2x"></i>
+				<br>Horarios
+			</a>
+
 			<a class="btn btn-success" href="{{ route('admin.bars.promotions.index', [ 'b_id' => $bar->id ]) }}">
 				<i class="fas fa-fire-alt fa-2x"></i>
 				<br>Promociones

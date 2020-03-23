@@ -2,15 +2,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Bar;
-use App\City;
-use App\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Bar;
+use App\City;
+use App\Promotion;
 use Image;
 use File;
-use DB;
 
 class AdminBarController extends Controller
 {

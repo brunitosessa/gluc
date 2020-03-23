@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 	<h3>Listado de publicidades</h3>
@@ -14,7 +14,7 @@
 			<div class="card-body">
 				<h4 class="card-title">{{ $publicity->title }}</h4>
 				<p class="card-text">{{ $publicity->city->name }}</p>
-				<a href="{{ route('publicities.show', $publicity->id) }}" class="btn btn-primary">Ver</a>
+				<a href="{{ route('admin.publicities.show', $publicity->id) }}" class="btn btn-primary">Ver</a>
 			</div>
 
 		</div>
@@ -26,6 +26,6 @@
 	</div>
 
 	<div class="d-flex flex-row-reverse">
-		<a href="{{ route('publicities.create') }}" class="btn btn-info text-white">Nuevo</a>
+		<a href="{{ route('admin.publicities.create') }}" class="btn btn-info text-white">Nuevo</a>
 	</div>
 @endsection

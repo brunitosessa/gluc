@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 
   <h3>Crear evento</h3>
 
-  {!! Form::open(['action' => 'EventController@store', 'files' => true]) !!}
+  {!! Form::open(['action' => 'Admin\AdminEventController@store', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
       {!! Html::image('/storage/images/events/default.jpg', 'Event image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
@@ -42,6 +42,11 @@
     <div class="form-group">
       {!! Form::label('city_id', 'Ciudad') !!}
       {{ Form::select('city_id', $cities, null, ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group">
+      {!! Form::label('bar_id', 'Bar') !!}
+      {!! Form::select('bar_id', ([null => 'Ninguno'] + $bars), null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">

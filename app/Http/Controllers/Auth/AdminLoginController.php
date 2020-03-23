@@ -30,7 +30,7 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
         if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            dd("CORRECTO");
+            return redirect('/admin');
         }
         return back()->withErrors(['email' => 'Email or password are wrong.']);
     }

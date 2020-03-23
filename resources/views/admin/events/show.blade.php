@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 	<div class="container clearfix">
@@ -11,22 +11,34 @@
 				<b>Titulo</b>
 				{{ $event->title }}
 			</p>
+
+			@if (!is_null($event->bar_id))
+			<p>
+				<b>Bar</b>
+				{{ $event->bar->name}}
+			</p>
+			@endif
+
 			<p>
 				<b>Direccion</b>
 				{{ $event->address }}
 			</p>
+
 			<p>
 				<b>Latitud</b>
 				{{ $event->lat }}
 			</p>
+
 			<p>
 				<b>Longitud</b>
 				{{ $event->lng }}
 			</p>
+
 			<p>
 				<b>Descripcion</b>
 				{{ $event->description }}
 			</p>
+
 			<p>
 				<b>Localidad</b>
 				{{ $event->city->name }}
@@ -48,13 +60,13 @@
 
 	<div class="container">	    
 		<div class="form-group float-right ml-2">
-			{!! Form::open(['method' => 'DELETE', 'route' => ['events.destroy', $event->id]]) !!}
+			{!! Form::open(['method' => 'DELETE', 'route' => ['admin.events.destroy', $event->id]]) !!}
 				{{ Form::button('Eliminar', array('class' => 'btn btn-danger', 'type' => 'submit')) }}
 			{!! Form::close() !!}
 		</div>
 
 		<div class="form-group float-right ml-2">
-			{!! Form::open(['method' => 'GET', 'route' => ['events.edit', $event->id]]) !!}
+			{!! Form::open(['method' => 'GET', 'route' => ['admin.events.edit', $event->id]]) !!}
 				{{ Form::button('Editar', array('class' => 'btn btn-primary', 'type' => 'submit')) }}
 			{!! Form::close() !!}
 		</div>

@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 
   <h3>Crear publicidad</h3>
 
-  {!! Form::open(['action' => 'PublicityController@store', 'files' => true]) !!}
+  {!! Form::open(['action' => 'Admin\AdminPublicityController@store', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
       {!! Html::image('/storage/images/publicities/default.jpg', 'Publicity image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}

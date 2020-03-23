@@ -11,53 +11,52 @@
             @auth
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto ml-auto text-center">
-       <!--             <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('bars.show') }}">
-                            <i class="fas fa-glass-cheers fa-lg"></i>
+                    <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('admin.bars.index') }}">
+                            <i class="fas fa-home fa-lg"></i>
                             <br>Bares
                         </a>
                     </li>
 
                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                        <a class="nav-link py-0 pl-5" href="{{ route('admin.publicities.index') }}">
+                            <i class="fas fa-ad fa-lg"></i>
+                            <br>Publicidades
+                        </a>
+                    </li>
+
+                    <!-- TODO: agregar listado total de promociones, no urgente pero util
+                    <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{-- route('admin.promotions.index') --}}">
+                            <i class="fas fa-fire-alt fa-lg"></i>
+                            <br>Promociones
+                        </a>
+                    </li>
+                    -->
+
+                    <li class="nav-item dropdown border-0">
+                        <a class="nav-link py-0 pl-5" href="{{ route('admin.events.index') }}">
                             <i class="fas fa-calendar-day fa-lg"></i>
                             <br>Eventos
                         </a>
                     </li>
 
-                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('publicities.index') }}">
-                            <i class="fas fa-code-branch fa-lg"></i>
-                            <br>Publicidad
-                        </a>
-                    </li>
-
                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                        <a class="nav-link py-0 pl-5" href="#">
                             <i class="fas fa-star fa-lg"></i>
                             <br>Especiales
                         </a>
                     </li>
 
                     <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
-                            <i class="fas fa-user fa-lg"></i>
-                            <br>Usuarios
-                        </a>
-                    </li>
-
-                    <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{ route('events.index') }}">
+                        <a class="nav-link py-0 pl-5" href="{{ route('charts.index') }}">
                             <i class="fas fa-chart-area fa-lg"></i>
                             <br>Estadísticas
                         </a>
                     </li>
-                -->
                 </ul>
             @endauth
-            <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -65,6 +64,7 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fas fa-crown fa-lg text-primary"></i>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 

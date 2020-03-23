@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 
 	<h3>Editar evento</h3>
 
-	{!! Form::model($event, ['route' => ['events.update', $event->id], 'method' => 'PATCH', 'files' => true]) !!}
+	{!! Form::model($event, ['route' => ['admin.events.update', $event->id], 'method' => 'PATCH', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
       {!! Html::image('/storage/images/events/'.$event->image, 'Event image', ['class' => 'img-fluid rounded', 'width' => 250]) !!}
@@ -45,6 +45,11 @@
     </div>
 
     <div class="form-group">
+      {!! Form::label('bar_id', 'Bar') !!}
+      {!! Form::select('bar_id', ([null => 'Ninguno'] + $bars), null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div cSSlass="form-group">
       {!! Form::label('enabled', 'Habilitado') !!}
       {!! Form::hidden('enabled',0) !!}
       {!! Form::checkbox('enabled', '1', old('enabled')) !!}

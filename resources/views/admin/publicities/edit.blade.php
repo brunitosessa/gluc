@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 
 	<h3>Editar publicidad</h3>
 
-	{!! Form::model($publicity, ['route' => ['publicities.update', $publicity->id], 'method' => 'PATCH', 'files' => true]) !!}
+	{!! Form::model($publicity, ['route' => ['admin.publicities.update', $publicity->id], 'method' => 'PATCH', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
       {!! Html::image('/storage/images/publicities/'.$publicity->image, 'Publicity image', ['class' => 'img-fluid rounded', 'width' => 250]) !!}

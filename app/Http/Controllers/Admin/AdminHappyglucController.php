@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Happygluc;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
-class HappyglucController extends Controller
+class AdminHappyglucController extends Controller
 {
     public function create($bar_id)
     {
@@ -14,7 +13,7 @@ class HappyglucController extends Controller
         return view('happyglucs.create', compact('happygluc', 'bar_id'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $bar_id)
     {
         $this->validate($request, [
             'frequency' => 'required|numeric',
@@ -25,7 +24,7 @@ class HappyglucController extends Controller
 
         Happygluc::updateOrCreate(
             [
-                'bar_id' => Auth::id()
+                'bar_id' => $bar_id,
             ],
             [
                 'frequency' => $request->frequency,
@@ -36,10 +35,5 @@ class HappyglucController extends Controller
         );
 
         return back()->with('success', 'Happy Gluc editado correctamente!');
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

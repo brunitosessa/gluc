@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\BusinessHour;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\BusinessHour;
 use App\Bar;
 
-class BusinessHourController extends Controller
+class AdminBusinessHourController extends Controller
 {
     public $dow = [
         -1 => 'Todos los días',
@@ -20,17 +20,17 @@ class BusinessHourController extends Controller
         6 => 'Sabado'
     ];
 
-    public function index()
+    public function index($bar_id)
     {
-        $bar = Bar::findOrFail(Auth::id());
+        $bar = Bar::findOrFail($bar_id);
         $businessHours = $bar->businessHours;
         $dow = $this->dow;
-        return view('businessHours.index',compact('businessHours', 'dow'));
+        return view('admin.businessHours.index',compact('businessHours', 'dow'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $bar_id)
     {
-        $bar = Bar::findOrFail(Auth::id());
+        $bar = Bar::findOrFail($bar_id);
 
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
@@ -51,7 +51,8 @@ class BusinessHourController extends Controller
                 $businessHour->start_time = $request->start_time;
                 $businessHour->end_time = $request->end_time;
                 $businessHour->enabled = $request->enabled;
-                $businessHour->bar_id = Auth::id();
+                $businessHour->bar_id = $bar_id;
+
                 $businessHour->save();
             }
         }
@@ -60,7 +61,7 @@ class BusinessHourController extends Controller
             BusinessHour::updateOrCreate(
                 [
                     'date' => $request->date,
-                    'bar_id' => Auth::id(),
+                    'bar_id' => $request->bar_id,
                 ],
                 [
                     'start_time' => $request->start_time,
@@ -83,30 +84,20 @@ class BusinessHourController extends Controller
         ]);
 
         $businessHour = BusinessHour::findOrFail($id);
-        if ( $businessHour->bar->id == Auth::id())
-        {
-            $businessHour->date  = $request->date;
-            $businessHour->start_time = $request->start_time;
-            $businessHour->end_time = $request->end_time;
-            $businessHour->enabled = $request->enabled;
-            $businessHour->save();
+        $businessHour->date  = $request->date;
+        $businessHour->start_time = $request->start_time;
+        $businessHour->end_time = $request->end_time;
+        $businessHour->enabled = $request->enabled;
+        $businessHour->save();
 
-            return back()->with('success', 'Horario editado correctamente');
-
-        }
-        else
-            return back()->with('error', 'Este horario no le pertenece');
+        return back()->with('success', 'Horario editado correctamente');
     }
 
     public function destroy($id)
     {
         $businessHour = BusinessHour::findOrFail($id);
-        if ($businessHour->bar->id == Auth::id())
-        {
-            $businessHour->delete();
-            return back()->with('success', 'Horario eliminado correctamente!');
-        }
-        else
-            return back()->with('error', 'Este horario no le pertenece');
+		$businessHour->delete();
+        
+        return back()->with('success', 'Horario eliminado correctamente!');
     }
 }
