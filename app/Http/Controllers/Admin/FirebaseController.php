@@ -11,7 +11,7 @@ class FirebaseController extends Controller
     public function sendAll(Request $request)
     {
     	$recipients = User::whereNotNull('device_token')->pluck('device_token')->toArray();
-
+    	dd($recipients);
     	fcm()
         	->to($recipients)
         	->data([
