@@ -18,7 +18,7 @@ class CreateHappyhoursTable extends Migration
             $table->integer('date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->integer('bar_id')->unsigned()->unique();
+            $table->integer('bar_id')->unsigned();
             $table->boolean('enabled')->default(1);
             $table->timestamps();
             $table->foreign('bar_id')->references('id')->on('bars');

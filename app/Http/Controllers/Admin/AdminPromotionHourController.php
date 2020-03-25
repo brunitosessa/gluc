@@ -27,14 +27,9 @@ class AdminPromotionHourController extends Controller
     {
         $bar = Bar::findOrFail($b_id);
         $promotion = Promotion::findOrFail($p_id);
-        if ($promotion->bar->id == $b_id)
-        {
-            $promotionHours = $promotion->hours;
-            $dow = $this->dow;
-            return view('admin.promotions.hours.index',compact('promotionHours', 'promotion', 'bar', 'dow'));
-        }
-        else
-            return back()->with('error', 'Esta promoción no le pertenece');
+        $promotionHours = $promotion->hours()->orderBy('date')->get();
+        $dow = $this->dow;
+        return view('admin.promotions.hours.index',compact('promotionHours', 'promotion', 'bar', 'dow'));
     }
 
     public function store(Request $request, $b_id, $p_id)
@@ -48,43 +43,37 @@ class AdminPromotionHourController extends Controller
 
         $bar = Bar::findOrFail($b_id);
         $promotion = Promotion::findOrFail($p_id);
-        if ($promotion->bar->id == $b_id)
+        //if date = -1, same start_time and end_time for every day
+        if ( $request->date == -1)
         {
-            //if date = -1, same start_time and end_time for every day
-            if ( $request->date == -1)
+            //Before I've to delete all promotion hours
+            $promotion->hours()->delete();
+            for($count = 0; $count <= 6; $count++)
             {
-                //Before I've to delete all promotion hours
-                $promotion->hours()->delete();
-                for($count = 0; $count <= 6; $count++)
-                {
-                    $promotionHour = new PromotionHour();
-                    $promotionHour->date = $count;
-                    $promotionHour->start_time = $request->start_time;
-                    $promotionHour->end_time = $request->end_time;
-                    $promotionHour->enabled = $request->enabled;
-                    $promotionHour->promotion_id = $p_id;
-                    $promotionHour->save();
-                }
+                $promotionHour = new PromotionHour();
+                $promotionHour->date = $count;
+                $promotionHour->start_time = $request->start_time;
+                $promotionHour->end_time = $request->end_time;
+                $promotionHour->enabled = $request->enabled;
+                $promotionHour->promotion_id = $p_id;
+                $promotionHour->save();
             }
-            else
-            {
-                PromotionHour::updateOrCreate(
-                    [
-                        'date' => $request->date,
-                        'promotion_id' => $p_id
-                    ],
-                    [
-                        'start_time' => $request->start_time,
-                        'end_time' => $request->end_time,
-                        'enabled' => $request->enabled,
-                    ]
-                );
-            }
-            
-            return back()->with('success', 'Horario agregado correctamente!');
         }
         else
-            return back()->with('error', 'Esta promoción no le pertenece');
+        {
+            PromotionHour::updateOrCreate(
+                [
+                    'date' => $request->date,
+                    'promotion_id' => $p_id
+                ],
+                [
+                    'start_time' => $request->start_time,
+                    'end_time' => $request->end_time,
+                    'enabled' => $request->enabled,
+                ]
+            );
+        }
+        return back()->with('success', 'Horario agregado correctamente!');
     }
 
     public function update(Request $request, $b_id, $p_id)
@@ -98,31 +87,21 @@ class AdminPromotionHourController extends Controller
 
         $bar = Bar::findOrFail($b_id);
         $promotionHour = PromotionHour::findOrFail($id);
-        if ( $promotionHour->promotion->bar->id == $b_id)
-        {
-            $promotionHour->date  = $request->date;
-            $promotionHour->start_time = $request->start_time;
-            $promotionHour->end_time = $request->end_time;
-            $promotionHour->enabled = $request->enabled;
-            $promotionHour->save();
+        $promotionHour->date  = $request->date;
+        $promotionHour->start_time = $request->start_time;
+        $promotionHour->end_time = $request->end_time;
+        $promotionHour->enabled = $request->enabled;
+        $promotionHour->save();
 
-            return back()->with('success', 'Horario editado correctamente');
-
-        }
-        else
-            return back()->with('error', 'Este horario no le pertenece');
+        return back()->with('success', 'Horario editado correctamente');
     }
 
     public function destroy($b_id, $p_id)
     {
         $bar = Bar::findOrFail($b_id);
         $promotionHour = PromotionHour::findOrFail($p_id);
-        if ( $promotionHour->promotion->bar->id == $b_id)
-        {
-            $promotionHour->delete();
-            return back()->with('success', 'Horario eliminado correctamente!');
-        }
-        else
-            return back()->with('error', 'Este horario no le pertenece');
+        $promotionHour->delete();
+
+        return back()->with('success', 'Horario eliminado correctamente!');
     }
 }

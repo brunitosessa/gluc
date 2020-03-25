@@ -30,7 +30,6 @@ class PromotionController extends Controller
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|max:200',
-            'happy_hour' => 'required|boolean',
             'enabled' => 'required|boolean',
             'exclusive' => 'required|boolean',
         ]);
@@ -38,7 +37,6 @@ class PromotionController extends Controller
         $promotion = new Promotion();
         $promotion->title = $request->title;
         $promotion->description = $request->description;
-        $promotion->happy_hour = $request->happy_hour;
         $promotion->enabled = $request->enabled;
         $promotion->exclusive = $request->exclusive;
         $promotion->bar_id = Auth::id();
@@ -82,7 +80,6 @@ class PromotionController extends Controller
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|max:200',
-            'happy_hour' => 'required|boolean',
             'enabled' => 'required|boolean',
             'exclusive' => 'required|boolean',
         ]);
@@ -93,7 +90,6 @@ class PromotionController extends Controller
             $promotion = Promotion::findOrFail($id);
             $promotion->title = $request->title;
             $promotion->description = $request->description;
-            $promotion->happy_hour = $request->happy_hour;
             $promotion->enabled = $request->enabled;
             $promotion->exclusive = $request->exclusive;
             $promotion->bar_id = Auth::id();

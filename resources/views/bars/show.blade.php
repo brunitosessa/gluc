@@ -79,6 +79,11 @@
 				<br>Promociones
 			</a>
 
+			<a class="btn btn-info text-white" href="{{ route('happyhours.index') }}">
+				<i class="fas fa-cocktail fa-2x"></i>
+				<br>Happy Hour
+			</a>
+
 			<a class="btn btn-dark text-white" data-toggle="modal" data-target="#happyglucModal">
 				<i class="fas fa-star fa-2x"></i>
 				<br>Happy Gluc

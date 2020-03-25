@@ -1,10 +1,10 @@
 <?php
 
-
+//Admin Auth Routes
 Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
 Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
 
-//Auth Routes
+//Bar Auth Routes
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -59,8 +59,15 @@ Route::group(['middleware' => 'auth:admin'], function () {
 	Route::get('/admin/events/{id}/edit', 'Admin\AdminEventController@edit')->name('admin.events.edit');
 	Route::patch('/admin/events/{id}', 'Admin\AdminEventController@update')->name('admin.events.update');
 	Route::delete('/admin/events/{id}', 'Admin\AdminEventController@destroy')->name('admin.events.destroy');
+
+	//Happyhour
+	Route::get('/admin/bars/{id}/happyhours', 'Admin\AdminHappyhourController@index')->name('admin.bars.happyhours.index');
+	Route::post('/admin/bars/{id}/happyhours', 'Admin\AdminHappyhourController@store')->name('admin.bars.happyhours.store');
+	Route::patch('/admin/bars/happyhours/{id}', 'Admin\AdminHappyhourController@update')->name('admin.bars.happyhours.update');
+	Route::delete('/admin/bars/happyhours/{id}', 'Admin\AdminHappyhourController@destroy')->name('admin.bars.happyhours.destroy');
+
 	//Happygluc
-	Route::post('/admin/happygluc', 'Admin\AdminHappyglucController@store')->name('admin.happygluc.store');
+	Route::post('/admin/bars/{id}/happygluc', 'Admin\AdminHappyglucController@store')->name('admin.bars.happygluc.store');
 
 	//Notification
 	Route::get('/admin/notification', 'Admin\FirebaseController@sendAll')->name('admin.notification.sendAll');
@@ -103,6 +110,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/events/{id}/edit', 'EventController@edit')->name('events.edit');
 	Route::patch('/events/{id}', 'EventController@update')->name('events.update');
 	Route::delete('/events/{id}', 'EventController@destroy')->name('events.destroy');
+
+	//Happyhour
+	Route::get('/happyhours', 'HappyhourController@index')->name('happyhours.index');
+	Route::post('/happyhours', 'HappyhourController@store')->name('happyhours.store');
+	Route::patch('/happyhours/{id}', 'HappyhourController@update')->name('happyhours.update');
+	Route::delete('/happyhours/{id}', 'HappyhourController@destroy')->name('happyhours.destroy');
 
 	//Happygluc
 	Route::post('/happygluc', 'HappyglucController@store')->name('happygluc.store');

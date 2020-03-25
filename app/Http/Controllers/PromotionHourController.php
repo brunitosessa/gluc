@@ -26,7 +26,7 @@ class PromotionHourController extends Controller
         $promotion = Promotion::findOrFail($id);
         if ($promotion->bar->id == Auth::id())
         {
-            $promotionHours = $promotion->hours;
+            $promotionHours = $promotion->hours()->orderBy('date')->get();
             $dow = $this->dow;
             return view('promotions.hours.index',compact('promotionHours', 'promotion', 'dow'));
         }

@@ -28,7 +28,7 @@ class FirebaseController extends Controller
         	])
         	->send();
 
-    //$notification = 'Notificación enviada a todos los usuarios.';
-    //return back()->with(compact('notification'));
+    	$notification = 'Notificación enviada a todos los usuarios.';
+    	return back()->with('success', '$notification');
     }
 }

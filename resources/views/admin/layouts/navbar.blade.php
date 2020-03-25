@@ -24,16 +24,7 @@
                             <br>Publicidades
                         </a>
                     </li>
-
-                    <!-- TODO: agregar listado total de promociones, no urgente pero util
-                    <li class="nav-item dropdown border-0">
-                        <a class="nav-link py-0 pl-5" href="{{-- route('admin.promotions.index') --}}">
-                            <i class="fas fa-fire-alt fa-lg"></i>
-                            <br>Promociones
-                        </a>
-                    </li>
-                    -->
-
+                    
                     <li class="nav-item dropdown border-0">
                         <a class="nav-link py-0 pl-5" href="{{ route('admin.events.index') }}">
                             <i class="fas fa-calendar-day fa-lg"></i>

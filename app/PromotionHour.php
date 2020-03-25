@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class PromotionHour extends Model
 {
@@ -14,4 +15,16 @@ class PromotionHour extends Model
     {
     	return $this->belongsTo('App\Promotion');
     }
+
+    //Mutators
+
+    public function getStartTimeAttribute($value) {
+        return Carbon::parse($value)->format('H:i');
+    }
+
+    public function getEndTimeAttribute($value) {
+        return Carbon::parse($value)->format('H:i');
+    }
+
+    //End Mutators
 }

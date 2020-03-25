@@ -84,10 +84,16 @@
 				<br>Promociones
 			</a>
 
+			<a class="btn btn-info text-white" href="{{ route('admin.bars.happyhours.index', [ 'b_id' => $bar->id ]) }}">
+				<i class="fas fa-cocktail fa-2x"></i>
+				<br>Happy Hour
+			</a>
+
 			<a class="btn btn-dark text-white" data-toggle="modal" data-target="#happyglucModal">
 				<i class="fas fa-star fa-2x"></i>
 				<br>Happy Gluc
 			</a>
+
 			<!--Modal Happy Gluc -->
 			@include('admin.happyglucs.index')
 		</div>

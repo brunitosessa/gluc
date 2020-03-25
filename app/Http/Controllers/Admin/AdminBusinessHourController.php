@@ -23,9 +23,9 @@ class AdminBusinessHourController extends Controller
     public function index($bar_id)
     {
         $bar = Bar::findOrFail($bar_id);
-        $businessHours = $bar->businessHours;
+        $businessHours = $bar->businessHours()->orderBy('date')->get();
         $dow = $this->dow;
-        return view('admin.businessHours.index',compact('businessHours', 'dow'));
+        return view('admin.businessHours.index',compact('businessHours', 'bar', 'dow'));
     }
 
     public function store(Request $request, $bar_id)

@@ -41,7 +41,6 @@
     </div>
   </div>
 
-  <hr class="d-sm d-md">
   @endforeach
 
   <div>

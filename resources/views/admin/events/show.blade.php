@@ -44,6 +44,13 @@
 				{{ $event->city->name }}
 			</p>
 		</div>
+
+		@if (!is_null($event->bar_id))
+		<!-- Logo -->
+		<div class="float-right">
+			<img src="/storage/images/bars/logos/{{ $event->bar->logo }}" class="img-fluid rounded-circle" width="80">
+		</div>
+		@endif
 	</div>
 
 	<div class="container mt-2">
@@ -71,5 +78,7 @@
 			{!! Form::close() !!}
 		</div>
 	</div>
+
+<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
 
 @endsection

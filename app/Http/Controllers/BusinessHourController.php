@@ -23,7 +23,7 @@ class BusinessHourController extends Controller
     public function index()
     {
         $bar = Bar::findOrFail(Auth::id());
-        $businessHours = $bar->businessHours;
+        $businessHours = $bar->businessHours()->orderBy('date')->get();
         $dow = $this->dow;
         return view('businessHours.index',compact('businessHours', 'dow'));
     }

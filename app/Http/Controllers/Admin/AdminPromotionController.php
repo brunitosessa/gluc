@@ -32,7 +32,6 @@ class AdminPromotionController extends Controller
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|max:200',
-            'happy_hour' => 'required|boolean',
             'enabled' => 'required|boolean',
             'exclusive' => 'required|boolean',
         ]);
@@ -40,11 +39,10 @@ class AdminPromotionController extends Controller
         $promotion = new Promotion();
         $promotion->title = $request->title;
         $promotion->description = $request->description;
-        $promotion->happy_hour = $request->happy_hour;
         $promotion->enabled = $request->enabled;
         $promotion->exclusive = $request->exclusive;
         $promotion->bar_id = $b_id;
-        //Save and get Id
+        
         $promotion->save();
 
         //Image
@@ -63,10 +61,7 @@ class AdminPromotionController extends Controller
     {
         $bar = Bar::findOrFail($b_id);
         $promotion = Promotion::findOrFail($p_id);
-        if ($promotion->bar->id == $b_id)
-            return view('admin.promotions.show', compact('promotion', 'bar'));
-        else
-            return back()->with('error', 'Esta promoción no pertenece al bar');
+        return view('admin.promotions.show', compact('promotion', 'bar'));
     }
 
     public function edit($b_id, $p_id)
@@ -86,42 +81,35 @@ class AdminPromotionController extends Controller
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|max:200',
-            'happy_hour' => 'required|boolean',
             'enabled' => 'required|boolean',
             'exclusive' => 'required|boolean',
         ]);
 
         $promotion = Promotion::findOrFail($p_id);
-        if ($promotion->bar->id == $b_id)
-        {
-            $promotion->title = $request->title;
-            $promotion->description = $request->description;
-            $promotion->happy_hour = $request->happy_hour;
-            $promotion->enabled = $request->enabled;
-            $promotion->exclusive = $request->exclusive;
-            $promotion->bar_id = $b_id;
-            $promotion->save();
+        $promotion->title = $request->title;
+        $promotion->description = $request->description;
+        $promotion->enabled = $request->enabled;
+        $promotion->exclusive = $request->exclusive;
+        $promotion->bar_id = $b_id;
+        $promotion->save();
 
-            //Image
-            if($request->hasFile('image')) {
-                //If has image, delete it before update
-                $image = public_path('storage/images/promotions/').$promotion->image;
-                if(File::exists($image) && $promotion->image != 'default.jpg') {
-                    File::delete($image);
-                }
-                $image = $request->file('image');
-                $promotion->image = $promotion->id.time().'.'.$image->getClientOriginalExtension();
-                
-                //Store image
-                Image::make($image)->fit(250, 250)->save(public_path('storage/images/promotions/') . $promotion->image );
-                //Save Image info with ID
-                $promotion->save();
+        //Image
+        if($request->hasFile('image')) {
+            //If has image, delete it before update
+            $image = public_path('storage/images/promotions/').$promotion->image;
+            if(File::exists($image) && $promotion->image != 'default.jpg') {
+                File::delete($image);
             }
+            $image = $request->file('image');
+            $promotion->image = $promotion->id.time().'.'.$image->getClientOriginalExtension();
             
-            return redirect()->route('admin.bars.promotions.show', ['p_id' => $promotion->id, 'b_id' => $b_id ])->with('success', 'Promocion editada correctamente!');
+            //Store image
+            Image::make($image)->fit(250, 250)->save(public_path('storage/images/promotions/') . $promotion->image );
+            //Save Image info with ID
+            $promotion->save();
         }
-        else
-            return back()->with('error', 'Esta promoción no le pertenece');
+        
+        return redirect()->route('admin.bars.promotions.show', ['p_id' => $promotion->id, 'b_id' => $b_id ])->with('success', 'Promocion editada correctamente!');
     }
 
     public function destroy($b_id, $p_id)

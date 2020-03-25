@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <!-- Happy Gluc -->
-          {!! Form::model($bar->happygluc, ['route' => ['admin.happygluc.store']]) !!}
+          {!! Form::model($bar->happygluc, ['route' => ['admin.bars.happygluc.store', $bar->id], 'method' => 'POST']) !!}
             <div class="form-group">
               {!! Form::label('enabled', '¿Quieres ofrecer Happy Gluc?') !!}
               {!! Form::hidden('enabled',0) !!}

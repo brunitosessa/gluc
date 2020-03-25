@@ -1,8 +1,8 @@
-<div class="modal fade" id="businessHoursModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="happyhoursModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	  <div class="modal-content">
 	    <div class="modal-header">
-	      <h5 class="modal-title" id="exampleModalLongTitle">Agregar horario</h5>
+	      <h5 class="modal-title" id="exampleModalLongTitle">Agregar horario de Happy Hour</h5>
 	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	        <span aria-hidden="true">&times;</span>
 	      </button>
@@ -20,7 +20,7 @@
 			    </thead>
 			</table>
 
-			{!! Form::open(['route' => ['admin.bars.businessHours.store', $bar->id], 'method' => 'POST']) !!}
+			{!! Form::open(['route' => ['admin.bars.happyhours.store', $bar->id], 'method' => 'POST']) !!}
 				<table class="table table-borderless">
 				    <tr>
 						<td>
