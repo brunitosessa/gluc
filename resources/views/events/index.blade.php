@@ -20,7 +20,7 @@
 					{{ $event->description }}
 				</h6>
 
-				<a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-primary float-right mb-1">Ver</a>
+				<a href="{{ route('events.show', $event->id) }}" class="btn btn-primary float-right mb-1">Ver</a>
 			</div>
 
 		</div>
@@ -28,6 +28,6 @@
 	</div>
 
 	<div class="d-flex flex-row-reverse">
-		<a href="{{ route('admin.events.create') }}" class="btn btn-info text-white fixed-bottom">Nuevo</a>
+		<a href="{{ route('events.create') }}" class="btn btn-info text-white fixed-bottom">Nuevo</a>
 	</div>
 @endsection
