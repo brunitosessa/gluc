@@ -69,6 +69,12 @@ Route::group(['middleware' => 'auth:admin'], function () {
 	//Happygluc
 	Route::post('/admin/bars/{id}/happygluc', 'Admin\AdminHappyglucController@store')->name('admin.bars.happygluc.store');
 
+	//Beer
+	Route::get('/admin/bars/{b_id}/beers', 'Admin\AdminBeerController@index')->name('admin.bars.beers.index');
+	Route::post('/admin/bars/{b_id}/beers', 'Admin\AdminBeerController@store')->name('admin.bars.beers.store');
+	Route::patch('/admin/bars/{b_id}/beers/{id}', 'Admin\AdminBeerController@update')->name('admin.bars.beers.update');
+	Route::delete('/admin/bars/{b_id}/beers/{id}', 'Admin\AdminBeerController@destroy')->name('admin.bars.beers.destroy');
+
 	//Notification
 	Route::get('/admin/notification', 'Admin\FirebaseController@sendAll')->name('admin.notification.sendAll');
 });
@@ -122,4 +128,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Chart
 	Route::get('/charts', 'ChartController@index')->name('charts.index');
+
+	//Beer
+	Route::get('/beers', 'BeerController@index')->name('beers.index');
+	Route::post('/beers', 'BeerController@store')->name('beers.store');
+	Route::patch('/beers/{id}', 'BeerController@update')->name('beers.update');
+	Route::delete('/beers/{id}', 'BeerController@destroy')->name('beers.destroy');
 });

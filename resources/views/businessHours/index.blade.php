@@ -47,6 +47,8 @@
   <div>
     <a class="btn btn-info text-white fixed-bottom" data-toggle="modal" data-target="#businessHoursModal">Nuevo Horario</a>
   </div>
+  
+  <!--Modal New BusinessHour -->
   @include('businessHours.create')
 
 

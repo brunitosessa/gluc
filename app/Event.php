@@ -10,11 +10,7 @@ class Event extends Model
 		'title', 'image', 'address', 'lat', 'lng', 'description', 'city_id', 'bar_id', 'enabled', 'date', 
  	];
    
-	protected $hidden = [
-
- 	];
-
-    public function city()
+	public function city()
     {
         return $this->belongsTo('App\City');
     }

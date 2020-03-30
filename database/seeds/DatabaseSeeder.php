@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HappyhoursTableSeeder::class);
         $this->call(BusinessHoursTableSeeder::class);
         $this->call(EventEventTypeTableSeeder::class);
+        $this->call(BeersTableSeeder::class);
     }
 }

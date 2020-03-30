@@ -48,6 +48,11 @@ class Bar extends Authenticatable
         return $this->hasMany('App\BusinessHour');
     }
 
+    public function beers()
+    {
+        return $this->hasMany('App\Beer');
+    }
+
     //Accessors
     public function getIsOpenedAttribute()
     {
