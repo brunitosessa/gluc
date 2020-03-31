@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Carbon\Carbon;
 
 class BusinessHourResource extends JsonResource
 {
@@ -11,8 +10,9 @@ class BusinessHourResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'dow' => config('constants.DOW')[$this->date],
-            'horario' => (new Carbon($this->start_time))->format('H:i')." - ".(new Carbon($this->end_time))->format('H:i'),
+            //'dow' => config('constants.DOW')[$this->date],
+            'dow' => $this->date,
+            'hora' => $this->start_time." - ".$this->end_time,
         ];
         
     }
