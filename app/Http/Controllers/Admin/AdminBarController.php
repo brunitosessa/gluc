@@ -30,7 +30,7 @@ class AdminBarController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'password' => 'required|min:8',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048dimensions:min_width=640,min_height=340',
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'city_id' => 'required|numeric',
             'address' => 'required|max:200',
@@ -61,7 +61,7 @@ class AdminBarController extends Controller
             $image = $request->image;
             $bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
             //Store image
-            Image::make($image)->fit(600, 300)->save(public_path('storage/images/bars/') . $bar->image );
+            Image::make($image)->fit(640, 340)->save(public_path('storage/images/bars/') . $bar->image );
             //Save Image info with ID
             $bar->save();
         }
@@ -94,7 +94,7 @@ class AdminBarController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=640,min_height=340',
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'city_id' => 'required|numeric',
             'address' => 'required|max:200',
@@ -129,7 +129,7 @@ class AdminBarController extends Controller
             $bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
             
             //Store image
-            Image::make($image)->fit(600, 300)->save(public_path('storage/images/bars/') . $bar->image );
+            Image::make($image)->fit(640, 340)->save(public_path('storage/images/bars/') . $bar->image );
             //Save Image info with ID
             $bar->save();
         }
