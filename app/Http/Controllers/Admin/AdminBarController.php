@@ -61,7 +61,7 @@ class AdminBarController extends Controller
             $image = $request->image;
             $bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
             //Store image
-            Image::make($image)->fit(300, 250)->save(public_path('storage/images/bars/') . $bar->image );
+            Image::make($image)->fit(600, 300)->save(public_path('storage/images/bars/') . $bar->image );
             //Save Image info with ID
             $bar->save();
         }
@@ -129,7 +129,7 @@ class AdminBarController extends Controller
             $bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
             
             //Store image
-            Image::make($image)->fit(300, 250)->save(public_path('storage/images/bars/') . $bar->image );
+            Image::make($image)->fit(600, 300)->save(public_path('storage/images/bars/') . $bar->image );
             //Save Image info with ID
             $bar->save();
         }
