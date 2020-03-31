@@ -14,6 +14,10 @@ class HappyhourResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        //return parent::toArray($request);
+        return [
+            'dow' => $this->date,
+            'hora' => $this->start_time." a ".$this->end_time,
+        ];
     }
 }
