@@ -4,7 +4,7 @@
 	<div class="container d-lg-inline-flex justify-content-between">
 		<!-- Image -->
 		<div>
-			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded mx-auto d-block" width="250">
+			<img src="/storage/images/bars/{{ $bar->image }}" class="img-fluid rounded mx-auto d-block" width=450>
 		</div>
 
 		<hr class="d-sm d-md">

@@ -8,7 +8,7 @@
   {!! Form::open(['action' => 'Admin\AdminBarController@store', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
-      {!! Html::image('/storage/images/bars/default.jpg', 'Bar image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
+      {!! Html::image('/storage/images/bars/default.jpg', 'Bar image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 450]) !!}
     </div>
 
     <div class="mb-4">
