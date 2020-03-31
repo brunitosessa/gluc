@@ -8,9 +8,9 @@
     <!-- Image -->
     <div class="mb-4 text-center">
       <!-- Image -->
-      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image" class="img-fluid rounded" width=450 @click="openFileImage()" v-if="!newImage">
+      <img src="/storage/images/bars/{{ $bar->image }}" alt="Bar Image" class="img-fluid rounded" width=640 @click="openFileImage()" v-if="!newImage">
 
-      <img :src="newImage" alt="Bar Image" class="img-fluid rounded" width=450 @click="openFileImage()" v-if="newImage">
+      <img :src="newImage" alt="Bar Image" class="img-fluid rounded" width=640 @click="openFileImage()" v-if="newImage">
       
       <!-- Logo -->
       <img src="/storage/images/bars/logos/{{ $bar->logo }}" alt="Bar Logo" class="img-fluid rounded-circle float-right" width=80 @click="openFileLogo()" v-if="!newLogo">
