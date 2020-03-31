@@ -7,6 +7,7 @@ use App\Actions\canUseHappyGluc;
 
 class BarResource extends JsonResource
 {
+
     public function toArray($request)
     {
         return [
@@ -20,7 +21,8 @@ class BarResource extends JsonResource
             'lng' => $this->lng,
             'fotoPeque' => config('app.url')."/storage/images/bars/".$this->image,
             'logo' => config('app.url')."/storage/images/bars/logos/".$this->logo,
-            'abierto' => $this->is_opened,
+            'abierto' => $this->is_opened['open'],
+            'horarioApertura' => $this->is_opened['message'],
             'horarios' => BusinessHourResource::collection($this->businessHours()->orderBy('date','asc')->get()),
             'promociones' => PromotionResource::collection($this->promotions),
             'listaHappy' => HappyhourResource::collection($this->happyhours()->orderBy('date','asc')->get()),
