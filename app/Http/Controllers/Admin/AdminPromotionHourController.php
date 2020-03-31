@@ -80,8 +80,8 @@ class AdminPromotionHourController extends Controller
     {
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
-            'start_time' => 'required|date_format:H:i:s',
-            'end_time' => 'required|date_format:H:i:s|after:start_time',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
             'enabled' => 'required|boolean',
         ]);
 
