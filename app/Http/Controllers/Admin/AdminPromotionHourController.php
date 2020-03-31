@@ -86,7 +86,7 @@ class AdminPromotionHourController extends Controller
         ]);
 
         $bar = Bar::findOrFail($b_id);
-        $promotionHour = PromotionHour::findOrFail($id);
+        $promotionHour = PromotionHour::findOrFail($p_id);
         $promotionHour->date  = $request->date;
         $promotionHour->start_time = $request->start_time;
         $promotionHour->end_time = $request->end_time;
