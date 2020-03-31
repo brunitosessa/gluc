@@ -19,6 +19,7 @@ class BarResource extends JsonResource
             'email' => $this->email,
             'lat' => $this->lat,
             'lng' => $this->lng,
+            'habilitado' => $this->enabled,
             'fotoPeque' => config('app.url')."/storage/images/bars/".$this->image,
             'logo' => config('app.url')."/storage/images/bars/logos/".$this->logo,
             'abierto' => $this->is_opened['open'],
