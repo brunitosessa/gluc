@@ -16,13 +16,13 @@ class PromotionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'image' => config('app.url')."/storage/images/promotions/".$this->image,
-            'description' => $this->description,
-            'happy_hour' => $this->happy_hour,
-            'enabled' => $this->enabled,
-            'exclusive' => $this->exclusive,
+            'titulo' => $this->title,
+            'foto' => config('app.url')."/storage/images/promotions/".$this->image,
+            'descripcion' => $this->description,
+            'habilitado' => $this->enabled,
+            'exclusivo' => $this->exclusive,
             'end_date' => $this->end_date,
+            'idB' => $this->bar->id,
             'promotionHour' => PromotionHourResource::collection($this->hours),
         ];
     }

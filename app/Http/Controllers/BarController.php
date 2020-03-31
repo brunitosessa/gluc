@@ -43,7 +43,7 @@ class BarController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=640,min_height=340',
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'city_id' => 'required|numeric',
             'address' => 'required|max:200',
@@ -78,7 +78,7 @@ class BarController extends Controller
             $bar->image = $bar->id.time().'.'.$image->getClientOriginalExtension();
             
             //Store image
-            Image::make($image)->fit(300, 250)->save(public_path('storage/images/bars/') . $bar->image );
+            Image::make($image)->fit(640, 340)->save(public_path('storage/images/bars/') . $bar->image );
             //Save Image info with ID
             $bar->save();
         }

@@ -6,6 +6,7 @@ Route::get('auth/{provider}', 'Api\SocialAuthController@redirectToProvider')->na
 Route::get('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderCallback');
 
 //Route::group(['middleware' => 'auth:api'], function () {
+
 	//Alternative - Old Version
     Route::post('/listaBares.php', 'Api\BarController@index');
 	Route::post('/infoBar.php', 'Api\BarController@show');

@@ -30,7 +30,7 @@ class AdminBarController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'password' => 'required|min:8',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048dimensions:min_width=640,min_height=340',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=640,min_height=340',
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'city_id' => 'required|numeric',
             'address' => 'required|max:200',
