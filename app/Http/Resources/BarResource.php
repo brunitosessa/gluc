@@ -32,6 +32,7 @@ class BarResource extends JsonResource
             'tieneExclusivo' => (int)$this->promotions()->where('exclusive','1')->exists(),
             'habilitadoPedir' => (new canUseHappyGluc)->execute($this->id),
             'dow' => date('w'),
+            'favorito' => 1,
         ];
     }
 }
