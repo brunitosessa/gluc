@@ -13,6 +13,7 @@ class BarResource extends JsonResource
         return [
             'id' => $this->id,
             'nombre' => $this->name,
+            'localidad' => $this->city->id,
             'direccion' => $this->address,
             'descripcion' => $this->description,
             'telefono' => $this->phone,
