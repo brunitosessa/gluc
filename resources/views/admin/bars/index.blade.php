@@ -9,7 +9,7 @@
 	
 	<div class="card-columns">
 		@foreach($bars as $bar)
-		<div class="card" style="width:250px">
+		<div class="card" style="width:350px">
 			<img class="card-img-top" src="/storage/images/bars/{{ $bar->image }}" alt="Card image">
 			<div class="card-body">
 				<h4 class="card-title">

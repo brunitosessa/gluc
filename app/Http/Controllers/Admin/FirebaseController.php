@@ -11,7 +11,6 @@ class FirebaseController extends Controller
     public function sendAll(Request $request)
     {
     	$recipients = User::whereNotNull('device_token')->pluck('device_token')->toArray();
-    	//dd($recipients);
     	fcm()
         	->to($recipients)
         	->data([
@@ -29,6 +28,6 @@ class FirebaseController extends Controller
         	->send();
 
     	$notification = 'Notificación enviada a todos los usuarios.';
-    	return back()->with('success', '$notification');
+    	return back()->with('success', $notification);
     }
 }

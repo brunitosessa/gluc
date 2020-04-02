@@ -4,9 +4,19 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Actions\canUseHappyGluc;
+use App\Actions\distanceFromBar;
 
 class BarResource extends JsonResource
 {
+    public function __construct($resource, $lat, $lng)
+    {
+        parent::__construct($resource);
+        $this->resource = $resource;
+        
+        $this->lat = $lat;
+        $this->lng = $lng;
+    }
+
 
     public function toArray($request)
     {
@@ -33,9 +43,12 @@ class BarResource extends JsonResource
             'tieneHappy' => (int)$this->happyhours()->exists(),
             'tieneExclusivo' => (int)$this->promotions()->where('exclusive','1')->exists(),
             'habilitadoPedir' => (new canUseHappyGluc)->execute($this->id),
-            'idP' => $this->happygluc->id,
+            'idP' => $this->when(!is_null($this->happygluc), function() {
+                return $this->happygluc->id;
+            }),
             'dow' => date('w'),
             'favorito' => 1,
+            'distancia' => (new distanceFromBar)->execute($this->id, $this->lat, $this->lng),
         ];
     }
 }
