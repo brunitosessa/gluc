@@ -18,8 +18,11 @@ class SocialAuthController extends Controller
     }
     
     // Metodo encargado de obtener la información del usuario
-    public function handleProviderCallback($provider)
+    public function handleProviderCallback(Request $request, $provider)
     {
+        echo $request->input('accessToken');exit();
+        $user = Socialite::driver($provider)->userFromToken($request->input('accessToken'));
+        dd($user);
         // Obtenemos los datos del usuario
         $social_user = Socialite::driver($provider)->stateless()->fields([
             'first_name', 'last_name', 'email', 'gender', 'birthday', 'location'

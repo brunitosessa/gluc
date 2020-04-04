@@ -8,13 +8,13 @@ use App\Actions\distanceFromBar;
 
 class BarResource extends JsonResource
 {
-    public function __construct($resource, $lat, $lng)
+    public function __construct($resource)
     {
         parent::__construct($resource);
         $this->resource = $resource;
         
-        $this->lat = $lat;
-        $this->lng = $lng;
+        $this->lat = 0.25;
+        $this->lng = 14.001;
     }
 
 

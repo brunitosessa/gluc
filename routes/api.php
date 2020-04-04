@@ -3,11 +3,15 @@
 use Illuminate\Http\Request;
 
 Route::get('auth/{provider}', 'Api\SocialAuthController@redirectToProvider')->name('social.auth');
+Route::post('auth/{provider}', 'Api\SocialAuthController@redirectToProvider')->name('social.auth');
+
 Route::get('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderCallback');
+Route::post('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderCallback');
 
 //Route::group(['middleware' => 'auth:api'], function () {
 
 	//Alternative - Old Version
+	Route::post('/loginFacebook.php', 'Api\SocialAuthController@handleProviderCallback');
     Route::post('/listaBares.php', 'Api\BarController@index');
 	Route::post('/infoBar.php', 'Api\BarController@show');
 	Route::post('/listaEventos.php', 'Api\EventController@index');
