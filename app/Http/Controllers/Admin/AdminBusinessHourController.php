@@ -61,7 +61,7 @@ class AdminBusinessHourController extends Controller
             BusinessHour::updateOrCreate(
                 [
                     'date' => $request->date,
-                    'bar_id' => $request->bar_id,
+                    'bar_id' => $bar_id,
                 ],
                 [
                     'start_time' => $request->start_time,

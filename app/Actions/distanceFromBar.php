@@ -13,12 +13,14 @@ class distanceFromBar
 		$bar = Bar::findOrFail($bar_id);
 		$user = User::findOrFail(1);
 
-		$query = 'select ( 111.045 * acos( cos( radians(' . $lat . ') ) 
-		* cos( radians( '.$bar->lat.' ) )
-		* cos( radians( '.$bar->lng.' )
-		- radians(' . $lng  . ') )
-		+ sin( radians(' . $lat  . ') )
-		* sin( radians( '. $bar->lat .' ) ) ) ) as distance';
+		$query = 'select truncate(
+			111.045 * acos( cos( radians(' . $lat . ') ) 
+			* cos( radians( '.$bar->lat.' ) )
+			* cos( radians( '.$bar->lng.' )
+			- radians(' . $lng  . ') )
+			+ sin( radians(' . $lat  . ') )
+			* sin( radians( '. $bar->lat .' ) ) ) 
+			,1) as distance';
 
 		$distance = DB::select($query);
 
