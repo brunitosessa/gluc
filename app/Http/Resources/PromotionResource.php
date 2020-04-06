@@ -23,6 +23,11 @@ class PromotionResource extends JsonResource
             'exclusivo' => $this->exclusive,
             'end_date' => $this->end_date,
             'idB' => $this->bar->id,
+            'fotoBar' => '',
+            'logo' => '',
+            'abierto' => 1,
+            'distancia' => 0,
+            'nombreBar' => "mangalga",
             'promotionHour' => PromotionHourResource::collection($this->hours),
         ];
     }
