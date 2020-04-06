@@ -8,6 +8,7 @@ use Socialite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
  
 class SocialAuthController extends Controller
 {
@@ -22,6 +23,8 @@ class SocialAuthController extends Controller
     {
         //echo $request->input('accessToken');exit();
         $social_user = Socialite::driver('facebook')->userFromToken($request->input('accessToken'));
+        Log::info('Showing user profile for user: '.$social_user->user['first_name']);
+
         //dd($user);
         // Obtenemos los datos del usuario
         //$social_user = Socialite::driver($provider)->stateless()->fields([

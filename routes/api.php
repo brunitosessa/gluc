@@ -11,7 +11,7 @@ Route::post('auth/{provider}/callback', 'Api\SocialAuthController@handleProvider
 //Route::group(['middleware' => 'auth:api'], function () {
 
 	//Alternative - Old Version
-	Route::post('/loginFacebook.php', 'Api\SocialAuthController@handleProviderCallback');
+	Route::post('/loginFacebook.php', 'Api\SocialAuthController@redirectToProvider');
     Route::post('/listaBares.php', 'Api\BarController@index');
 	Route::post('/infoBar.php', 'Api\BarController@show');
 	Route::post('/listaEventos.php', 'Api\EventController@index');
