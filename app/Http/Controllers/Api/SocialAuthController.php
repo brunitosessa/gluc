@@ -21,7 +21,7 @@ class SocialAuthController extends Controller
     {
         $social_user = Socialite::driver('facebook')->stateless()->userFromToken($request->json('accessToken'));
 
-        Log::emergency(var_dump($social_user));
+        Log::emergency($social_user->user['email']);
         $user = User::UpdateOrCreate(
         	[
                 'facebook_id' => $social_user->user['id'],
