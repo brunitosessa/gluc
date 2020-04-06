@@ -10,7 +10,11 @@ use App\Http\Resources\PromotionResource;
 class PromotionController extends Controller
 {
     public function index() {
-        return PromotionResource::collection(Promotion::All());   
+    	return [
+        	'estado' => 1,
+        	'promocionesSemana' => PromotionResource::collection(Promotion::All()),
+			'dow' => date('w'),
+		];
     }
 
     public function show($p_id)
