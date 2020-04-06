@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Log;
 class SocialAuthController extends Controller
 {
     // Metodo encargado de la redireccion a Facebook
-    public function redirectToProvider($provider)
+    public function redirectToProvider()
     {
-        return Socialite::driver($provider)->stateless()->redirect();
+        return Socialite::driver('facebook')->stateless()->redirect();
     }
     
     // Metodo encargado de obtener la información del usuario
