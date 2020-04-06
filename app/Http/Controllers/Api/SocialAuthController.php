@@ -15,14 +15,14 @@ class SocialAuthController extends Controller
     // Metodo encargado de la redireccion a Facebook
     public function redirectToProvider()
     {
-        //return Socialite::driver('facebook')->stateless()->redirect();
+        return Socialite::driver('facebook')->stateless()->redirect();
 
     }
     
     // Metodo encargado de obtener la información del usuario
     public function handleProviderCallback(Request $request)
     {
-        Log::info('BRUNO: '.print_r($request));
+        Log::info('BRUNO: '.print_r($request->input('accessTOken')));
         //echo $request->input('accessToken');exit();
         $social_user = Socialite::driver('facebook')->userFromToken($request->input('accessToken'));
 
