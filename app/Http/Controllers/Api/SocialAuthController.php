@@ -12,26 +12,16 @@ use Illuminate\Support\Facades\Log;
  
 class SocialAuthController extends Controller
 {
-    // Metodo encargado de la redireccion a Facebook
     public function redirectToProvider()
     {
-        return Socialite::driver('facebook')->stateless()->redirect();
-
+        //This works whe you need to log into facebook from backend
     }
     
-    // Metodo encargado de obtener la información del usuario
     public function handleProviderCallback(Request $request)
     {
-        //echo $request->input('accessToken');exit();
-        $social_user = Socialite::driver('facebook')->stateless()->userFromToken($request->input('accessToken',"asogknasogknasolg"));
+        Log::emergency("PROBANDO");
+        $social_user = Socialite::driver('facebook')->stateless()->userFromToken($request->input('accessToken'));
 
-        //dd($user);
-        // Obtenemos los datos del usuario
-        //$social_user = Socialite::driver($provider)->stateless()->fields([
-        //    'first_name', 'last_name', 'email', 'gender', 'birthday', 'location'
-        //])->user(); 
-
-        // En caso de que no exista creamos un nuevo usuario con sus datos.
         $user = User::UpdateOrCreate(
         	[
                 'facebook_id' => $social_user->user['id'],
