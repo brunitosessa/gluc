@@ -21,16 +21,15 @@ class SocialAuthController extends Controller
     {
         $social_user = Socialite::driver('facebook')->stateless()->userFromToken($request->json('accessToken'));
 
-        Log::emergency(print_r($social_user);
         $user = User::UpdateOrCreate(
         	[
-                'facebook_id' => $social_user->user['id'],
+                'facebook_id' => $social_user->getId(),
             ],
             [    
-                'name' => $social_user->user['first_name'],
-                'lastname' => $social_user->user['last_name'],
-                'email' => $social_user->user['email'],
-                'avatar' => $social_user->avatar,
+                'name' => explode(' ', trim($social_user->getName()))[0],
+                'lastname' => explode(' ', trim($social_user->getName()))[1];,
+                'email' => $social_user->getEmail,
+                'avatar' => $social_user->getAvatar(),
                 'api_token' => Str::random(60),
             ]
         );
