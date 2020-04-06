@@ -19,8 +19,7 @@ class SocialAuthController extends Controller
     
     public function handleProviderCallback(Request $request)
     {
-        Log::emergency("PROBANDO");
-        $social_user = Socialite::driver('facebook')->stateless()->userFromToken($request->input('accessToken'));
+        $social_user = Socialite::driver('facebook')->stateless()->userFromToken($request->json('accessToken'));
 
         $user = User::UpdateOrCreate(
         	[
