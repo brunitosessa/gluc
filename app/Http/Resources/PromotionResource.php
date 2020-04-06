@@ -28,6 +28,10 @@ class PromotionResource extends JsonResource
             'abierto' => 1,
             'distancia' => 0,
             'nombreBar' => "mangalga",
+            'cantidadLikes' => 0,
+            'idT' => 1,
+            'horarioApertura' => "abierto siempre",
+            'exclusivo' => 0,
             'promotionHour' => PromotionHourResource::collection($this->hours),
         ];
     }
