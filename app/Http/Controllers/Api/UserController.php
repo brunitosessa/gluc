@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Actions\canUseHappyGluc;
 use App\Bar;
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Actions\canUseHappyGluc;
 
 class UserController extends Controller
 {
