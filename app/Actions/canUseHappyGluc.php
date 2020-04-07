@@ -18,7 +18,7 @@ class canUseHappyGluc
 		{
 			return [
             	'status' => 0,
-            	'message' => 'Este bar no posee HappyGluc',
+            	'message' => 'Este bar no posee Happy Gluc',
             ];
 		}
 		else
@@ -52,7 +52,7 @@ class canUseHappyGluc
 				{
 					return [
                     	'status' => 0,
-                    	'message' => 'Ya usaste todos los HappyGlucs en este bar',
+                    	'message' => 'Ya usaste todos los Happy Glucs en este bar',
                     ];
 				}
 			}
@@ -63,7 +63,7 @@ class canUseHappyGluc
 			    {
 			    	return [
                     	'status' => 0,
-                    	'message' => 'Ya usaste tus HappyGlucs en otro bar',
+                    	'message' => 'Ya usaste tus Happy Glucs en otro bar',
                     ];
 			    }
 			    else 
@@ -78,7 +78,7 @@ class canUseHappyGluc
 			    	else
 			    		return [
 	                    	'status' => 0,
-	                    	'message' => 'Ya usaste todos los HappyGlucs en este bar',
+	                    	'message' => 'Ya usaste todos los Happy Glucs en este bar',
 	                    ];
 			    }
 			}
