@@ -3,7 +3,7 @@
 Route::post('auth/{provider}/callback', 'Api\SocialAuthController@handleProviderCallback');
 Route::post('/loginFacebook.php', 'Api\SocialAuthController@handleProviderCallback');
 
-Route::group(['middleware' => 'auth:api'], function () {
+//Route::group(['middleware' => 'auth:api'], function () {
 
 	//Alternative - Old Version
     Route::post('/listaBares.php', 'Api\BarController@index');
@@ -34,4 +34,4 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::get('/publicities/', 'Api\PublicityController@index');
 
 
-});
+//});
