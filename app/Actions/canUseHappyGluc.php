@@ -77,7 +77,7 @@ class canUseHappyGluc
                 	}
 			    	else
 			    		return [
-	                    	'status' => o,
+	                    	'status' => 0,
 	                    	'message' => 'Ya usaste todos los HappyGlucs en este bar',
 	                    ];
 			    }
