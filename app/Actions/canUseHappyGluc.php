@@ -36,22 +36,45 @@ class canUseHappyGluc
 
 			if ( $ordersToday->count() == 0 ) 
 			{
-				if ( $ordersFrequency < $quantity )					
-					return 1;
+				if ( $ordersFrequency < $quantity )
+				{					
+					return [
+                    	'status' => 1,
+                    	'message' => 'Puede pedir',
+                    ];
+                }
 				else
-					return 0;
+				{
+					return [
+                    	'status' => 0,
+                    	'message' => 'Ya usaste todos los HappyGlucs en este bar',
+                    ];
+				}
 			}
 			else
 			{
 			    //If user used happygluc today and the bar in which was used it is different than the actual bar
 			    if ( $bar_id != $barOrder)
-			    	return 0;
+			    {
+			    	return [
+                    	'status' => 0,
+                    	'message' => 'Ya usaste tus HappyGlucs en otro bar',
+                    ];
+			    }
 			    else 
 			    {
 			    	if ( $ordersFrequency < $quantity )
-			    		return 1;
+			    	{
+			    		return [
+	                    	'status' => 1,
+	                    	'message' => 'Puede pedir',
+	                    ];
+                	}
 			    	else
-			    		return 0;
+			    		return [
+	                    	'status' => o,
+	                    	'message' => 'Ya usaste todos los HappyGlucs en este bar',
+	                    ];
 			    }
 			}
 	    }

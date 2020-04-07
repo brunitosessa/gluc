@@ -39,7 +39,8 @@ class BarResource extends JsonResource
             'tienePromo' => $this->promotions->count(),
             'tieneHappy' => (int)$this->happyhours()->exists(),
             'tieneExclusivo' => (int)$this->promotions()->where('exclusive','1')->exists(),
-            'habilitadoPedir' => (new canUseHappyGluc)->execute($this->id),
+            'habilitadoPedir' => (new canUseHappyGluc)->execute($this->id)['status'],
+            'mensajePedir' => (new canUseHappyGluc)->execute($this->id)['message'],
             'idP' => $this->when(!is_null($this->happygluc), function() {
                 return $this->happygluc->id;
             }),
