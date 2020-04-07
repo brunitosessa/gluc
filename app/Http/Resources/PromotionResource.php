@@ -14,7 +14,7 @@ class PromotionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        return [[
             'id' => $this->id,
             'titulo' => $this->title,
             'foto' => config('app.url')."/storage/images/promotions/".$this->image,
@@ -33,6 +33,6 @@ class PromotionResource extends JsonResource
             'horarioApertura' => "abierto siempre",
             'exclusivo' => 0,
             'promotionHour' => PromotionHourResource::collection($this->hours),
-        ];
+        ]];
     }
 }

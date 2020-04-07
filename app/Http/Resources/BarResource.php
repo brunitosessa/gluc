@@ -12,9 +12,6 @@ class BarResource extends JsonResource
     {
         parent::__construct($resource);
         $this->resource = $resource;
-        
-        $this->lat = 0.25;
-        $this->lng = 14.001;
     }
 
 
@@ -47,8 +44,8 @@ class BarResource extends JsonResource
                 return $this->happygluc->id;
             }),
             'dow' => date('w'),
-            'favorito' => 1,
-            'distancia' => (new distanceFromBar)->execute($this->id, $this->lat, $this->lng),
+            'favorito' => $this->isFavorite(1),
+            'distancia' => (new distanceFromBar)->execute($this->id, 12, 13),
         ];
     }
 }

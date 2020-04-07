@@ -19,4 +19,9 @@ class User extends Authenticatable
     {
     	return $this->belongsToMany('App\Happygluc')->withTimestamps();
     }
+
+    public function favorites()
+    {
+    	return $this->belongsToMany('App\Bar', 'favorites')->withTimestamps();
+    }
 }

@@ -18,6 +18,7 @@ class Bar extends Authenticatable
          'password', 'remember_token',
  	];
 
+    //Relations
     public function city()
     {
         return $this->belongsTo('App\City');
@@ -52,6 +53,12 @@ class Bar extends Authenticatable
     {
         return $this->hasMany('App\Beer');
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany('App\User', 'favorites')->withTimestamps();
+    }
+    //End Relations
 
     //Accessors
     public function getIsOpenedAttribute()
@@ -175,6 +182,11 @@ class Bar extends Authenticatable
                 ];
             }
         }
+    }
+
+    public function isFavorite($user_id)
+    {
+        return $this->favorites()->where('user_id', $user_id)->exists();
     }
     //End Accessors
 }
