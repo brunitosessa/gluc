@@ -45,7 +45,7 @@ class BarResource extends JsonResource
             }),
             'dow' => date('w'),
             'favorito' => $this->isFavorite(1),
-            'distancia' => (new distanceFromBar)->execute($this->id, 12, 13),
+            'distancia' => (new distanceFromBar)->execute(1,14,15),
         ];
     }
 }

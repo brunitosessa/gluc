@@ -20,12 +20,14 @@ class BarController extends Controller
         ];   
     }
 
-    public function show(Request $request, $b_id)
+    public function show(Request $request)
     {
         $lat = $request->input('lat',0);
         $lng = $request->input('lng',0);
 
-        return new BarResource(Bar::find($b_id), $lat, $lng);
+        $bar_id = $request->json('idB');
+        
+        return new BarResource(Bar::find($bar_id), $lat, $lng);
     }
 
     public function addFavorite(Request $request)
@@ -37,5 +39,10 @@ class BarController extends Controller
         return [
             'estado' => 1,
         ];
+    }
+
+    public function distanceFromUser($lat, $lng)
+    {
+        return 45;
     }
 }
