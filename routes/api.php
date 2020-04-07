@@ -13,12 +13,14 @@ Route::post('/loginFacebook.php', 'Api\SocialAuthController@handleProviderCallba
 	Route::post('/listaPromociones.php', 'Api\PromotionController@index');
 	Route::post('/listaPublicidadPrincipal.php', 'Api\PublicityController@index');
 	Route::post('/listaRecomendados.php', 'Api\BarController@index');
+	Route::post('/agregarFavorito.php', 'Api\BarController@addFavorite');
 	//End - Old Version
 
 
 	//Bars
     Route::get('/bars/', 'Api\BarController@index');
  	Route::get('/bars/{id}/', 'Api\BarController@show');
+ 	Route::post('/bars/{id}/addFavorite', 'Api\BarController@addFavorite');
 
 	//Users
 	Route::get('/users/updateFirebaseId', 'Api\UserController@updateFirebaseId');

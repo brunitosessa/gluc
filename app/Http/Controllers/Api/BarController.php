@@ -26,4 +26,15 @@ class BarController extends Controller
 
         return new BarResource(Bar::find($b_id), $lat, $lng);
     }
+
+    public function addFavorite(Request $request)
+    {
+        $bar = Bar::findOrFail($request->json('idB'));
+        $user = App\User::findOrFail(Auth::id());
+        $bar->favorites()->attach($user);
+
+        return [
+            'estado' => 1,
+        ];
+    }
 }
