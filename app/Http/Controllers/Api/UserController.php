@@ -46,11 +46,12 @@ class UserController extends Controller
 		}
     }
 
-    public function updateFirebaseId($firebase_id)
+    public function updateDeviceToken($device_token)
     {
     	$user = App\User::findOrFail(Auth::id());
-    	$user->firebase_id = $firebase_id;
+    	$user->firebase_id = $device_token;
     	$user->save();
+        
     	return response()->json([
     		'estado' => 1,
     		'mensaje' => "Token actualizado correctamente"

@@ -6,6 +6,7 @@ Route::post('/loginFacebook.php', 'Api\SocialAuthController@handleProviderCallba
 //Route::group(['middleware' => 'auth:api'], function () {
 
 	//Alternative - Old Version
+	Route::post('/actualizarTokenAndroid.php', 'Api\UserController@updateDeviceToken');
     Route::post('/listaBares.php', 'Api\BarController@index');
 	Route::post('/infoBar.php', 'Api\BarController@show');
 	Route::post('/listaEventos.php', 'Api\EventController@index');
