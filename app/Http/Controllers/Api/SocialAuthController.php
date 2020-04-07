@@ -33,6 +33,12 @@ class SocialAuthController extends Controller
                 'api_token' => Str::random(60),
             ]
         );
-        return Auth::login($user);
+
+        return [
+            'estado' => 1,
+            'usuario' => new UserResource(User::find($user->id)),
+        ];   
+
+        //return Auth::login($user);
     } 
 }
