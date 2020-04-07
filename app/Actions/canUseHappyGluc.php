@@ -15,7 +15,12 @@ class canUseHappyGluc
 
 		//Check if bar has Happygluc
 		if ($bar->happygluc()->count() == 0)
-			return 0;
+		{
+			return [
+            	'status' => 0,
+            	'message' => 'Este bar no posee HappyGluc',
+            ];
+		}
 		else
 		{
 			//Get data of Happygluc's Bar
