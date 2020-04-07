@@ -8,6 +8,7 @@ use Socialite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Log;
  
 class SocialAuthController extends Controller
