@@ -28,7 +28,7 @@ class SocialAuthController extends Controller
             [    
                 'name' => explode(' ', trim($social_user->getName()))[0],
                 'lastname' => explode(' ', trim($social_user->getName()))[1],
-                'email' => $social_user->getEmail,
+                'email' => $social_user->getEmail(),
                 'avatar' => $social_user->getAvatar(),
                 'api_token' => Str::random(60),
             ]
