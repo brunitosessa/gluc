@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Bar;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\BarResource;
@@ -30,7 +31,7 @@ class BarController extends Controller
     public function addFavorite(Request $request)
     {
         $bar = Bar::findOrFail($request->json('idB'));
-        $user = App\User::findOrFail(Auth::id());
+        $user = User::findOrFail(Auth::id());
         $bar->favorites()->attach($user);
 
         return [
