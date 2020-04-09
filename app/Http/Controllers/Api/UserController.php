@@ -48,7 +48,7 @@ class UserController extends Controller
 
     public function updateDeviceToken(Request $request)
     {
-    	$user = App\User::findOrFail(Auth::id());
+    	$user = User::findOrFail(Auth::id());
     	$user->device_token = $request->json('tokenAndroid');
     	$user->save();
 

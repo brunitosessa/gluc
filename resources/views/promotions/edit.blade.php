@@ -7,7 +7,7 @@
   {!! Form::model($promotion, ['route' => ['promotions.update', $promotion->id], 'method' => 'PATCH', 'files' => true]) !!}
 
     <div class="mb-4 text-center">
-      {!! Html::image('/storage/images/publicities/'.$promotion->image, 'Publicity image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
+      {!! Html::image('/storage/images/promotions/'.$promotion->image, 'Publicity image', ['class' => 'img-fluid img-thumbnail rounded', 'width' => 250]) !!}
     </div>
 
     <div class="form-group">
