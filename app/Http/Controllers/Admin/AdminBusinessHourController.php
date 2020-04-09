@@ -20,17 +20,17 @@ class AdminBusinessHourController extends Controller
         6 => 'Sabado'
     ];
 
-    public function index($bar_id)
+    public function index($b_id)
     {
-        $bar = Bar::findOrFail($bar_id);
+        $bar = Bar::findOrFail($b_id);
         $businessHours = $bar->businessHours()->orderBy('date')->get();
         $dow = $this->dow;
         return view('admin.businessHours.index',compact('businessHours', 'bar', 'dow'));
     }
 
-    public function store(Request $request, $bar_id)
+    public function store(Request $request, $b_id)
     {
-        $bar = Bar::findOrFail($bar_id);
+        $bar = Bar::findOrFail($b_id);
 
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
@@ -51,7 +51,7 @@ class AdminBusinessHourController extends Controller
                 $businessHour->start_time = $request->start_time;
                 $businessHour->end_time = $request->end_time;
                 $businessHour->enabled = $request->enabled;
-                $businessHour->bar_id = $bar_id;
+                $businessHour->bar_id = $b_id;
 
                 $businessHour->save();
             }
@@ -61,7 +61,7 @@ class AdminBusinessHourController extends Controller
             BusinessHour::updateOrCreate(
                 [
                     'date' => $request->date,
-                    'bar_id' => $bar_id,
+                    'bar_id' => $b_id,
                 ],
                 [
                     'start_time' => $request->start_time,
@@ -74,7 +74,7 @@ class AdminBusinessHourController extends Controller
         return back()->with('success', 'Horarios agregado correctamente!');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $b_id, $id)
     {
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
@@ -93,7 +93,7 @@ class AdminBusinessHourController extends Controller
         return back()->with('success', 'Horario editado correctamente');
     }
 
-    public function destroy($id)
+    public function destroy($b_id, $id)
     {
         $businessHour = BusinessHour::findOrFail($id);
 		$businessHour->delete();

@@ -1,4 +1,4 @@
-<div class="modal fade" id="promotionHoursModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" id="promotionHoursModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	  <div class="modal-content">
 	    <div class="modal-header">
@@ -20,7 +20,7 @@
 			    </thead>
 			</table>
 			<!-- TODO: Agregar excepcion si no tiene ningún horario porque da error -->
-			{!! Form::open(['route' => ['admin.bars.promotions.hours.store', 'p_id' => $promotion->id, 'b_id' => $bar->id ], 'method' => 'POST']) !!}
+			{!! Form::open(['route' => ['admin.bars.promotions.hours.store', 'p_id' => $promotion->id, 'b_id' => $promotion->bar->id ], 'method' => 'POST']) !!}
 				<table class="table table-borderless">
 				    <tr>
 						<td>

@@ -6,14 +6,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PromotionResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function toArray($request)
     {
+        for ($i; $i<7; $i++)
+        {
+            //
+        }
         return [[
             'id' => $this->id,
             'titulo' => $this->title,

@@ -3,53 +3,54 @@
 @section('content')
 
   <h3>Horarios</h3>
-  <div class="alert alert-info row align-items-center text-center">
-    <div class="col">Habilitado</div>
-    <div class="col">Día</div>
-    <div class="col">Apertura</div>
-    <div class="col">Cierre</div>
-    <div class="col">Guardar</div>
-    <div class="col">Eliminar</div>
+
+  <div class="table-responsive text-nowrap pt-2">
+    <table class="table table-striped table-hover text-center">
+      <thead>
+        <th>Habilitado</th>
+        <th>Día</th>
+        <th>Apertura</th>
+        <th>Cierre</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </thead>
+
+      <tbody>
+        @foreach($businessHours as $businessHour)
+          <tr>
+            <td>
+              @if ($businessHour->enabled)
+                <i class="fas fa-check text-success"></i>
+              @else
+                <i class="fas fa-times text-danger"></i>
+              @endif
+            </td>
+            <td>{{ $dow[$businessHour->date] }}</td>
+            <td>{{ $businessHour->start_time }}</td>
+            <td>{{ $businessHour->end_time }}</td>
+            <td>
+              <button class="btn" data-toggle="modal" data-target="#updateBusinessHourModal-{{ $businessHour->id }}"><i class="fas fa-pen"></i></button>
+              <!-- I need one modal per businessHour -->
+              <!--Modal Edit BusinessHour -->
+              @include('businessHours.edit')
+            </td>
+            <td>
+              {!! Form::open([
+                'route' => ['bars.businessHours.destroy', $businessHour->id],
+                'method' => 'DELETE'
+              ]) !!}
+                <button type="submit" class="btn"><i class="fas fa-trash"></i></button>
+              {!! Form::close() !!}
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
   </div>
-  
-  @foreach($businessHours as $businessHour)
-
-    {!! Form::model($businessHour, ['route' => ['businessHours.update', $businessHour->id], 'method' => 'PATCH' , 'class' => 'form-inline']) !!}
-    <div class="container-fluid row align-items-center text-center my-2">
-      <div class="col">
-        {!! Form::hidden('enabled',0) !!}
-        {!! Form::checkbox('enabled', '1', old('enabled')) !!}
-      </div>
-      <div class="col">
-        {!! Form::select('date', $dow, old('date'), ['class' => 'form-control']) !!}
-      </div>
-      <div class="col">
-        {!! Form::time('start_time', old('start_time'), ['class' => 'form-control']) !!}
-      </div>
-      <div class="col">
-        {!! Form::time('end_time', old('end_time'), ['class' => 'form-control']) !!}
-      </div>
-      <div class="col">
-        <button class="btn btn-success">
-          <i class="fas fa-check"></i>
-        </button>
-      </div>
-      {!! Form::close() !!}
-      <div class="col">
-       {!! Form::open(['method' => 'DELETE', 'route' => ['businessHours.destroy', $businessHour->id]]) !!}
-         {{ Form::button("Eliminar", array('class' => 'btn btn-danger', 'type' => 'submit')) }}
-       {!! Form::close() !!}
-      </div>
-    </div>
-
-  @endforeach
 
   <div>
     <a class="btn btn-info text-white fixed-bottom" data-toggle="modal" data-target="#businessHoursModal">Nuevo Horario</a>
   </div>
-  
-  <!--Modal New BusinessHour -->
   @include('businessHours.create')
-
 
 @endsection

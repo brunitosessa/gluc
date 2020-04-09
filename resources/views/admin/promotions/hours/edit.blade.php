@@ -1,16 +1,16 @@
-<div class="modal fade" id="updateBusinessHourModal-{{ $businessHour->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="updatePromotionHourModal-{{ $promotionHour->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Horario</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Horario de promocion</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
       <div class="modal-body">
-        {!! Form::model($businessHour, ['route' => ['admin.bars.businessHours.update', $businessHour->bar->id, $businessHour->id], 'method' => 'PATCH' , 'class' => 'form-inline']) !!}
+        {!! Form::model($promotionHour, ['route' => ['admin.bars.promotions.hours.update', $promotionHour->promotion->bar->id, $promotionHour->id], 'method' => 'PATCH' , 'class' => 'form-inline']) !!}
         <div class="table-responsive">
           <table class="table">
             <thead>

@@ -25,11 +25,10 @@ class AdminPromotionHourController extends Controller
 
     public function index($b_id, $p_id)
     {
-        $bar = Bar::findOrFail($b_id);
         $promotion = Promotion::findOrFail($p_id);
         $promotionHours = $promotion->hours()->orderBy('date')->get();
         $dow = $this->dow;
-        return view('admin.promotions.hours.index',compact('promotionHours', 'promotion', 'bar', 'dow'));
+        return view('admin.promotions.hours.index',compact('promotionHours', 'promotion', 'dow'));
     }
 
     public function store(Request $request, $b_id, $p_id)
@@ -41,7 +40,6 @@ class AdminPromotionHourController extends Controller
             'enabled' => 'required|boolean',
         ]);    
 
-        $bar = Bar::findOrFail($b_id);
         $promotion = Promotion::findOrFail($p_id);
         //if date = -1, same start_time and end_time for every day
         if ( $request->date == -1)
@@ -76,7 +74,7 @@ class AdminPromotionHourController extends Controller
         return back()->with('success', 'Horario agregado correctamente!');
     }
 
-    public function update(Request $request, $b_id, $p_id)
+    public function update(Request $request, $b_id, $id)
     {
         $this->validate($request, [
             'date' => 'required|integer|between:-1,6',
@@ -85,8 +83,7 @@ class AdminPromotionHourController extends Controller
             'enabled' => 'required|boolean',
         ]);
 
-        $bar = Bar::findOrFail($b_id);
-        $promotionHour = PromotionHour::findOrFail($p_id);
+        $promotionHour = PromotionHour::findOrFail($id);
         $promotionHour->date  = $request->date;
         $promotionHour->start_time = $request->start_time;
         $promotionHour->end_time = $request->end_time;
@@ -96,10 +93,9 @@ class AdminPromotionHourController extends Controller
         return back()->with('success', 'Horario editado correctamente');
     }
 
-    public function destroy($b_id, $p_id)
-    {
-        $bar = Bar::findOrFail($b_id);
-        $promotionHour = PromotionHour::findOrFail($p_id);
+    public function destroy($b_id, $id)
+    {   
+        $promotionHour = PromotionHour::findOrFail($id);
         $promotionHour->delete();
 
         return back()->with('success', 'Horario eliminado correctamente!');

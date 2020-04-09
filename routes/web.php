@@ -22,10 +22,10 @@ Route::group(['middleware' => 'auth:admin'], function () {
 	Route::delete('/admin/bars/{id}', 'Admin\AdminBarController@destroy')->name('admin.bars.destroy');
 	
 	//Business hours
-	Route::get('/admin/bars/{id}/businessHours', 'Admin\AdminBusinessHourController@index')->name('admin.bars.businessHours.index');
-	Route::post('/admin/bars/{id}/businessHours', 'Admin\AdminBusinessHourController@store')->name('admin.bars.businessHours.store');
-	Route::patch('/admin/bars/businessHours/{id}', 'Admin\AdminBusinessHourController@update')->name('admin.bars.businessHours.update');
-	Route::delete('/admin/bars/businessHours/{id}', 'Admin\AdminBusinessHourController@destroy')->name('admin.bars.businessHours.destroy');
+	Route::get('/admin/bars/{b_id}/businessHours', 'Admin\AdminBusinessHourController@index')->name('admin.bars.businessHours.index');
+	Route::post('/admin/bars/{b_id}/businessHours', 'Admin\AdminBusinessHourController@store')->name('admin.bars.businessHours.store');
+	Route::patch('/admin/bars/{b_id}/businessHours/{id}', 'Admin\AdminBusinessHourController@update')->name('admin.bars.businessHours.update');
+	Route::delete('/admin/bars/{b_id}/businessHours/{id}', 'Admin\AdminBusinessHourController@destroy')->name('admin.bars.businessHours.destroy');
 
 	//Promotion - Bar
 	Route::get('/admin/bars/{b_id}/promotions', 'Admin\AdminPromotionController@index')->name('admin.bars.promotions.index');
@@ -38,9 +38,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
 	//Promotion Hour
 	Route::get('/admin/bars/{b_id}/promotions/{p_id}/hours', 'Admin\AdminPromotionHourController@index')->name('admin.bars.promotions.hours.index');
-	Route::post('/admin/bars/{b_id}/promotions/{id}/hours', 'Admin\AdminPromotionHourController@store')->name('admin.bars.promotions.hours.store');
-	Route::patch('/admin/bars/{b_id}/promotions/{id}/hours', 'Admin\AdminPromotionHourController@update')->name('admin.bars.promotions.hours.update');
-	Route::delete('/admin/bars/{b_id}/promotions/{id}/hours', 'Admin\AdminPromotionHourController@destroy')->name('admin.bars.promotions.hours.destroy');
+	Route::post('/admin/bars/{b_id}/promotions/{p_id}/hours', 'Admin\AdminPromotionHourController@store')->name('admin.bars.promotions.hours.store');
+	Route::patch('/admin/bars/{b_id}/promotions/{p_id}/hours', 'Admin\AdminPromotionHourController@update')->name('admin.bars.promotions.hours.update');
+	Route::delete('/admin/bars/{b_id}/promotions/{p_id}/hours', 'Admin\AdminPromotionHourController@destroy')->name('admin.bars.promotions.hours.destroy');
 
 	//Publicities
 	Route::get('/admin/publicities', 'Admin\AdminPublicityController@index')->name('admin.publicities.index');
