@@ -8,10 +8,6 @@ class PromotionResource extends JsonResource
 {
     public function toArray($request)
     {
-        for ($i; $i<7; $i++)
-        {
-            //
-        }
         return [[
             'id' => $this->id,
             'titulo' => $this->title,
